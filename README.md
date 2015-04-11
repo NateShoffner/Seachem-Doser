@@ -1,7 +1,7 @@
 # Seachem Doser
-[![Homescreen](http://i.imgur.com/RvsgkeH.png)]
-[![Product Selection](http://i.imgur.com/eAlNryz.png)]
-[![Dosage Calculator](http://i.imgur.com/0gniwEs.png)]
+![Homescreen](http://i.imgur.com/RvsgkeH.png)
+![Product Selection](http://i.imgur.com/eAlNryz.png)
+![Dosage Calculator](http://i.imgur.com/0gniwEs.png)
 
 Seachem Doser is a dosage calculator for various Seachem products.
 
