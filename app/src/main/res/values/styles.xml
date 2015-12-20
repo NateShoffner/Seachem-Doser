@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="SeachemDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <style name="SeachemDark" parent="Theme.AppCompat">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorLink">@color/link_color</item>
         <item name="android:windowBackground">@color/background</item>
