@@ -1,6 +1,7 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.nateshoffner.seachemdoser.BuildConfig;
@@ -13,7 +14,20 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         TextView tvVersion = (TextView) findViewById(R.id.tvVersion);
         tvVersion.append(BuildConfig.VERSION_NAME);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
