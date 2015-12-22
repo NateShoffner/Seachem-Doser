@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="about_app"
+        android:title="@string/app_name"
+        android:summary="1.0" />
+    <PreferenceScreen
+        android:key="about_author"
+        android:title="@string/about_author"
+        android:summary="@string/about_homepage">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="@string/about_homepage" />
+    </PreferenceScreen>
+    <Preference
+        android:key="about_disclaimer"
+        android:title="Disclaimer"
+        android:summary="@string/about_disclaimer" />
+    <Preference
+        android:key="about_license"
+        android:title="License"
+        android:summary="@string/about_license"/>
+    <Preference
+        android:key="about_license"
+        android:title="Attributions"
+        android:summary="@string/about_attributions"/>
+</PreferenceScreen>

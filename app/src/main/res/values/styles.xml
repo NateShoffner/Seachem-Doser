@@ -19,8 +19,8 @@
     </style>
 
     <style name="SeachemActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/action_bar</item>
-        <item name="background">@drawable/action_bar</item>
+        <item name="android:background">@drawable/action_bar_gradient</item>
+        <item name="background">@drawable/action_bar_gradient</item>
         <item name="android:icon">@drawable/ic_launcher</item>
     </style>
 

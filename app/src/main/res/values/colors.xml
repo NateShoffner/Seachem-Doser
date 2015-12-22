@@ -6,4 +6,9 @@
     <color name="product_type_gravel">#FB3A01</color>
     <color name="product_type_planted">#42B502</color>
     <color name="product_type_reef">#1C96FF</color>
+
+    <color name="gradiant_start">#A5C3DF</color>
+    <color name="gradiant_primary">#5C93C9</color>
+    <color name="gradiant_secondary">#7B63AF</color>
+
 </resources>

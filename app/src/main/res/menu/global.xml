@@ -4,10 +4,10 @@
     tools:context="com.nateshoffner.seachemdoser.ui.activity.MainActivity">
 
     <item
-        android:id="@+id/action_about"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_info_outline_white_48dp"
-        android:title="About..."/>
+        android:icon="@drawable/ic_settings_white_48dp"
+        android:title="@string/action_settings"/>
 
 </menu>
