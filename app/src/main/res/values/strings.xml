@@ -24,4 +24,5 @@
     <string name="calculation_error">A calculation error occurred</string>
     <string name="dosage_label_or">or</string>
     <string name="about_icon_license">Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></string>
+    <string name="product_placeholder">Select a product from the left to begin</string>
 </resources>
