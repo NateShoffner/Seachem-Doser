@@ -2,9 +2,6 @@ package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,9 +31,10 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
 
     @Override
     public void onProductSelected(SeachemProduct product) {
-        setTitle(product.getName());
 
         if (mTwoPane) {
+
+            setTitle(product.getName());
 
             TextView tvPlaceholder =(TextView)findViewById(R.id.label_product_placeholder);
 
