@@ -1,6 +1,6 @@
 <resources>
-    <color name="text_color">#999999</color>
-    <color name="link_color">#FFFFFF</color>
-    <color name="background">#0E0F11</color>
-    <color name="banner">#1C96FF</color>
+<color name="text_color">#999999</color>
+<color name="link_color">#FFFFFF</color>
+<color name="background">#0E0F11</color>
+<color name="banner">#1C96FF</color>
 </resources>

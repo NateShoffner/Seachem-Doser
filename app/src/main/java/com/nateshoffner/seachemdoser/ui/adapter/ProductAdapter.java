@@ -10,9 +10,11 @@ import android.widget.TextView;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 
+import java.util.List;
+
 public class ProductAdapter extends ArrayAdapter<SeachemProduct> {
 
-    public ProductAdapter(Context context, SeachemProduct[] products) {
+    public ProductAdapter(Context context, List<SeachemProduct> products) {
         super(context, R.layout.product_row_layout, products);
     }
 

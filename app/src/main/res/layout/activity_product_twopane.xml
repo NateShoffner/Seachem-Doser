@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal" android:orientation="horizontal"
+    android:showDividers="middle"
+    tools:context="com.nateshoffner.seachemdoser.ui.activity.ProductListActivity">
+
+    <fragment android:id="@+id/product_selection"
+        android:name="com.nateshoffner.seachemdoser.ui.fragment.ProductSelectionFragment"
+        android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.4" />
+
+    <FrameLayout android:id="@+id/product_detail_container" android:layout_width="0dp"
+        android:layout_height="match_parent" android:layout_weight="0.6">
+
+        <TextView
+            android:id="@+id/label_product_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/product_placeholder"
+            android:gravity="center_vertical|center_horizontal" />
+
+    </FrameLayout>
+
+</LinearLayout>

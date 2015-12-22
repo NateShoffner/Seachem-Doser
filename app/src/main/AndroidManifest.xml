@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nateshoffner.seachemdoser">
+    package="com.nateshoffner.seachemdoser" >
 
     <application
         android:name=".DoserApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/SeachemDark">
+        android:theme="@style/SeachemDark" >
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:label="@string/app_name">
+            android:name=".ui.activity.AboutActivity"
+            android:label="@string/title_activity_about" />
+        <activity
+            android:name=".ui.activity.ProductListActivity"
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.AboutActivity"
-            android:label="@string/title_activity_about"></activity>
-        <activity
-            android:name=".ui.activity.ProductTypeActivity"
-            android:label="@string/title_activity_product_type"
-            android:launchMode="singleTop"
-            android:parentActivityName=".ui.activity.MainActivity"></activity>
-        <activity
-            android:name=".ui.activity.ProductActivity"
-            android:label="@string/title_activity_product"
-            android:parentActivityName=".ui.activity.ProductTypeActivity"
-            android:windowSoftInputMode="adjustResize">
-
-            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            android:name=".ui.activity.ProductDetailActivity"
+            android:label=""
+            android:parentActivityName=".ui.activity.ProductListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.activity.ProductTypeActivity" />
+                android:value=".ui.activity.ProductListActivity" />
         </activity>
     </application>
 
