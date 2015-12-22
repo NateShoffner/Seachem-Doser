@@ -2,7 +2,7 @@ package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +13,11 @@ import com.nateshoffner.seachemdoser.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseActivity extends AppCompatActivity  {
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -35,12 +40,23 @@ public abstract class BaseActivity extends AppCompatActivity  {
             return true;
         }
 
-        if (id == R.id.home) {
-            if (NavUtils.getParentActivityName(this) != null)
-                NavUtils.navigateUpFromSameTask(this);
+        if (id == android.R.id.home) {
+            onBackPressed();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
 }
