@@ -7,10 +7,6 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:actionBarStyle" tools:targetApi="11">@style/SeachemActionBar</item>
         <item name="actionBarStyle">@style/SeachemActionBar</item>
-        <item name="android:popupMenuStyle" tools:targetApi="11">@style/SeachemPopupMenu</item>
-        <item name="android:actionBarWidgetTheme" tools:targetApi="14">@style/SeachemPopupMenu
-        </item>
-        <item name="popupMenuStyle">@style/SeachemPopupMenu</item>
         <item name="android:textViewStyle">@style/SeachemTextView</item>
         <item name="editTextStyle">@style/SeachemEditText</item>
         <item name="buttonStyle">@style/SeachemButton</item>
@@ -22,10 +18,6 @@
         <item name="android:background">@drawable/action_bar_gradient</item>
         <item name="background">@drawable/action_bar_gradient</item>
         <item name="android:icon">@drawable/ic_launcher</item>
-    </style>
-
-    <style name="SeachemPopupMenu" parent="@style/Widget.AppCompat.Light.ListPopupWindow">
-        <item name="android:popupBackground">@color/banner</item>
     </style>
 
     <style name="SeachemTextView" parent="@android:style/Widget.TextView">
