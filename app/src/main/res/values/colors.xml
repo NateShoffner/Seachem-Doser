@@ -1,14 +1,11 @@
 <resources>
+    <color name="primary">#3677D1</color>
+    <color name="primary_dark">#195AB8</color>
+    <color name="accent">#CCCDCE</color>
     <color name="text_color">#999999</color>
     <color name="link_color">#FFFFFF</color>
     <color name="background">#0E0F11</color>
-    <color name="banner">#1C96FF</color>
     <color name="product_type_gravel">#FB3A01</color>
     <color name="product_type_planted">#42B502</color>
     <color name="product_type_reef">#1C96FF</color>
-
-    <color name="gradiant_start">#A5C3DF</color>
-    <color name="gradiant_primary">#5C93C9</color>
-    <color name="gradiant_secondary">#7B63AF</color>
-
 </resources>
