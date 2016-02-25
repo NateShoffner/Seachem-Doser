@@ -1,0 +1,11 @@
+sudo: false
+language: android
+android:
+  components:
+    - platform-tools
+    - tools
+    - extra-android-m2repository
+    - build-tools-21.1.2
+    - android-23
+
+script: cd app && ./gradlew build
