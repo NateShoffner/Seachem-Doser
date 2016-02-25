@@ -8,4 +8,4 @@ android:
     - build-tools-21.1.2
     - android-23
 
-script: cd app && ./gradlew build
+script: ./gradlew build
