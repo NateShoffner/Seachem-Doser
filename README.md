@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/NateShoffner/Seachem-Doser.svg?branch=master)](https://travis-ci.org/NateShoffner/Seachem-Doser)
+
 # Seachem Doser
 ![Product Selection](http://i.imgur.com/aX8v7VZ.png)
 ![Dosage Calculator](http://i.imgur.com/35uZUjz.png)
