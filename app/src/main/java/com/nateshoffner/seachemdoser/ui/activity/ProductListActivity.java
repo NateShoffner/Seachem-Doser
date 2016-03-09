@@ -71,13 +71,4 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
             startActivity(detailIntent);
         }
     }
-
-    @Override
-    public void onProductTypeSelected(SeachemProductType type) {
-        if (mSharedPreferences != null) {
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(getString(R.string.pref_last_product_type), type.name());
-            editor.commit();
-        }
-    }
 }

@@ -4,16 +4,21 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
-import com.nateshoffner.seachemdoser.ui.listener.ProductSelectionListener;
+import com.nateshoffner.seachemdoser.ui.adapter.ProductViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,10 @@ public class ProductSelectionFragment extends Fragment {
 
     private List<ProductListFragment> mProductListFragments = new ArrayList<>();
     private FragmentTabHost mTabHost;
+    private TabWidget mTabWidget;
+    private ProductViewPagerAdapter mPagerAdapter;
+    private ViewPager mViewPager;
+    private HorizontalScrollView mHorizontalScrollView;
 
     public ProductSelectionFragment() {
 
@@ -40,8 +49,52 @@ public class ProductSelectionFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_product_selection, container, false);
 
+        mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
         mTabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
+        mTabWidget = (TabWidget)rootView.findViewById(android.R.id.tabs);
         mTabHost.setup(getActivity(), getFragmentManager(), R.id.realtabcontent);
+
+        initializeTabs();
+
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+
+            @Override
+            public void onTabChanged(String tabId) {
+                mViewPager.setCurrentItem(mTabHost.getCurrentTab());
+            }
+        });
+
+        mPagerAdapter = new ProductViewPagerAdapter(getFragmentManager(), SeachemManager.GetProductTypes());
+        mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                mTabHost.setCurrentTab(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+
+        return rootView;
+    }
+
+    private void initializeTabs() {
+        LinearLayout layout = (LinearLayout) mTabWidget.getParent();
+        mHorizontalScrollView = new HorizontalScrollView(getActivity());
+        mHorizontalScrollView.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT));
+        layout.addView(mHorizontalScrollView, 0);
+        layout.removeView(mTabWidget);
+        mHorizontalScrollView.addView(mTabWidget);
+        mHorizontalScrollView.setFillViewport(true);
+        mHorizontalScrollView.setHorizontalScrollBarEnabled(false);
 
         List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
 
@@ -70,17 +123,6 @@ public class ProductSelectionFragment extends Fragment {
                     findViewById(android.R.id.title);
             tv.setTextColor(color);
         }
-
-        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-
-            @Override
-            public void onTabChanged(String tabId) {
-                SeachemProductType type = SeachemProductType.valueOf(tabId);
-                ((ProductSelectionListener) getActivity()).onProductTypeSelected(type);
-            }
-        });
-
-        return rootView;
     }
 
     public void setActivateOnItemClick(boolean activateOnItemClick) {
