@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.planted;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,16 @@ public class LiquidAlkalineBuffer implements SeachemProduct {
 
     public LiquidAlkalineBuffer() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current KH", "meq/L"),
-                new SeachemParameter("Desired KH", "meq/L")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_kh),
+                        DoserApplication.getContext().getString(R.string.meqL)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_kh),
+                        DoserApplication.getContext().getString(R.string.meqL))
         };
 
-        this.name = "Liquid Alkaline Buffer";
-        this.comment = "Considerations: Liquid Alkaine Buffer raises KH in much smaller increments than Alkaline Buffer. Depending on your requirements, you may choose to use Alkaline Buffer instead. 2 meq/L is equal to  5.6 dKH. If your test kit measures in dKH, divide your test kit reading by 2.8 to determine your current KH levels in meq/L. Do the same for desired KH.";
+        this.name = DoserApplication.getContext().getString(R.string.product_liquid_alkaline_buffer);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_liquid_alkaline_buffer);
     }
 
     @Override
@@ -50,8 +55,8 @@ public class LiquidAlkalineBuffer implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

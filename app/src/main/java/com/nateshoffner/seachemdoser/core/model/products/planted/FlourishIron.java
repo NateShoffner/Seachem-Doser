@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.planted;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,15 @@ public class FlourishIron implements SeachemProduct {
 
     public FlourishIron() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Iron", "mg/L (ppm)"),
-                new SeachemParameter("Desired Iron", "mg/L (ppm)")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_iron),
+                        DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_iron), DoserApplication.getContext().getString(R.string.mgL_ppm))
         };
 
-        this.name = "Flourish Iron";
-        this.comment = "Considerations: We recommend maintaining an Fe level of about 0.10 mg/L. Iron is used quickly, so you will want to initially exceed 0.10 mg/L in order to prevent iron levels from falling below that level. For smaller doses, please note that each cap thread is about 1 mL";
+        this.name = DoserApplication.getContext().getString(R.string.product_flourish_iron);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_flourish_iron);
     }
 
 
@@ -51,8 +55,8 @@ public class FlourishIron implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

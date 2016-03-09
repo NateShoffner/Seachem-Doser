@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.reef;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,16 @@ public class ReefCarbonate implements SeachemProduct {
 
     public ReefCarbonate() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Alkalinity", "meq/L"),
-                new SeachemParameter("Desired Alkalinity", "meq/L")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_alkalinity),
+                        DoserApplication.getContext().getString(R.string.meqL)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_alkalinity),
+                        DoserApplication.getContext().getString(R.string.meqL))
         };
 
-        this.name = "Reef Carbonate";
-        this.comment = "Considerations: Reef alkalinity should ideally be maintained at 4-5 meq/L (11-17 dKH). It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. Each dose will raise alkalinity by about 0.25 meq/L. Size or frequency of dose can be adjusted, but do not exceed 1 meq/L per day.";
+        this.name = DoserApplication.getContext().getString(R.string.product_reef_carbonate);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_reef_carbonate);
     }
 
     @Override
@@ -50,8 +55,8 @@ public class ReefCarbonate implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

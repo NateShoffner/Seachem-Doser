@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.planted;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,14 @@ public class FlourishNitrogen implements SeachemProduct {
 
     public FlourishNitrogen() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Nitrogen", "meq/L"),
-                new SeachemParameter("Desired Nitrogen", "meq/L")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_nitrogen), DoserApplication.getContext().getString(R.string.meqL)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_nitrogen), DoserApplication.getContext().getString(R.string.meqL))
         };
 
-        this.name = "Flourish Nitrogen";
-        this.comment = "Considerations: If using a \"nitrate equivalent\" value for Current and Desired Nitrogen levels, divide the result by 5.";
+        this.name = DoserApplication.getContext().getString(R.string.product_flourish_nitrogen);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_flourish_nitrogen);
     }
 
 
@@ -51,8 +54,8 @@ public class FlourishNitrogen implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

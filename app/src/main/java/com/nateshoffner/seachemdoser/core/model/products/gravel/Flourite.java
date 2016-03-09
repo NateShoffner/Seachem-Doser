@@ -1,14 +1,15 @@
 package com.nateshoffner.seachemdoser.core.model.products.gravel;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
-import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 
-public class Flourite extends GravelBase implements SeachemProduct {
+public class Flourite extends GravelBase {
 
     protected String name;
 
     public Flourite() {
-        this.name = "Flourite";
+        this.name = DoserApplication.getContext().getString(R.string.product_flourite);
     }
 
     @Override

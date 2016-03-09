@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.reef;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,13 @@ public class ReefIodide implements SeachemProduct {
 
     public ReefIodide() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Iodide", "mg/L (ppm)"),
-                new SeachemParameter("Desired Iodide", "mg/L (ppm)")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume), DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_iodide), DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_iodide), DoserApplication.getContext().getString(R.string.mgL_ppm))
         };
 
-        this.name = "Reef Iodide";
-        this.comment = "Considerations: If necessary, adjust amount so that iodide reads 0.06–0.08 mg/L 6–12 hours after the last dose. Natural seawater has an iodine concentration of .06 mg/L; however, many corals and crustaceans can benefit from a slightly higher concentration. Make large adjustments slowly to avoid overshooting intended level.";
+        this.name = DoserApplication.getContext().getString(R.string.product_reef_iodide);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_reef_iodide);
     }
 
     @Override
@@ -50,8 +52,8 @@ public class ReefIodide implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

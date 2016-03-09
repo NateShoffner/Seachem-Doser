@@ -1,14 +1,15 @@
 package com.nateshoffner.seachemdoser.core.model.products.gravel;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
-import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 
-public class GrayCoast extends GravelBase implements SeachemProduct {
+public class GrayCoast extends GravelBase {
 
     private String name;
 
     public GrayCoast() {
-        this.name = "Gray Coast";
+        this.name = DoserApplication.getContext().getString(R.string.product_gray_coast);
     }
 
     @Override

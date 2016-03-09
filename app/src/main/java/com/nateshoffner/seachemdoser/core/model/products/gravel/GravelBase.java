@@ -1,9 +1,12 @@
 package com.nateshoffner.seachemdoser.core.model.products.gravel;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
+import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 
-public abstract class GravelBase {
+public abstract class GravelBase implements SeachemProduct {
 
     protected SeachemParameter[] parameters;
     protected String comment;
@@ -11,12 +14,15 @@ public abstract class GravelBase {
     protected GravelBase() {
 
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Width", "in"),
-                new SeachemParameter("Aquarium Length", "in"),
-                new SeachemParameter("Desired Substrate Depth", "in")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_width),
+                        DoserApplication.getContext().getString(R.string.unit_inches)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_length),
+                        DoserApplication.getContext().getString(R.string.unit_inches)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_substrate_depth),
+                        DoserApplication.getContext().getString(R.string.unit_inches))
         };
 
-        this.comment = "If you plan on varying the depth of your substrate, use an average depth as your desired substrate depth.";
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_gravel);
     }
 
     public SeachemParameter[] getParameters() {
@@ -36,7 +42,7 @@ public abstract class GravelBase {
         double total = Math.ceil(width * length * depth / size);
 
         return new SeachemDosage[]{
-                new SeachemDosage("Bags", total)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_bags), total)
         };
     }
 

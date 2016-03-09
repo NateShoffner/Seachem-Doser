@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.reef;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,14 @@ public class ReefComplete implements SeachemProduct {
 
     public ReefComplete() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Calcium", "mg/L (ppm)"),
-                new SeachemParameter("Desired Calcium", "mg/L (ppm)")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium), DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_calcium), DoserApplication.getContext().getString(R.string.mgL_ppm))
         };
 
-        this.name = "Reef Complete";
-        this.comment = "Considerations: We recommend a Ca level between 380-420 mg/L with an alkalinity between 4-6 meq/L. It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. Each capful will raise calcium by about 10 mg/L. Size or frequency of amount added can be adjusted, but do not exceed 25 mg/L per day.";
+        this.name = DoserApplication.getContext().getString(R.string.product_reef_complete);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_reef_complete);
     }
 
     @Override
@@ -50,8 +53,8 @@ public class ReefComplete implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

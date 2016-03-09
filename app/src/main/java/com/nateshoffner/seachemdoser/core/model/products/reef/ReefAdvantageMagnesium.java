@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.reef;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -13,13 +15,13 @@ public class ReefAdvantageMagnesium implements SeachemProduct {
 
     public ReefAdvantageMagnesium() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Magnesium", "mg/L (ppm)"),
-                new SeachemParameter("Desired Magnesium", "mg/L (ppm)")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume), DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_magnesium), DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_magnesium), DoserApplication.getContext().getString(R.string.mgL_ppm))
         };
 
-        this.name = "Reef Advantage Magnesium";
-        this.comment = "Considerations: We recommend a magnesium  level between 1200-1350 mg/L. Make large adjustments slowly to avoid overshooting intended level. Amount or frequency can be adjusted, but do not exceed 25 g/80 L per day. Dissolve in at least one cup of freshwater. Excess magnesium may enhance the loss of carbonate alkalinity. Do not directly mix with any carbonate supplement.";
+        this.name = DoserApplication.getContext().getString(R.string.product_reef_advantage_magnesium);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_magnesium);
     }
 
     @Override
@@ -49,8 +51,8 @@ public class ReefAdvantageMagnesium implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Tspns", doseA),
-                new SeachemDosage("Grams", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), doseB)
         };
     }
 }

@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.planted;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,14 @@ public class FlourishPhosphorus implements SeachemProduct {
 
     public FlourishPhosphorus() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Phosphorus", "mg/L (ppm)"),
-                new SeachemParameter("Desired Phosphorus", "mg/L (ppm)")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_phosphorus), DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_phosphorus), DoserApplication.getContext().getString(R.string.mgL_ppm))
         };
 
-        this.name = "Flourish Phosphorus";
-        this.comment = "Considerations: Use once or twice a week or as needed in response to signs of phosphorus deficiency (e.g. stunted growth, plant dark green). The ideal phosphate level will vary, but generally ranges from 0.15–1.0 mg/L. Use MultiTest: Phosphate™ to monitor phosphate levels.";
+        this.name = DoserApplication.getContext().getString(R.string.product_flourish_phosphorus);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_flourish_phosphorus);
     }
 
 
@@ -51,8 +54,8 @@ public class FlourishPhosphorus implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

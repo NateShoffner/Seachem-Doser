@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.planted;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -13,13 +15,13 @@ public class Equilibrium implements SeachemProduct {
 
     public Equilibrium() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current GH", "meq/L"),
-                new SeachemParameter("Desired GH", "meq/L")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume), DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_gh), DoserApplication.getContext().getString(R.string.meqL)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_gh), DoserApplication.getContext().getString(R.string.meqL))
         };
 
-        this.name = "Equilibrium";
-        this.comment = "Considerations: Equilibrium™ can be added straight, although for optimum solubility we recommend mixing with ~ 1 L (1 qt.) of water (the resulting mixture will have a white opaque appearance). When this mixture is added to the aquarium it will impart a slight haze that should clear within 15–30 minutes.";
+        this.name = DoserApplication.getContext().getString(R.string.product_equilibrium);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_equilibrium);
     }
 
     @Override
@@ -50,8 +52,8 @@ public class Equilibrium implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Tbsp", doseA),
-                new SeachemDosage("Grams", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tbsp), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), doseB)
         };
     }
 }

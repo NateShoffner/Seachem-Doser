@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.core.model.products.planted;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
+import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -14,13 +16,13 @@ public class FlourishPotassium implements SeachemProduct {
 
     public FlourishPotassium() {
         this.parameters = new SeachemParameter[]{
-                new SeachemParameter("Aquarium Volume", "US Gallons"),
-                new SeachemParameter("Current Potassium", "mg/L (ppm)"),
-                new SeachemParameter("Desired Potassium", "mg/L (ppm)")
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume), DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_potassium), DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_potassium), DoserApplication.getContext().getString(R.string.mgL_ppm))
         };
 
-        this.name = "Flourish Potassium";
-        this.comment = "Considerations: Repeat - 2-3 times per week or as needed (in response to signs of potassium deficiency in older leaves which includes: chlorosis (yellowing), necrossis (death/browning), and weak stems and roots.";
+        this.name = DoserApplication.getContext().getString(R.string.product_flourish_potassium);
+        this.comment = DoserApplication.getContext().getString(R.string.product_comment_flourish_potassium);
     }
 
 
@@ -51,8 +53,8 @@ public class FlourishPotassium implements SeachemProduct {
         doseB = MathUtils.round(doseB * 10) / 10;
 
         return new SeachemDosage[]{
-                new SeachemDosage("Caps", doseA),
-                new SeachemDosage("mL", doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
         };
     }
 }

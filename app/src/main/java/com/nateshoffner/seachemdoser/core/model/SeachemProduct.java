@@ -3,11 +3,11 @@ package com.nateshoffner.seachemdoser.core.model;
 import java.io.Serializable;
 
 public interface SeachemProduct extends Serializable {
-    public String getName();
+    String getName();
 
-    public SeachemParameter[] getParameters();
+    SeachemParameter[] getParameters();
 
-    public String getComment();
+    String getComment();
 
-    public SeachemDosage[] calculateDosage();
+    SeachemDosage[] calculateDosage();
 }
