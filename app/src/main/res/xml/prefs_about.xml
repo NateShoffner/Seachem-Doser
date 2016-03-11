@@ -16,6 +16,10 @@
                 android:data="@string/about_homepage" />
         </PreferenceScreen>
         <Preference
+            android:key="about_rate"
+            android:title="Rate this app"
+            android:summary="@string/about_rate" />
+        <Preference
             android:key="about_changelog"
             android:title="Change Log"
             android:summary="@string/about_changelog" />
