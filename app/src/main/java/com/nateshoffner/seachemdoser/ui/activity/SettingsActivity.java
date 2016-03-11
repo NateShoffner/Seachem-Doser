@@ -16,7 +16,8 @@ import android.widget.ListView;
 import com.nateshoffner.seachemdoser.BuildConfig;
 import com.nateshoffner.seachemdoser.R;
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     SharedPreferences mSharedPreferences;
 
@@ -38,16 +39,7 @@ public class SettingsActivity extends PreferenceActivity {
 
         findPreference("about_app").setSummary("v" + BuildConfig.VERSION_NAME);
         updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
-        mSharedPreferences.registerOnSharedPreferenceChangeListener(new
-                                                                            SharedPreferences.OnSharedPreferenceChangeListener() {
-                                                                                @Override
-                                                                                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-                                                                                                                      String key) {
-                                                                                    if (key.equals(getString(R.string.pref_unit_measurement))) {
-                                                                                        updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
-                                                                                    }
-                                                                                }
-                                                                            });
+        mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     private void updatePreferenceSummary(String key, String defaultValue) {
@@ -91,5 +83,12 @@ public class SettingsActivity extends PreferenceActivity {
                 overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             }
         });
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_unit_measurement))) {
+            updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
+        }
     }
 }

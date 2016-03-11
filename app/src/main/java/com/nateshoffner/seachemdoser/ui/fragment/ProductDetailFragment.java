@@ -25,7 +25,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDetailFragment extends Fragment {
+public class ProductDetailFragment extends Fragment
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String EXTRA_PRODUCT = "PRODUCT";
 
@@ -34,6 +35,8 @@ public class ProductDetailFragment extends Fragment {
     private final List<EditText> dosageInputs = new ArrayList<>();
     private final List<EditText> dosageOutputs = new ArrayList<>();
     private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+    private View mRootView;
 
     private SeachemProduct mProduct;
 
@@ -102,25 +105,14 @@ public class ProductDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_product_detail, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_product_detail, container, false);
 
         DoserApplication.getDoserPreferences().getSharedPreferences().
-                registerOnSharedPreferenceChangeListener(new
-                                                                 SharedPreferences.OnSharedPreferenceChangeListener() {
-                                                                     @Override
-                                                                     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-                                                                                                           String key) {
-                                                                         if (key.equals(getString(R.string.pref_unit_measurement))) {
-                                                                             UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
-                                                                             initializeParameterViews(unitMeasurement, rootView);
-                                                                             initializeDosageViews(unitMeasurement, rootView);
-                                                                         }
-                                                                     }
-                                                                 });
+                registerOnSharedPreferenceChangeListener(this);
 
         if (mProduct != null) {
 
-            Button btnCalc = (Button) rootView.findViewById(R.id.btnCalculate);
+            Button btnCalc = (Button) mRootView.findViewById(R.id.btnCalculate);
             btnCalc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -174,14 +166,25 @@ public class ProductDetailFragment extends Fragment {
             });
 
             UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
-            initializeParameterViews(unitMeasurement, rootView);
-            initializeDosageViews(unitMeasurement, rootView);
+            initializeParameterViews(unitMeasurement, mRootView);
+            initializeDosageViews(unitMeasurement, mRootView);
 
-            TextView tvProductComment = (TextView) rootView.findViewById(R.id.tvProductComment);
+            TextView tvProductComment = (TextView) mRootView.findViewById(R.id.tvProductComment);
             tvProductComment.setText(mProduct.getComment());
         }
 
-        return rootView;
+        return mRootView;
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (isAdded()) {
+            if (key.equals(getString(R.string.pref_unit_measurement))) {
+                UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().
+                        getUnitMeasurement();
+                initializeParameterViews(unitMeasurement, mRootView);
+                initializeDosageViews(unitMeasurement, mRootView);
+            }
+        }
+    }
 }
