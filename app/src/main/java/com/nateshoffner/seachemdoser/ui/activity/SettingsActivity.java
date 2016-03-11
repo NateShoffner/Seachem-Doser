@@ -63,9 +63,12 @@ public class SettingsActivity extends PreferenceActivity
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
             // To count with Play market backstack, After pressing back button,
             // to taken back to our application, we need to add following flags to intent.
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+            flags |= Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ?
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT :
+                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
+
+            goToMarket.addFlags(flags);
             try {
                 startActivity(goToMarket);
             } catch (ActivityNotFoundException e) {
