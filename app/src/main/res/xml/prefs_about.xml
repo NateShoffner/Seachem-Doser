@@ -31,9 +31,5 @@
             android:key="about_license"
             android:title="License"
             android:summary="@string/about_license"/>
-        <Preference
-            android:key="about_license"
-            android:title="Attributions"
-            android:summary="@string/about_attributions"/>
     </PreferenceCategory>
 </PreferenceScreen>
