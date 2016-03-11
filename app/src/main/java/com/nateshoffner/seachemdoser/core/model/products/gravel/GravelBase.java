@@ -6,6 +6,7 @@ import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
+import com.nateshoffner.seachemdoser.utils.UnitConversion;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -50,9 +51,9 @@ public abstract class GravelBase implements SeachemProduct {
         double depth = mParameters.get(unitMeasurement)[2].getValue();
 
         if (unitMeasurement == UnitMeasurement.Metric) {
-            width = width * 2.54;
-            length = length * 2.54;
-            depth = depth * 2.54;
+            width = UnitConversion.CentimetersToInches(width);
+            length = UnitConversion.CentimetersToInches(length);
+            depth = UnitConversion.CentimetersToInches(depth);
         }
 
         double total = Math.ceil(width * length * depth / size);
