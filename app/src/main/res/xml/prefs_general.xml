@@ -7,7 +7,7 @@
             android:title="Unit Measurement"
             android:summary="Unit measurement to use for dosages."
             android:key="@string/pref_unit_measurement"
-            android:defaultValue="Imperial"
+            android:defaultValue="Imperial (US)"
             android:entries="@array/unit_measurements"
             android:entryValues="@array/unit_measurements" />
         <SwitchPreference
