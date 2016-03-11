@@ -5,9 +5,9 @@ import java.io.Serializable;
 public interface SeachemProduct extends Serializable {
     String getName();
 
-    SeachemParameter[] getParameters();
+    SeachemParameter[] getParameters(UnitMeasurement unitMeasurement);
 
     String getComment();
 
-    SeachemDosage[] calculateDosage();
+    SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement);
 }

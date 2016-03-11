@@ -3,48 +3,70 @@ package com.nateshoffner.seachemdoser.core.model.products.reef;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.utils.Constants;
 import com.nateshoffner.seachemdoser.utils.MathUtils;
+import com.nateshoffner.seachemdoser.utils.UnitConversion;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class ReefIodide implements SeachemProduct {
 
-    private SeachemParameter[] parameters;
-    private String comment;
-    private String name;
+    private Dictionary<UnitMeasurement, SeachemParameter[]> mParameters = new Hashtable<>();
+    private String mComment;
+    private String mName;
 
     public ReefIodide() {
-        this.parameters = new SeachemParameter[]{
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume), DoserApplication.getContext().getString(R.string.unit_us_gallons)),
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_iodide), DoserApplication.getContext().getString(R.string.mgL_ppm)),
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_iodide), DoserApplication.getContext().getString(R.string.mgL_ppm))
-        };
 
-        this.name = DoserApplication.getContext().getString(R.string.product_reef_iodide);
-        this.comment = DoserApplication.getContext().getString(R.string.product_comment_reef_iodide);
+        mParameters.put(UnitMeasurement.Imperial, new SeachemParameter[]{
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_us_gallons)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_iodide),
+                        DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_iodide),
+                        DoserApplication.getContext().getString(R.string.mgL_ppm))
+        });
+
+        mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                        DoserApplication.getContext().getString(R.string.unit_litres)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_iodide),
+                        DoserApplication.getContext().getString(R.string.mgL_ppm)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_iodide),
+                        DoserApplication.getContext().getString(R.string.mgL_ppm))
+        });
+
+        mName = DoserApplication.getContext().getString(R.string.product_reef_iodide);
+        mComment = DoserApplication.getContext().getString(R.string.product_comment_reef_iodide);
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return mName;
     }
 
     @Override
-    public SeachemParameter[] getParameters() {
-        return this.parameters;
+    public SeachemParameter[] getParameters(UnitMeasurement unitMeasurement) {
+        return mParameters.get(unitMeasurement);
     }
 
     @Override
     public String getComment() {
-        return this.comment;
+        return mComment;
     }
 
     @Override
-    public SeachemDosage[] calculateDosage() {
-        double volume = this.parameters[0].getValue();
-        double current = this.parameters[1].getValue();
-        double desired = this.parameters[2].getValue();
+    public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
+        double volume = mParameters.get(unitMeasurement)[0].getValue();
+        double current = mParameters.get(unitMeasurement)[1].getValue();
+        double desired = mParameters.get(unitMeasurement)[2].getValue();
+
+        if (unitMeasurement == UnitMeasurement.Metric) {
+            volume = UnitConversion.LitresToGallons(volume);
+        }
 
         double doseB = 0.500000 * volume * (desired - current);
         double doseA = doseB / Constants.CapmL;

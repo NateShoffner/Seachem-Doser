@@ -3,22 +3,23 @@ package com.nateshoffner.seachemdoser.core.model.products.gravel;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 
 public class SilverShores extends GravelBase {
 
-    private String name;
+    private String mName;
 
     public SilverShores() {
-        this.name = DoserApplication.getContext().getString(R.string.product_silver_shores);
+        mName = DoserApplication.getContext().getString(R.string.product_silver_shores);
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return mName;
     }
 
     @Override
-    public SeachemDosage[] calculateDosage() {
-        return CalculateDosage(458);
+    public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
+        return CalculateDosage(unitMeasurement, 458);
     }
 }

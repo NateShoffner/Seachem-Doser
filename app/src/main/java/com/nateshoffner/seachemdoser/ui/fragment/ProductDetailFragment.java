@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.ui.view.ParameterInputView;
@@ -75,7 +77,7 @@ public class ProductDetailFragment extends Fragment {
                             break;
                         }
 
-                        mProduct.getParameters()[inputCount].
+                        mProduct.getParameters(DoserApplication.getDuelingPreferences().getUnitMeasurement())[inputCount].
                                 setValue(Double.parseDouble(String.valueOf(input.getText().toString())));
                         inputCount++;
                     }
@@ -90,7 +92,7 @@ public class ProductDetailFragment extends Fragment {
                     SeachemDosage[] dosages = null;
 
                     try {
-                        dosages = mProduct.calculateDosage();
+                        dosages = mProduct.calculateDosage(DoserApplication.getDuelingPreferences().getUnitMeasurement());
                     } catch (ArithmeticException ex) {
                         Log.e(TAG, ex.toString());
                         //shouldn't happen, but just incase
@@ -112,7 +114,7 @@ public class ProductDetailFragment extends Fragment {
             });
 
             LinearLayout paramsLayout = (LinearLayout) rootView.findViewById(R.id.paramsLayout);
-            for (SeachemParameter param : mProduct.getParameters()) {
+            for (SeachemParameter param : mProduct.getParameters(DoserApplication.getDuelingPreferences().getUnitMeasurement())) {
                 ParameterInputView view = new ParameterInputView(getActivity(), null);
                 view.setLabelText(param.getName() + ":");
                 view.setUnitText(param.getUnit());
@@ -122,7 +124,7 @@ public class ProductDetailFragment extends Fragment {
 
             int dosageCount = 0;
             LinearLayout dosagesLayout = (LinearLayout) rootView.findViewById(R.id.dosagesLayout);
-            for (SeachemDosage dosage : mProduct.calculateDosage()) {
+            for (SeachemDosage dosage : mProduct.calculateDosage(DoserApplication.getDuelingPreferences().getUnitMeasurement())) {
                 ParameterInputView view = new ParameterInputView(getActivity(), null);
 
                 view.setLabelText(dosageCount == 0 ?

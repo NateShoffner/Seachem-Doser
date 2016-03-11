@@ -1,8 +1,10 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -10,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.nateshoffner.seachemdoser.BuildConfig;
 import com.nateshoffner.seachemdoser.R;
 
 public class SettingsActivity extends PreferenceActivity {
+
+    SharedPreferences mSharedPreferences;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -28,10 +31,29 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        addPreferencesFromResource(R.xml.prefs_general);
         addPreferencesFromResource(R.xml.prefs_about);
 
         findPreference("about_app").setSummary("v" + BuildConfig.VERSION_NAME);
+        updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
+        mSharedPreferences.registerOnSharedPreferenceChangeListener(new
+                                                                            SharedPreferences.OnSharedPreferenceChangeListener() {
+                                                                                @Override
+                                                                                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+                                                                                                                      String key) {
+                                                                                    if (key.equals(getString(R.string.pref_unit_measurement))) {
+                                                                                        updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
+                                                                                    }
+                                                                                }
+                                                                            });
     }
+
+    private void updatePreferenceSummary(String key, String defaultValue) {
+        findPreference(key).setSummary(mSharedPreferences.getString(key, defaultValue));
+    }
+
 
     private void addSupportActionBar() {
         Toolbar bar;

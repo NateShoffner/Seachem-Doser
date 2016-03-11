@@ -6,6 +6,6 @@ import com.nateshoffner.seachemdoser.R;
 public class FlouriteBlackSand extends Flourite {
 
     public FlouriteBlackSand() {
-        this.name = DoserApplication.getContext().getString(R.string.product_flourite_black_sand);
+        mName = DoserApplication.getContext().getString(R.string.product_flourite_black_sand);
     }
 }
