@@ -7,7 +7,7 @@
 
 Seachem Doser is a dosage calculator for various Seachem products.
 
-[![Get it on Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.nateshoffner.seachemdoser)
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png)](https://play.google.com/store/apps/details?id=com.nateshoffner.seachemdoser)
  
 [Google Play](https://play.google.com/store/apps/details?id=com.nateshoffner.seachemdoser)  
 [APK downloads](https://github.com/nateshoffner/Seachem-Doser/releases)
