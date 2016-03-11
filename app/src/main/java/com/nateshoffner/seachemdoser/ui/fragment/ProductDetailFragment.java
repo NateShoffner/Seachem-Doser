@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
-import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.ui.view.ParameterInputView;
@@ -44,7 +43,7 @@ public class ProductDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(EXTRA_PRODUCT)) {
-            mProduct = (SeachemProduct)getArguments().getSerializable(EXTRA_PRODUCT);
+            mProduct = (SeachemProduct) getArguments().getSerializable(EXTRA_PRODUCT);
         }
     }
 

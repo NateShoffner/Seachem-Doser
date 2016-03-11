@@ -38,7 +38,7 @@ public class ProductListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SeachemProductType productType = (SeachemProductType)getArguments().
+        SeachemProductType productType = (SeachemProductType) getArguments().
                 getSerializable(EXTRA_PRODUCT_TYPE);
         mProducts = SeachemManager.GetProducts(productType);
         setListAdapter(new ProductAdapter(getActivity(), mProducts));

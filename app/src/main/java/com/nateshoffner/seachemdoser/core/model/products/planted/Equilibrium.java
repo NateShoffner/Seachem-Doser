@@ -3,13 +3,10 @@ package com.nateshoffner.seachemdoser.core.model.products.planted;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
-import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
-import com.nateshoffner.seachemdoser.utils.Constants;
 import com.nateshoffner.seachemdoser.utils.MathUtils;
-import com.nateshoffner.seachemdoser.utils.UnitConversion;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
 
 import java.util.Dictionary;
@@ -34,8 +31,8 @@ public class Equilibrium implements SeachemProduct {
         mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
                         DoserApplication.getContext().getString(R.string.unit_litres)),
-        new SeachemParameter(DoserApplication.getContext().getString(R.string.current_gh),
-                DoserApplication.getContext().getString(R.string.meqL)),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.current_gh),
+                        DoserApplication.getContext().getString(R.string.meqL)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_gh),
                         DoserApplication.getContext().getString(R.string.meqL))});
 

@@ -57,7 +57,7 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
 
             setTitle(product.getName());
 
-            TextView tvPlaceholder =(TextView)findViewById(R.id.label_product_placeholder);
+            TextView tvPlaceholder = (TextView) findViewById(R.id.label_product_placeholder);
 
             if (tvPlaceholder.getVisibility() == View.VISIBLE) {
                 tvPlaceholder.setVisibility(View.GONE);

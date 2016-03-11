@@ -3,9 +3,9 @@ package com.nateshoffner.seachemdoser.core.model.products.planted;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
-import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.utils.Constants;
 import com.nateshoffner.seachemdoser.utils.MathUtils;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
@@ -67,7 +67,7 @@ public class FlourishPhosphorus implements SeachemProduct {
         if (unitMeasurement == UnitMeasurement.Metric) {
             volume = UnitConversion.LitresToGallons(volume);
         }
-        
+
         double doseB = volume / 20 * ((desired - current) * 16.600000);
         double doseA = doseB / Constants.CapmL;
         doseA = MathUtils.round(doseA * 10) / 10;

@@ -51,7 +51,7 @@ public class ProductSelectionFragment extends Fragment {
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
         mTabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
-        mTabWidget = (TabWidget)rootView.findViewById(android.R.id.tabs);
+        mTabWidget = (TabWidget) rootView.findViewById(android.R.id.tabs);
         mTabHost.setup(getActivity(), getFragmentManager(), R.id.realtabcontent);
 
         initializeTabs();

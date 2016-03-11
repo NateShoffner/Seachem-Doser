@@ -2,7 +2,6 @@ package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.os.Bundle;
 
-
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;

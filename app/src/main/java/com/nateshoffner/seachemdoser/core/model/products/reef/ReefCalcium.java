@@ -3,9 +3,9 @@ package com.nateshoffner.seachemdoser.core.model.products.reef;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
-import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.utils.Constants;
 import com.nateshoffner.seachemdoser.utils.MathUtils;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
@@ -27,7 +27,7 @@ public class ReefCalcium implements SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_calcium),
-                        DoserApplication.getContext().getString(R.string.mgL_ppm))        });
+                        DoserApplication.getContext().getString(R.string.mgL_ppm))});
 
         mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
@@ -35,7 +35,7 @@ public class ReefCalcium implements SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_calcium),
-                        DoserApplication.getContext().getString(R.string.mgL_ppm))        });
+                        DoserApplication.getContext().getString(R.string.mgL_ppm))});
 
         mName = DoserApplication.getContext().getString(R.string.product_reef_calcium);
         mComment = DoserApplication.getContext().getString(R.string.product_comment_reef_calcium);
