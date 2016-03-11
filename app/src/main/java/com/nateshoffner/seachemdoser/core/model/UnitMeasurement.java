@@ -8,6 +8,6 @@ public enum UnitMeasurement {
             return ImperialUS;
         if (str.equalsIgnoreCase("Metric"))
             return Metric;
-        return null;
+        return ImperialUS;
     }
 }
