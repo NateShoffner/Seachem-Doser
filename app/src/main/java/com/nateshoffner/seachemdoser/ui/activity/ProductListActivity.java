@@ -48,11 +48,12 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
 
         DoserChangelog cl = new DoserChangelog(this);
         if (cl.isFirstRun()) {
-            AlertDialog dialog = cl.getLogDialog();
+            final AlertDialog dialog = cl.getLogDialog();
             dialog.show();
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    dialog.dismiss();
                     showDefaultProduct();
                 }
             });
