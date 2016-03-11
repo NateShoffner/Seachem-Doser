@@ -4,28 +4,28 @@ import java.io.Serializable;
 
 public class SeachemParameter implements Serializable {
 
-    private String name;
-    private String unit;
-    private double value;
+    private String mName;
+    private String mUnit;
+    private double mValue;
 
     public SeachemParameter(String name, String unit) {
-        this.name = name;
-        this.unit = unit;
+        mName = name;
+        mUnit = unit;
     }
 
     public String getName() {
-        return this.name;
+        return mName;
     }
 
     public String getUnit() {
-        return this.unit;
+        return mUnit;
     }
 
     public double getValue() {
-        return this.value;
+        return mValue;
     }
 
     public void setValue(double value) {
-        this.value = value;
+        mValue = value;
     }
 }

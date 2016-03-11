@@ -4,20 +4,20 @@ import java.io.Serializable;
 
 public class SeachemDosage implements Serializable {
 
-    private String unit;
-    private double value;
+    private String mUnit;
+    private double mValue;
 
     public SeachemDosage(String unit, double value) {
-        this.unit = unit;
-        this.value = value;
+        mUnit = unit;
+        mValue = value;
     }
 
     public String getUnit() {
-        return this.unit;
+        return mUnit;
     }
 
     public double getAmount() {
-        return this.value;
+        return mValue;
     }
 }
 
