@@ -77,7 +77,7 @@ public class ProductDetailFragment extends Fragment {
                             break;
                         }
 
-                        mProduct.getParameters(DoserApplication.getDuelingPreferences().getUnitMeasurement())[inputCount].
+                        mProduct.getParameters(DoserApplication.getDoserPreferences().getUnitMeasurement())[inputCount].
                                 setValue(Double.parseDouble(String.valueOf(input.getText().toString())));
                         inputCount++;
                     }
@@ -92,7 +92,7 @@ public class ProductDetailFragment extends Fragment {
                     SeachemDosage[] dosages = null;
 
                     try {
-                        dosages = mProduct.calculateDosage(DoserApplication.getDuelingPreferences().getUnitMeasurement());
+                        dosages = mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement());
                     } catch (ArithmeticException ex) {
                         Log.e(TAG, ex.toString());
                         //shouldn't happen, but just incase
@@ -114,7 +114,7 @@ public class ProductDetailFragment extends Fragment {
             });
 
             LinearLayout paramsLayout = (LinearLayout) rootView.findViewById(R.id.paramsLayout);
-            for (SeachemParameter param : mProduct.getParameters(DoserApplication.getDuelingPreferences().getUnitMeasurement())) {
+            for (SeachemParameter param : mProduct.getParameters(DoserApplication.getDoserPreferences().getUnitMeasurement())) {
                 ParameterInputView view = new ParameterInputView(getActivity(), null);
                 view.setLabelText(param.getName() + ":");
                 view.setUnitText(param.getUnit());
@@ -124,7 +124,7 @@ public class ProductDetailFragment extends Fragment {
 
             int dosageCount = 0;
             LinearLayout dosagesLayout = (LinearLayout) rootView.findViewById(R.id.dosagesLayout);
-            for (SeachemDosage dosage : mProduct.calculateDosage(DoserApplication.getDuelingPreferences().getUnitMeasurement())) {
+            for (SeachemDosage dosage : mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement())) {
                 ParameterInputView view = new ParameterInputView(getActivity(), null);
 
                 view.setLabelText(dosageCount == 0 ?

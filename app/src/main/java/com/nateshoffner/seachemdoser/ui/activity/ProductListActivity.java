@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
@@ -41,6 +42,12 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
             mTwoPane = true;
             productSelectionFragment.setActivateOnItemClick(true);
         }
+
+        SeachemProduct lastProductUsed = DoserApplication.getDoserPreferences().getLastProductUsed();
+
+        if (lastProductUsed != null) {
+            onProductSelected(lastProductUsed);
+        }
     }
 
     @Override
@@ -70,5 +77,7 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
             detailIntent.putExtra(ProductDetailFragment.EXTRA_PRODUCT, product);
             startActivity(detailIntent);
         }
+
+        DoserApplication.getDoserPreferences().setLastProductUsed(product);
     }
 }

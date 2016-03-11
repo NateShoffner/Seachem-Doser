@@ -29,7 +29,7 @@ public class DoserApplication extends android.app.Application {
         return mContext;
     }
 
-    public static DoserPreferences getDuelingPreferences() {
+    public static DoserPreferences getDoserPreferences() {
         return mDoserPreferences;
     }
 }
