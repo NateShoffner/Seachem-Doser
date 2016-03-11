@@ -27,9 +27,5 @@
             android:key="about_disclaimer"
             android:title="Disclaimer"
             android:summary="@string/about_disclaimer" />
-        <Preference
-            android:key="about_license"
-            android:title="License"
-            android:summary="@string/about_license"/>
     </PreferenceCategory>
 </PreferenceScreen>
