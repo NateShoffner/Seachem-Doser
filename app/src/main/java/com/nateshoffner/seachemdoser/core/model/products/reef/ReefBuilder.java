@@ -20,7 +20,7 @@ public class ReefBuilder implements SeachemProduct {
 
     public ReefBuilder() {
 
-        mParameters.put(UnitMeasurement.Imperial, new SeachemParameter[]{
+        mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
                         DoserApplication.getContext().getString(R.string.unit_us_gallons)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_alkalinity),

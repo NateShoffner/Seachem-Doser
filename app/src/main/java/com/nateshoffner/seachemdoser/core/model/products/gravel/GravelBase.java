@@ -18,7 +18,7 @@ public abstract class GravelBase implements SeachemProduct {
 
     protected GravelBase() {
 
-        mParameters.put(UnitMeasurement.Imperial, new SeachemParameter[]{
+        mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_width),
                         DoserApplication.getContext().getString(R.string.unit_inches)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_length),

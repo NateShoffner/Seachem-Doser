@@ -38,8 +38,8 @@ public class DoserPreferences {
 
     public UnitMeasurement getUnitMeasurement() {
         String str = mSharedPreferences.getString(
-                getPreferenceKey(R.string.pref_unit_measurement), "Imperial");
-        return UnitMeasurement.valueOf(str);
+                getPreferenceKey(R.string.pref_unit_measurement), "Imperial (US)");
+        return UnitMeasurement.fromString(str);
     }
 
     public void setLastProductUsed(SeachemProduct product) {
