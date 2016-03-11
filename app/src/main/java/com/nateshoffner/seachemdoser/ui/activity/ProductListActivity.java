@@ -1,5 +1,7 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
+import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductSelectionFragment;
 import com.nateshoffner.seachemdoser.ui.listener.ProductSelectionListener;
@@ -43,8 +46,25 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
             productSelectionFragment.setActivateOnItemClick(true);
         }
 
-        SeachemProduct lastProductUsed = DoserApplication.getDoserPreferences().getLastProductUsed();
+        DoserChangelog cl = new DoserChangelog(this);
+        if (cl.isFirstRun()) {
+            AlertDialog dialog = cl.getLogDialog();
+            dialog.show();
+            dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showDefaultProduct();
+                }
+            });
+        }
 
+        else {
+            showDefaultProduct();
+        }
+    }
+
+    private void showDefaultProduct() {
+        SeachemProduct lastProductUsed = DoserApplication.getDoserPreferences().getLastProductUsed();
         if (lastProductUsed != null) {
             onProductSelected(lastProductUsed);
         }

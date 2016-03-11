@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<changelog>
+    <release version="1.2" versioncode="3">
+        <change>Added: Changelog dialog</change>
+        <change>Added: Metric/imperial settings</change>
+        <change>Added: Option to remember last product used</change>
+        <change>Added: Swiping between product tabs</change>
+    </release>
+    <release version="1.1" versioncode="2">
+        <change>Added: Tablet support</change>
+    </release>
+    <release version="1.0" versioncode="1">
+        <change>Initial release</change>
+    </release>
+</changelog>

@@ -8,7 +8,7 @@ android {
         applicationId "com.nateshoffner.seachemdoser"
         minSdkVersion 8
         targetSdkVersion 23
-        versionCode 2
+        versionCode 3
         versionName "1.2"
     }
     buildTypes {
@@ -29,4 +29,5 @@ dependencies {
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
     compile "uk.co.chrisjenx:calligraphy:2.1.0"
+    compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
 }
