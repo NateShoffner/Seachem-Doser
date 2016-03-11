@@ -3,6 +3,7 @@ package com.nateshoffner.seachemdoser.ui.activity;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
@@ -15,9 +16,11 @@ import android.widget.ListView;
 
 import com.nateshoffner.seachemdoser.BuildConfig;
 import com.nateshoffner.seachemdoser.R;
+import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 
 public class SettingsActivity extends PreferenceActivity
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+        implements SharedPreferences.OnSharedPreferenceChangeListener,
+        Preference.OnPreferenceClickListener {
 
     SharedPreferences mSharedPreferences;
 
@@ -37,15 +40,26 @@ public class SettingsActivity extends PreferenceActivity
         addPreferencesFromResource(R.xml.prefs_general);
         addPreferencesFromResource(R.xml.prefs_about);
 
-        findPreference("about_app").setSummary("v" + BuildConfig.VERSION_NAME);
+        findPreference("app_version").setSummary("v" + BuildConfig.VERSION_NAME);
+        findPreference("about_changelog").setOnPreferenceClickListener(this);
         updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
         mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        if (preference.getKey().equals("about_changelog")) {
+            DoserChangelog cl = new DoserChangelog(this);
+            cl.getFullLogDialog().show();
+            return true;
+        }
+
+        return false;
     }
 
     private void updatePreferenceSummary(String key, String defaultValue) {
         findPreference(key).setSummary(mSharedPreferences.getString(key, defaultValue));
     }
-
 
     private void addSupportActionBar() {
         Toolbar bar;

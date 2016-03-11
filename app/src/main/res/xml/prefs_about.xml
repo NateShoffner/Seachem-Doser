@@ -4,7 +4,7 @@
         android:title="@string/pref_category_about"
         android:key="@string/pref_category_about">
         <Preference
-            android:key="about_app"
+            android:key="app_version"
             android:title="@string/app_name"
             android:summary="1.0" />
         <PreferenceScreen
@@ -15,6 +15,10 @@
                 android:action="android.intent.action.VIEW"
                 android:data="@string/about_homepage" />
         </PreferenceScreen>
+        <Preference
+            android:key="about_changelog"
+            android:title="Change Log"
+            android:summary="@string/about_changelog" />
         <Preference
             android:key="about_disclaimer"
             android:title="Disclaimer"
