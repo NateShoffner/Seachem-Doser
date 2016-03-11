@@ -10,7 +10,7 @@
             android:defaultValue="Imperial"
             android:entries="@array/unit_measurements"
             android:entryValues="@array/unit_measurements" />
-        <CheckBoxPreference
+        <SwitchPreference
             android:title="Remember Last Product"
             android:defaultValue="false"
             android:summary="Open last product used on startup."

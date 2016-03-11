@@ -15,6 +15,8 @@
         <item name="buttonStyle">@style/SeachemButton</item>
         <item name="android:panelFullBackground">@color/background</item>
         <item name="android:actionMenuTextColor" tools:targetApi="11">@color/text_color</item>
+        <item name="colorControlActivated">@color/primary</item>
+        <item name="colorSwitchThumbNormal">@color/text_color</item>
     </style>
 
     <style name="SeachemActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
