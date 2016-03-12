@@ -5,6 +5,7 @@
         <change>Added: Metric/imperial settings</change>
         <change>Added: Option to remember last product used</change>
         <change>Added: Swiping between product tabs</change>
+        <change>Changed: Minor UI modifications</change>
     </release>
     <release version="1.1" versioncode="2">
         <change>Added: Tablet support</change>

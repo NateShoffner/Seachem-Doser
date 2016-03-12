@@ -25,6 +25,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 * Added: Metric/imperial settings
 * Added: Option to remember last product used
 * Added: Swiping between product tabs
+* Changed: Minor UI modifications
 
 ### Version 1.1 (December 23rd, 2015)
 * Added: Tablet support
