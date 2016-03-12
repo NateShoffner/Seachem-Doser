@@ -10,7 +10,7 @@
             android:defaultValue="Imperial (US)"
             android:entries="@array/unit_measurements"
             android:entryValues="@array/unit_measurements" />
-        <SwitchPreference
+        <org.jraf.android.backport.switchwidget.SwitchPreference
             android:title="Remember Last Product"
             android:defaultValue="false"
             android:summary="Open last product used on startup."

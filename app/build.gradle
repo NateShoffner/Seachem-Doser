@@ -29,4 +29,5 @@ dependencies {
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
     compile "uk.co.chrisjenx:calligraphy:2.1.0"
+    compile 'org.jraf:android-switch-backport:2.0.1'
 }

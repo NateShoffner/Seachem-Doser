@@ -17,6 +17,7 @@
         <item name="android:actionMenuTextColor" tools:targetApi="11">@color/text_color</item>
         <item name="colorControlActivated">@color/primary</item>
         <item name="colorSwitchThumbNormal">@color/text_color</item>
+        <item name="asb_switchPreferenceStyle">@style/asb_Preference.SwitchPreference</item>
     </style>
 
     <style name="SeachemActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
