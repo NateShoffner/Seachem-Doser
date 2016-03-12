@@ -13,10 +13,12 @@ import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductSelectionFragment;
 import com.nateshoffner.seachemdoser.ui.listener.ProductSelectionListener;
+import com.nateshoffner.seachemdoser.utils.UnitLocale;
 
 public class ProductListActivity extends BaseActivity implements ProductSelectionListener {
 
@@ -54,6 +56,11 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
+
+                    if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
+                        showUnitMeasurementPrompt();
+                    }
+
                     showDefaultProduct();
                 }
             });
@@ -62,6 +69,40 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
         else {
             showDefaultProduct();
         }
+    }
+
+    private void showUnitMeasurementPrompt() {
+        UnitMeasurement detected = UnitLocale.getLocaleMeasurmentUnit();
+
+        final CharSequence[] items = new CharSequence[UnitMeasurement.values().length];
+        final UnitMeasurement[] unitMeasurements = UnitMeasurement.values();
+
+        int checkedIndex = -1;
+        String[] stringArray = getResources().getStringArray(R.array.unit_measurements);
+        for (int i = 0; i < stringArray.length; i++) {
+            UnitMeasurement unitMeasurement = unitMeasurements[i];
+            items[i] = stringArray[i];
+
+            if (unitMeasurement == detected)
+                checkedIndex = i;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Unit Measurement")
+                .setCancelable(false)
+                .setSingleChoiceItems(items, checkedIndex, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int index) {
+                        UnitMeasurement unitMeasurement = unitMeasurements[index];
+                        DoserApplication.getDoserPreferences().setUnitMeasurment(unitMeasurement);
+                    }
+                })
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     private void showDefaultProduct() {

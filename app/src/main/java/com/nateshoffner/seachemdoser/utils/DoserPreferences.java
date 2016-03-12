@@ -35,6 +35,17 @@ public class DoserPreferences {
         return getString(resId);
     }
 
+    public boolean isUnitMeasurementSet() {
+        String str = mSharedPreferences.getString(
+                getPreferenceKey(R.string.pref_unit_measurement), null);
+        return str != null;
+    }
+
+    public void setUnitMeasurment(UnitMeasurement unitMeasurement) {
+        SharedPreferences.Editor editor = getEditor();
+        editor.putString(getPreferenceKey(R.string.pref_unit_measurement), unitMeasurement.toString());
+        editor.commit();
+    }
 
     public UnitMeasurement getUnitMeasurement() {
         String str = mSharedPreferences.getString(
