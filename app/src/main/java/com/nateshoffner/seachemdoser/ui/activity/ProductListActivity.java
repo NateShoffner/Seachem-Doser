@@ -139,7 +139,5 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
             detailIntent.putExtra(ProductDetailFragment.EXTRA_PRODUCT, product);
             startActivity(detailIntent);
         }
-
-        DoserApplication.getDoserPreferences().setLastProductUsed(product);
     }
 }

@@ -162,6 +162,8 @@ public class ProductDetailFragment extends Fragment
                             dosageCount++;
                         }
                     }
+
+                    DoserApplication.getDoserPreferences().setLastProductUsed(mProduct);
                 }
             });
 
