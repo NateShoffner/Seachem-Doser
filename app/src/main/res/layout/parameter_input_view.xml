@@ -25,7 +25,8 @@
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:singleLine="true"
-        android:background="@drawable/rounded_edittext" />
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/tvUnit"
