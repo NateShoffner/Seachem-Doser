@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="SeachemDark" parent="Theme.AppCompat">
+    <style name="DoserDark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorLink">@color/link_color</item>
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:actionBarStyle" tools:targetApi="11">@style/SeachemActionBar</item>
-        <item name="actionBarStyle">@style/SeachemActionBar</item>
-        <item name="android:textViewStyle">@style/SeachemTextView</item>
-        <item name="editTextStyle">@style/SeachemEditText</item>
-        <item name="buttonStyle">@style/SeachemButton</item>
-        <item name="android:textAppearanceButton">@style/SeachemButton</item>
+        <item name="android:actionBarStyle" tools:targetApi="11">@style/DoserActionBar</item>
+        <item name="actionBarStyle">@style/DoserActionBar</item>
+        <item name="android:textViewStyle">@style/DoserTextView</item>
+        <item name="editTextStyle">@style/DoserEditText</item>
+        <item name="buttonStyle">@style/DoserButton</item>
+        <item name="android:textAppearanceButton">@style/DoserButton</item>
         <item name="android:panelFullBackground">@color/background</item>
         <item name="android:actionMenuTextColor" tools:targetApi="11">@color/text_color</item>
         <item name="colorControlActivated">@color/primary</item>
@@ -21,23 +21,23 @@
         <item name="asb_switchPreferenceStyle">@style/asb_Preference.SwitchPreference</item>
     </style>
 
-    <style name="SeachemActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <style name="DoserActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/action_bar_gradient</item>
         <item name="background">@drawable/action_bar_gradient</item>
         <item name="android:icon">@mipmap/ic_launcher</item>
     </style>
 
-    <style name="SeachemTextView" parent="@android:style/Widget.TextView">
+    <style name="DoserTextView" parent="@android:style/Widget.TextView">
         <item name="fontPath">fonts/LiberationSans-Regular.ttf</item>
     </style>
 
-    <style name="SeachemEditText" parent="Base.Widget.AppCompat.EditText">
+    <style name="DoserEditText" parent="Base.Widget.AppCompat.EditText">
         <item name="android:textColor">@color/text_color</item>
         <item name="fontPath">fonts/LiberationSans-Regular.ttf</item>
         <item name="android:background">#353535</item>
     </style>
 
-    <style name="SeachemButton" parent="Base.Widget.AppCompat.Button">
+    <style name="DoserButton" parent="Base.Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_background_selector</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="textAllCaps">false</item>
