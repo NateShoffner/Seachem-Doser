@@ -97,6 +97,7 @@ public class ProductDetailFragment extends Fragment
 
             view.setUnitText(dosage.getUnit());
             view.setReadOnly(true);
+            view.setLimit(Integer.MAX_VALUE);
 
             dosageOutputs.add(view.getInputView());
             dosagesLayout.addView(view);

@@ -2,6 +2,7 @@ package com.nateshoffner.seachemdoser.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -72,5 +73,11 @@ public class ParameterInputView extends LinearLayout {
 
     public void setReadOnly(boolean readonly) {
         this.etValue.setEnabled(!readonly);
+    }
+
+    public void setLimit(int limit) {
+        InputFilter[] fa= new InputFilter[1];
+        fa[0] = new InputFilter.LengthFilter(limit);
+        etValue.setFilters(fa);
     }
 }
