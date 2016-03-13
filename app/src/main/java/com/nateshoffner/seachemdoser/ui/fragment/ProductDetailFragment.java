@@ -84,23 +84,24 @@ public class ProductDetailFragment extends Fragment
             dosagesLayout.removeAllViews();
         }
 
-        int dosageCount = 0;
-        for (SeachemDosage dosage : mProduct.calculateDosage(unitMeasurement)) {
+        SeachemDosage[] dosages = mProduct.calculateDosage(unitMeasurement);
+        for (int i = 0; i < dosages.length; i++) {
+            SeachemDosage dosage = dosages[i];
             ParameterInputView view = new ParameterInputView(getActivity(), null);
 
-            view.setLabelText(dosageCount == 0 ?
-                    getString(R.string.dosage_label) :
-                    getString(R.string.dosage_label_or));
+            if (i == 0) {
+                view.setLabelText(getString(R.string.dosage_label));
+            } else {
+                view.setLabelText(getString(R.string.dosage_label_or));
+            }
 
             view.setUnitText(dosage.getUnit());
             view.setReadOnly(true);
 
             dosageOutputs.add(view.getInputView());
             dosagesLayout.addView(view);
-            dosageCount++;
         }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,7 +142,7 @@ public class ProductDetailFragment extends Fragment
                         return;
                     }
 
-                    SeachemDosage[] dosages = null;
+                    SeachemDosage[] dosages;
 
                     try {
                         dosages = mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement());
@@ -162,8 +163,6 @@ public class ProductDetailFragment extends Fragment
                             dosageCount++;
                         }
                     }
-
-                    DoserApplication.getDoserPreferences().setLastProductUsed(mProduct);
                 }
             });
 
