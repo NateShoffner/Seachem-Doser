@@ -148,6 +148,13 @@ public class ProductDetailFragment extends Fragment
 
                     try {
                         dosages = mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement());
+
+                        // prevent negative dosages
+                        for (SeachemDosage dosage : dosages) {
+                            if (dosage.getAmount() <= 0) {
+                                throw new ArithmeticException("Dosage can't be negative.");
+                            }
+                        }
                     } catch (ArithmeticException ex) {
                         Log.e(TAG, ex.toString());
                         //shouldn't happen, but just incase
