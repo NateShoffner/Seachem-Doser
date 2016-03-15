@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".ui.activity.ProductDetailActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+
             android:label=""
             android:parentActivityName=".ui.activity.ProductListActivity" >
             <meta-data
