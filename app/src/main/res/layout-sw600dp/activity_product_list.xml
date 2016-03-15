@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/product_placeholder"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="@dimen/product_detail_text_size" />
 
     </FrameLayout>
 

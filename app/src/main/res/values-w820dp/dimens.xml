@@ -3,4 +3,14 @@
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
+
+    <dimen name="button_text_size">21sp</dimen>
+    <dimen name="product_type_tab_text_size">23sp</dimen>
+    <dimen name="product_list_text_size">21sp</dimen>
+    <dimen name="product_detail_text_size">19sp</dimen>
+    <dimen name="product_detail_dosage_title_size">19sp</dimen>
+    <dimen name="product_parameter_unit_text_size">16sp</dimen>
+    <dimen name="product_parameter_label_width">180dp</dimen>
+    <dimen name="product_detail_input_width">75dp</dimen>
+    <dimen name="product_detail_input_height">30dp</dimen>
 </resources>

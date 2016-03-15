@@ -44,6 +44,7 @@
         <item name="android:textAllCaps" tools:targetApi="14">false</item>
         <item name="android:minHeight">32dp</item>
         <item name="android:minWidth">64dp</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 
 </resources>

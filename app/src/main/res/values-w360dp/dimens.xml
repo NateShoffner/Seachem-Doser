@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="product_type_tab_text_size">18sp</dimen>
+    <dimen name="product_list_text_size">18sp</dimen>
+    <dimen name="product_detail_text_size">14sp</dimen>
+    <dimen name="product_parameter_unit_text_size">12sp</dimen>
+    <dimen name="product_parameter_label_width">135dp</dimen>
+    <dimen name="product_detail_input_width">90dp</dimen>
+    <dimen name="product_detail_input_height">45dp</dimen>
+</resources>
