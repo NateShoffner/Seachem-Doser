@@ -19,6 +19,7 @@ import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
+import com.nateshoffner.seachemdoser.ui.view.DosageResultView;
 import com.nateshoffner.seachemdoser.ui.view.ParameterInputView;
 
 import java.text.DecimalFormat;
@@ -33,7 +34,7 @@ public class ProductDetailFragment extends Fragment
     private static final String TAG = "ProductDetailFragment";
 
     private final List<EditText> dosageInputs = new ArrayList<>();
-    private final List<EditText> dosageOutputs = new ArrayList<>();
+    private final List<DosageResultView> dosageResultViews = new ArrayList<>();
     private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     private View mRootView;
@@ -58,7 +59,7 @@ public class ProductDetailFragment extends Fragment
     }
 
     private void initializeParameterViews(UnitMeasurement unitMeasurement, View rootView) {
-        LinearLayout paramsLayout = (LinearLayout) rootView.findViewById(R.id.paramsLayout);
+        LinearLayout paramsLayout = (LinearLayout) rootView.findViewById(R.id.params_container);
 
         if (dosageInputs.size() > 0) {
             dosageInputs.clear();
@@ -76,10 +77,10 @@ public class ProductDetailFragment extends Fragment
     }
 
     private void initializeDosageViews(UnitMeasurement unitMeasurement, View rootView) {
-        LinearLayout dosagesLayout = (LinearLayout) rootView.findViewById(R.id.dosagesLayout);
+        LinearLayout dosagesLayout = (LinearLayout) rootView.findViewById(R.id.dosages_container);
 
-        if (dosageOutputs.size() > 0) {
-            dosageOutputs.clear();
+        if (dosageResultViews.size() > 0) {
+            dosageResultViews.clear();
 
             dosagesLayout.removeAllViews();
         }
@@ -87,19 +88,19 @@ public class ProductDetailFragment extends Fragment
         SeachemDosage[] dosages = mProduct.calculateDosage(unitMeasurement);
         for (int i = 0; i < dosages.length; i++) {
             SeachemDosage dosage = dosages[i];
-            ParameterInputView view = new ParameterInputView(getActivity(), null);
+            DosageResultView view = new DosageResultView(getActivity(), null);
+            view.setUnitText(dosage.getUnit());
 
             if (i == 0) {
-                view.setLabelText(getString(R.string.dosage_label));
-            } else {
-                view.setLabelText(getString(R.string.dosage_label_or));
+                view.toggleLabel(true);
+                view.setLabelText(getString(R.string.label_dosage_youll_need));
             }
 
-            view.setUnitText(dosage.getUnit());
-            view.setReadOnly(true);
-            view.setLimit(Integer.MAX_VALUE);
+            if (i < dosages.length - 1) {
+                view.togglePrecursor(true);
+            }
 
-            dosageOutputs.add(view.getInputView());
+            dosageResultViews.add(view);
             dosagesLayout.addView(view);
         }
     }
@@ -157,11 +158,10 @@ public class ProductDetailFragment extends Fragment
                     }
 
                     if (dosages != null) {
-                        int dosageCount = 0;
-                        for (SeachemDosage dosage : dosages) {
+                        for (int i = 0, dosagesLength = dosages.length; i < dosagesLength; i++) {
+                            SeachemDosage dosage = dosages[i];
                             String value = decimalFormat.format(dosage.getAmount());
-                            dosageOutputs.get(dosageCount).setText(value);
-                            dosageCount++;
+                            dosageResultViews.get(i).setValue(value);
                         }
                     }
                 }
@@ -170,9 +170,6 @@ public class ProductDetailFragment extends Fragment
             UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
             initializeParameterViews(unitMeasurement, mRootView);
             initializeDosageViews(unitMeasurement, mRootView);
-
-            TextView tvProductComment = (TextView) mRootView.findViewById(R.id.tvProductComment);
-            tvProductComment.setText(mProduct.getComment());
         }
 
         return mRootView;

@@ -7,31 +7,29 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-
     <TextView
         android:id="@+id/tvLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/product_parameter_label_width"
         android:layout_height="wrap_content"
-        android:maxWidth="130dp"
-        android:minWidth="130dp"
-        android:textSize="16sp" />
+        android:textSize="@dimen/product_detail_text_size" />
 
     <EditText
         android:id="@+id/etValue"
-        android:layout_width="73dp"
-        android:layout_height="26dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="@dimen/product_detail_input_width"
+        android:layout_height="@dimen/product_detail_input_height"
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:singleLine="true"
         android:background="@drawable/rounded_edittext"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_gravity="top"
+        android:textSize="@dimen/product_detail_text_size" />
 
     <TextView
         android:id="@+id/tvUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical" />
+        android:textSize="@dimen/product_parameter_unit_text_size"
+        android:layout_marginLeft="10dp" />
 
 </LinearLayout>
