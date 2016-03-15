@@ -22,9 +22,7 @@
     <string name="calculate_btn_text">Calculate</string>
     <string name="btn_about_text">About…</string>
     <string name="invalid_parameters">Invalid or missing parameters</string>
-    <string name="dosage_label">You\'ll need:</string>
     <string name="calculation_error">A calculation error occurred</string>
-    <string name="dosage_label_or">or</string>
 
     <string name="product_placeholder">Select a product from the left to begin</string>
     <string name="title_activity_settings">Settings</string>
@@ -141,5 +139,10 @@
     <string name="changelog_ok_button">OK</string>
     <string name="changelog_show_full">More…</string>
     <string name="changelog_version_format">Version <xliff:g id="version_name">%s</xliff:g></string>
+
+    <string name="label_dosage_youll_need">You\'ll need:</string>
+    <string name="label_dosage_or">or</string>
+    <string name="label_dosage_requirements">Dosage Requirements:</string>
+    <string name="label_aquarium_parameters">Aquarium Parameters:</string>
 
 </resources>
