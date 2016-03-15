@@ -12,10 +12,10 @@
             <corners
                 android:radius="4dp" />
             <padding
-                android:left="5dp"
-                android:top="5dp"
-                android:right="5dp"
-                android:bottom="5dp" />
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
         </shape>
     </item>
     <item android:state_focused="true" android:state_pressed="true" >
@@ -30,10 +30,10 @@
             <corners
                 android:radius="4dp" />
             <padding
-                android:left="5dp"
-                android:top="5dp"
-                android:right="5dp"
-                android:bottom="5dp" />
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
         </shape>
     </item>
     <item android:state_focused="false" android:state_pressed="true">
@@ -48,10 +48,10 @@
             <corners
                 android:radius="4dp" />
             <padding
-                android:left="5dp"
-                android:top="5dp"
-                android:right="5dp"
-                android:bottom="5dp" />
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
         </shape>
     </item>
     <item>
@@ -66,10 +66,10 @@
             <corners
                 android:radius="4dp" />
             <padding
-                android:left="5dp"
-                android:top="5dp"
-                android:right="5dp"
-                android:bottom="5dp" />
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
         </shape>
     </item>
 </selector>
