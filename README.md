@@ -32,3 +32,41 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 
 ### Version 1.0 (April 8th, 2015)
 * Initial release
+
+
+## Supported Products
+
+* #### Gravel
+    * Flourite
+    * Flourite Black
+    * Flourite Black Sand
+    * Flourite Dark
+    * Flourite Red
+    * Gray Coast
+    * Kona Coast
+    * Merdian
+    * Onyx
+    * Onyx Sand
+    * Pearl Beach
+    * Silver Shores
+
+* #### Planted
+    * Akaline Buffer
+    * Equilibrium
+    * Iron
+    * Liquid Alkaline Buffer
+    * Nitrogen
+    * Phosphorus
+    * Potassium
+
+* #### Reef
+    * Reef Advantage Calcium
+    * Reef Advantage Magnesium
+    * Reef Advantage Strontium
+    * Reef Buffer
+    * Reef Builder
+    * Reef Calcium
+    * Reef Carbonate
+    * Reef Complete
+    * Reef Iodide
+    * Reef Strontium
