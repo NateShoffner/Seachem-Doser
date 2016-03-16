@@ -6,6 +6,7 @@
     <dimen name="product_detail_dosage_title_size">19sp</dimen>
     <dimen name="product_parameter_unit_text_size">10sp</dimen>
     <dimen name="product_parameter_label_width">130dp</dimen>
+    <dimen name="product_dosage_label_width">50dp</dimen>
     <dimen name="product_detail_input_width">75dp</dimen>
     <dimen name="product_detail_input_height">30dp</dimen>
 </resources>
