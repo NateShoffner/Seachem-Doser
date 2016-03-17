@@ -20,7 +20,8 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 
 ## Changelog
 
-### Version 1.2 (March 11th, 2015)
+### Version 1.2 (TBD)
+* Fixed: Full-screen keyboard on landscape orientation
 * Added: Changelog dialog
 * Added: Metric/imperial settings
 * Added: Option to remember last product used
