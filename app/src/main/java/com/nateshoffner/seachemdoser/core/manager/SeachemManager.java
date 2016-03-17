@@ -33,10 +33,13 @@ import com.nateshoffner.seachemdoser.core.model.products.reef.ReefIodide;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefStrontium;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.EnumSet;
 import java.util.List;
 
 public class SeachemManager {
+
+    private static Dictionary<SeachemProductType, List<SeachemProduct>> Products;
 
     public static List<SeachemProduct> GetProducts() {
         return GetProducts(EnumSet.allOf(SeachemProductType.class));
@@ -47,51 +50,17 @@ public class SeachemManager {
     }
 
     public static List<SeachemProduct> GetProducts(EnumSet<SeachemProductType> type) {
+        InitializeProducts();
+
         ArrayList<SeachemProduct> products = new ArrayList<>();
-
-        if (type.contains(SeachemProductType.Gravel)) {
-            products.add(new Flourite());
-            products.add(new FlouriteBlack());
-            products.add(new FlouriteBlackSand());
-            products.add(new FlouriteDark());
-            products.add(new FlouriteRed());
-            products.add(new GrayCoast());
-            products.add(new KonaCoast());
-            products.add(new Merdian());
-            products.add(new Onyx());
-            products.add(new OnyxSand());
-            products.add(new PearlBeach());
-            products.add(new SilverShores());
+        for (SeachemProductType t : type) {
+            products.addAll(Products.get(t));
         }
-
-        if (type.contains(SeachemProductType.Planted)) {
-            products.add(new AlkalineBuffer());
-            products.add(new Equilibrium());
-            products.add(new FlourishIron());
-            products.add(new FlourishNitrogen());
-            products.add(new FlourishPhosphorus());
-            products.add(new FlourishPotassium());
-            products.add(new LiquidAlkalineBuffer());
-        }
-
-        if (type.contains(SeachemProductType.Reef)) {
-            products.add(new ReefAdvantageCalcium());
-            products.add(new ReefAdvantageMagnesium());
-            products.add(new ReefAdvantageStrontium());
-            products.add(new ReefBuffer());
-            products.add(new ReefBuilder());
-            products.add(new ReefCalcium());
-            products.add(new ReefCarbonate());
-            products.add(new ReefComplete());
-            products.add(new ReefIodide());
-            products.add(new ReefStrontium());
-        }
-
         return products;
     }
 
     public static List<SeachemProductType> GetProductTypes() {
-        ArrayList<SeachemProductType> types = new ArrayList<SeachemProductType>();
+        ArrayList<SeachemProductType> types = new ArrayList<>();
 
         for (SeachemProductType type : SeachemProductType.values()) {
             types.add(type);
@@ -99,4 +68,45 @@ public class SeachemManager {
         return types;
     }
 
+    private static void InitializeProducts() {
+        if (Products == null) {
+            List<SeachemProduct> gravel = new ArrayList<>();
+            gravel.add(new Flourite());
+            gravel.add(new FlouriteBlack());
+            gravel.add(new FlouriteBlackSand());
+            gravel.add(new FlouriteDark());
+            gravel.add(new FlouriteRed());
+            gravel.add(new GrayCoast());
+            gravel.add(new KonaCoast());
+            gravel.add(new Merdian());
+            gravel.add(new Onyx());
+            gravel.add(new OnyxSand());
+            gravel.add(new PearlBeach());
+            gravel.add(new SilverShores());
+            Products.put(SeachemProductType.Gravel, gravel);
+
+            List<SeachemProduct> planted = new ArrayList<>();
+            planted.add(new AlkalineBuffer());
+            planted.add(new Equilibrium());
+            planted.add(new FlourishIron());
+            planted.add(new FlourishNitrogen());
+            planted.add(new FlourishPhosphorus());
+            planted.add(new FlourishPotassium());
+            planted.add(new LiquidAlkalineBuffer());
+            Products.put(SeachemProductType.Planted, planted);
+
+            List<SeachemProduct> reef = new ArrayList<>();
+            reef.add(new ReefAdvantageCalcium());
+            reef.add(new ReefAdvantageMagnesium());
+            reef.add(new ReefAdvantageStrontium());
+            reef.add(new ReefBuffer());
+            reef.add(new ReefBuilder());
+            reef.add(new ReefCalcium());
+            reef.add(new ReefCarbonate());
+            reef.add(new ReefComplete());
+            reef.add(new ReefIodide());
+            reef.add(new ReefStrontium());
+            Products.put(SeachemProductType.Reef, gravel);
+        }
+    }
 }
