@@ -12,13 +12,13 @@ import android.widget.TextView;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
-import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductSelectionFragment;
 import com.nateshoffner.seachemdoser.ui.listener.ProductSelectionListener;
 import com.nateshoffner.seachemdoser.utils.UnitLocale;
+
 
 public class ProductListActivity extends BaseActivity implements ProductSelectionListener {
 
@@ -36,12 +36,6 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
 
         ProductSelectionFragment productSelectionFragment = (ProductSelectionFragment)
                 getSupportFragmentManager().findFragmentById(R.id.product_selection);
-
-        SeachemProductType selectedType = SeachemProductType.
-                valueOf(mSharedPreferences.getString(getString(R.string.pref_last_product_type),
-                        getString(R.string.pref_last_product_type_default)));
-
-        productSelectionFragment.setCurrentProductType(selectedType);
 
         if (findViewById(R.id.product_detail_container) != null) {
             mTwoPane = true;
