@@ -33,6 +33,7 @@ import com.nateshoffner.seachemdoser.core.model.products.reef.ReefIodide;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefStrontium;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -61,16 +62,8 @@ public class SeachemManager {
 
     public static List<SeachemProductType> GetProductTypes() {
         ArrayList<SeachemProductType> types = new ArrayList<>();
-
-        for (SeachemProductType type : SeachemProductType.values()) {
-            types.add(type);
-        }
+        Collections.addAll(types, SeachemProductType.values());
         return types;
-    }
-
-    public static HashMap<SeachemProductType, List<SeachemProduct>> getProductMap() {
-        InitializeProducts();
-        return ProductMap;
     }
 
     private static void InitializeProducts() {
@@ -113,7 +106,7 @@ public class SeachemManager {
             reef.add(new ReefComplete());
             reef.add(new ReefIodide());
             reef.add(new ReefStrontium());
-            ProductMap.put(SeachemProductType.Reef, gravel);
+            ProductMap.put(SeachemProductType.Reef, reef);
         }
     }
 }
