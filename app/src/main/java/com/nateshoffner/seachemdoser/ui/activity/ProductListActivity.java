@@ -108,10 +108,8 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
 
     @Override
     public void onProductSelected(SeachemProduct product) {
-
         if (mTwoPane) {
-
-            setTitle(product.getName());
+            getSupportActionBar().setSubtitle(product.getName());
 
             TextView tvPlaceholder = (TextView) findViewById(R.id.label_product_placeholder);
 

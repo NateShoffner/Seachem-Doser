@@ -20,7 +20,8 @@ public class ProductDetailActivity extends BaseActivity {
 
             SeachemProduct product = (SeachemProduct) getIntent().
                     getSerializableExtra(ProductDetailFragment.EXTRA_PRODUCT);
-            setTitle(product.getName());
+
+            getSupportActionBar().setSubtitle(product.getName());
 
             Bundle arguments = new Bundle();
             arguments.putSerializable(ProductDetailFragment.EXTRA_PRODUCT, product);
