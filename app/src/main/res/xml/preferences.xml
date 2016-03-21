@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="@string/pref_category_general"
+        android:key="@string/pref_category_general">
+
+        <ListPreference
+            android:title="Unit Measurement"
+            android:summary="Unit measurement to use for dosages."
+            android:key="@string/pref_unit_measurement"
+            android:defaultValue="Imperial (US)"
+            android:entries="@array/unit_measurements"
+            android:entryValues="@array/unit_measurements" />
+
+        <SwitchPreferenceCompat
+            android:title="Remember Last Product"
+            android:defaultValue="false"
+            android:summary="Open last product used on startup."
+            android:key="@string/pref_remember_last_product" />
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:title="@string/pref_category_about"
         android:key="@string/pref_category_about">
@@ -28,4 +48,5 @@
             android:title="Disclaimer"
             android:summary="@string/about_disclaimer" />
     </PreferenceCategory>
+
 </PreferenceScreen>

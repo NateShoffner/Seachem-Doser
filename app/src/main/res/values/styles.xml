@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <style name="DoserDark" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:textColor">@color/text_color</item>
-        <item name="android:textColorLink">@color/link_color</item>
-        <item name="android:windowBackground">@color/background</item>
-        <item name="android:actionBarStyle" tools:targetApi="11">@style/DoserActionBar</item>
-        <item name="actionBarStyle">@style/DoserActionBar</item>
-        <item name="android:textViewStyle">@style/DoserTextView</item>
-        <item name="editTextStyle">@style/DoserEditText</item>
-        <item name="buttonStyle">@style/DoserButton</item>
-        <item name="android:textAppearanceButton">@style/DoserButton</item>
-        <item name="android:panelFullBackground">@color/background</item>
-        <item name="android:actionMenuTextColor" tools:targetApi="11">@color/text_color</item>
-        <item name="colorControlActivated">@color/primary</item>
-        <item name="colorSwitchThumbNormal">@color/text_color</item>
-        <item name="asb_switchPreferenceStyle">@style/asb_Preference.SwitchPreference</item>
+    <style name="Doser.Theme" parent="Theme.AppCompat">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="DoserActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
@@ -39,12 +23,12 @@
 
     <style name="DoserButton" parent="Base.Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_background_selector</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">#FFFFFF</item>                                 
         <item name="textAllCaps">false</item>
-        <item name="android:textAllCaps" tools:targetApi="14">false</item>
         <item name="android:minHeight">32dp</item>
         <item name="android:minWidth">64dp</item>
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
+
 
 </resources>

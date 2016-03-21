@@ -20,14 +20,15 @@ android {
 }
 
 ext {
-    supportLibVersion = '23.1.1'
+    supportLibVersion = '23.2.1'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
+    compile "com.android.support:preference-v14:23.2.1"
     compile "com.android.support:design:${supportLibVersion}"
+    compile "com.android.support:preference-v7:${supportLibVersion}"
     compile "uk.co.chrisjenx:calligraphy:2.1.0"
-    compile 'org.jraf:android-switch-backport:2.0.1'
 }
