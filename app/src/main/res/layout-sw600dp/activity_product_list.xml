@@ -7,10 +7,14 @@
 
     <fragment android:id="@+id/product_selection"
         android:name="com.nateshoffner.seachemdoser.ui.fragment.ProductSelectionFragment"
-        android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.4" />
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@dimen/product_list_two_pane_navigation_weight" />
 
-    <FrameLayout android:id="@+id/product_detail_container" android:layout_width="0dp"
-        android:layout_height="match_parent" android:layout_weight="0.6">
+    <FrameLayout android:id="@+id/product_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="@dimen/product_list_two_pane_content_weight">
 
         <TextView
             android:id="@+id/label_product_placeholder"
