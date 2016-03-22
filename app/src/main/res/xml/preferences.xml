@@ -25,7 +25,7 @@
         android:key="@string/pref_category_about">
         <Preference
             android:key="app_version"
-            android:title="@string/app_name"
+            android:title="Version"
             android:summary="1.0" />
         <PreferenceScreen
             android:key="about_author"
