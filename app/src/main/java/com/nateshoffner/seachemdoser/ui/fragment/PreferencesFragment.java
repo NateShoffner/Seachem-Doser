@@ -27,7 +27,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        findPreference("app_version").setSummary("v" + BuildConfig.VERSION_NAME);
+        String revision = getString(R.string.build_revision);
+        findPreference("app_version").setSummary(String.format("%s (rev. %s)",
+                BuildConfig.VERSION_NAME, revision));
         findPreference("about_changelog").setOnPreferenceClickListener(this);
         findPreference("about_rate").setOnPreferenceClickListener(this);
         updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
