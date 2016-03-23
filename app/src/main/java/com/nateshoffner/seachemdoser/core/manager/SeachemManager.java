@@ -20,6 +20,7 @@ import com.nateshoffner.seachemdoser.core.model.products.planted.FlourishIron;
 import com.nateshoffner.seachemdoser.core.model.products.planted.FlourishNitrogen;
 import com.nateshoffner.seachemdoser.core.model.products.planted.FlourishPhosphorus;
 import com.nateshoffner.seachemdoser.core.model.products.planted.FlourishPotassium;
+import com.nateshoffner.seachemdoser.core.model.products.planted.FlourishTrace;
 import com.nateshoffner.seachemdoser.core.model.products.planted.LiquidAlkalineBuffer;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefAdvantageCalcium;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefAdvantageMagnesium;
@@ -92,6 +93,7 @@ public class SeachemManager {
             planted.add(new FlourishNitrogen());
             planted.add(new FlourishPhosphorus());
             planted.add(new FlourishPotassium());
+            planted.add(new FlourishTrace());
             planted.add(new LiquidAlkalineBuffer());
             ProductMap.put(SeachemProductType.Planted, planted);
 
