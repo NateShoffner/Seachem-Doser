@@ -56,11 +56,12 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 * #### Planted
     * Akaline Buffer
     * Equilibrium
-    * Iron
+    * Flourish Iron
+    * Flourish Nitrogen
+    * Flourish Phosphorus
+    * Flourish Potassium
+    * Flourish Trace
     * Liquid Alkaline Buffer
-    * Nitrogen
-    * Phosphorus
-    * Potassium
 
 * #### Reef
     * Reef Advantage Calcium
@@ -71,5 +72,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
     * Reef Calcium
     * Reef Carbonate
     * Reef Complete
+    * Reef Fusion 1
+    * Reef Fusion 2
     * Reef Iodide
     * Reef Strontium
