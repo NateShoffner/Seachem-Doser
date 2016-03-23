@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <changelog>
     <release version="1.2" versioncode="3">
-        <change>Added: Changelog dialog</change>
+        <change>Added: Reef Fusion 1 &amp; 2</change>
+        <change>Added: Flourish Trace</change>
+        <change>Fixed: Full-screen keyboard on landscape orientation</change>
         <change>Added: Metric/imperial settings</change>
         <change>Added: Option to remember last product used</change>
         <change>Added: Swiping between product tabs</change>

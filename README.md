@@ -21,6 +21,8 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 ## Changelog
 
 ### Version 1.2 (TBD)
+* Added: Reef Fusion 1 & 2
+* Added: Flourish Trace
 * Fixed: Full-screen keyboard on landscape orientation
 * Added: Changelog dialog
 * Added: Metric/imperial settings
