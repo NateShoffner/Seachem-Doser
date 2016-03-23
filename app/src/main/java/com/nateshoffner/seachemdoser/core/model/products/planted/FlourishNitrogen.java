@@ -22,7 +22,7 @@ public class FlourishNitrogen implements SeachemProduct {
     public FlourishNitrogen() {
 
         mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_us_gallons)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_nitrogen),
                         DoserApplication.getContext().getString(R.string.meqL)),
@@ -31,7 +31,7 @@ public class FlourishNitrogen implements SeachemProduct {
         });
 
         mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_litres)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_nitrogen),
                         DoserApplication.getContext().getString(R.string.meqL)),

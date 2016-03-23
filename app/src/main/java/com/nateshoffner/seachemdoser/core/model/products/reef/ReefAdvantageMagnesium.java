@@ -20,7 +20,7 @@ public class ReefAdvantageMagnesium implements SeachemProduct {
 
     public ReefAdvantageMagnesium() {
         mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_us_gallons)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_magnesium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
@@ -29,7 +29,7 @@ public class ReefAdvantageMagnesium implements SeachemProduct {
         });
 
         mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
-                new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_volume),
+                new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_litres)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_magnesium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),

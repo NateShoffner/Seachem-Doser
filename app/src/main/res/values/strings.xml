@@ -105,7 +105,7 @@
     <string name="unit_centimeters">cm</string>
     <string name="mgL_ppm">mg/L (ppm)</string>
 
-    <string name="aquarium_volume">Aquarium Volume</string>
+    <string name="water_volume">Water Volume</string>
     <string name="current_gh">Current GH</string>
     <string name="desired_gh">Desired GH</string>
     <string name="current_nitrogen">Current Nitrogen</string>
