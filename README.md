@@ -21,6 +21,11 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 ## Changelog
 
 ### Version 1.2 (TBD)
+* Added: Flourite Sand
+* Removed: Silver Shores
+* Removed: Kona Coast
+* Fixed: Gray Coast calculation
+* Fixed: Meridian name typo
 * Added: Reef Fusion 1 & 2
 * Added: Flourish Trace
 * Fixed: Full-screen keyboard on landscape orientation
