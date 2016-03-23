@@ -44,14 +44,13 @@
     <!-- product names -->
     <string name="product_flourite">Flourite</string>
     <string name="product_meridian">Meridian</string>
-    <string name="product_kona_coast">Kona Coast</string>
     <string name="product_flourite_dark">Flourite Dark</string>
     <string name="product_flourite_red">Flourite Red</string>
     <string name="product_gray_coast">Gray Coast</string>
     <string name="product_onyx">Onyx</string>
     <string name="product_onyx_sand">Onyx Sand</string>
     <string name="product_pearl_beach">Pearl Beach</string>
-    <string name="product_silver_shores">Silver Shores</string>
+    <string name="product_flourite_sand">Flourite Sand</string>
     <string name="product_alkaline_buffer">Alkaline Buffer</string>
     <string name="product_flourish_phosphorus">Flourish Phosphorus</string>
     <string name="product_liquid_alkaline_buffer">Liquid Alkaline Buffer</string>
