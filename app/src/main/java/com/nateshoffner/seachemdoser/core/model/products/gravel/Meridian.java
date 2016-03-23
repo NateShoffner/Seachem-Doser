@@ -5,21 +5,14 @@ import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 
-public class Meridian extends GravelBase {
-
-    private String mName;
+public class Meridian extends Gravel {
 
     public Meridian() {
-        mName = DoserApplication.getContext().getString(R.string.product_meridian);
-    }
-
-    @Override
-    public String getName() {
-        return mName;
+        super(DoserApplication.getContext().getString(R.string.product_meridian));
     }
 
     @Override
     public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
-        return CalculateDosage(unitMeasurement, 320);
+        return CalculateDosage(unitMeasurement, 320, 125);
     }
 }

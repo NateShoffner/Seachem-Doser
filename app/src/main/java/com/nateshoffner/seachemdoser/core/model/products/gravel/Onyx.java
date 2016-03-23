@@ -5,21 +5,14 @@ import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 
-public class Onyx extends GravelBase {
-
-    private String mName;
+public class Onyx extends Gravel {
 
     public Onyx() {
-        mName = DoserApplication.getContext().getString(R.string.product_onyx);
-    }
-
-    @Override
-    public String getName() {
-        return mName;
+        super(DoserApplication.getContext().getString(R.string.product_onyx));
     }
 
     @Override
     public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
-        return CalculateDosage(unitMeasurement, 425);
+        return CalculateDosage(unitMeasurement, 425, 212);
     }
 }

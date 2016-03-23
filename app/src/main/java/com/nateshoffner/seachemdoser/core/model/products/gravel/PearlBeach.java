@@ -5,21 +5,14 @@ import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 
-public class PearlBeach extends GravelBase {
-
-    private String mName;
+public class PearlBeach extends Gravel {
 
     public PearlBeach() {
-        mName = DoserApplication.getContext().getString(R.string.product_pearl_beach);
-    }
-
-    @Override
-    public String getName() {
-        return mName;
+        super(DoserApplication.getContext().getString(R.string.product_pearl_beach));
     }
 
     @Override
     public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
-        return CalculateDosage(unitMeasurement, 525);
+        return CalculateDosage(unitMeasurement, 525, 185);
     }
 }

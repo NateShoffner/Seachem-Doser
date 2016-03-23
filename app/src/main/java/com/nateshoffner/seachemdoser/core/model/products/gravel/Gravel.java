@@ -11,12 +11,14 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public abstract class GravelBase implements SeachemProduct {
+public abstract class Gravel implements SeachemProduct {
 
+    protected String mName;
     protected Dictionary<UnitMeasurement, SeachemParameter[]> mParameters = new Hashtable<>();
     protected String mComment;
 
-    protected GravelBase() {
+    protected Gravel(String name) {
+        mName = name;
 
         mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_width),
@@ -37,6 +39,11 @@ public abstract class GravelBase implements SeachemProduct {
         mComment = DoserApplication.getContext().getString(R.string.product_comment_gravel);
     }
 
+    @Override
+    public String getName() {
+        return mName;
+    }
+
     public SeachemParameter[] getParameters(UnitMeasurement unitMeasurement) {
         return mParameters.get(unitMeasurement);
     }
@@ -45,7 +52,8 @@ public abstract class GravelBase implements SeachemProduct {
         return mComment;
     }
 
-    protected SeachemDosage[] CalculateDosage(UnitMeasurement unitMeasurement, double size) {
+    protected SeachemDosage[] CalculateDosage(UnitMeasurement unitMeasurement, double divisor,
+                                              double divisorSmall) {
         double width = mParameters.get(unitMeasurement)[0].getValue();
         double length = mParameters.get(unitMeasurement)[1].getValue();
         double depth = mParameters.get(unitMeasurement)[2].getValue();
@@ -56,10 +64,12 @@ public abstract class GravelBase implements SeachemProduct {
             depth = UnitConversion.CentimetersToInches(depth);
         }
 
-        double total = Math.ceil(width * length * depth / size);
+        double bags = Math.ceil(width * length * depth) / divisor;
+        double bagsSmall = Math.ceil(width * length * depth) / divisorSmall;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_bags), total)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_bags), bags),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_bags_small), bagsSmall)
         };
     }
 

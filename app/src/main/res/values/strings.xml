@@ -105,7 +105,8 @@
     <string name="unit_tbsp">Tbsp</string>
     <string name="unit_ml">mL</string>
     <string name="meqL">meq/L</string>
-    <string name="unit_bags">Bags</string>
+    <string name="unit_bags">Bags (7 kg)</string>
+    <string name="unit_bags_small">Small Bags (3.5 kg)</string>
     <string name="unit_inches">in</string>
     <string name="unit_centimeters">cm</string>
     <string name="mgL_ppm">mg/L (ppm)</string>
