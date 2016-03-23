@@ -9,7 +9,7 @@ import com.nateshoffner.seachemdoser.core.model.products.gravel.FlouriteDark;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.FlouriteRed;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.GrayCoast;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.KonaCoast;
-import com.nateshoffner.seachemdoser.core.model.products.gravel.Merdian;
+import com.nateshoffner.seachemdoser.core.model.products.gravel.Meridian;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.Onyx;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.OnyxSand;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.PearlBeach;
@@ -81,7 +81,7 @@ public class SeachemManager {
             gravel.add(new FlouriteRed());
             gravel.add(new GrayCoast());
             gravel.add(new KonaCoast());
-            gravel.add(new Merdian());
+            gravel.add(new Meridian());
             gravel.add(new Onyx());
             gravel.add(new OnyxSand());
             gravel.add(new PearlBeach());

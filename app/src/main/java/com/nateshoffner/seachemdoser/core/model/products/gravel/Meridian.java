@@ -5,11 +5,11 @@ import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 
-public class Merdian extends GravelBase {
+public class Meridian extends GravelBase {
 
     private String mName;
 
-    public Merdian() {
+    public Meridian() {
         mName = DoserApplication.getContext().getString(R.string.product_merdian);
     }
 
