@@ -30,6 +30,7 @@ import com.nateshoffner.seachemdoser.core.model.products.reef.ReefBuilder;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefCalcium;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefCarbonate;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefComplete;
+import com.nateshoffner.seachemdoser.core.model.products.reef.ReefFusion1;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefIodide;
 import com.nateshoffner.seachemdoser.core.model.products.reef.ReefStrontium;
 
@@ -106,6 +107,7 @@ public class SeachemManager {
             reef.add(new ReefCalcium());
             reef.add(new ReefCarbonate());
             reef.add(new ReefComplete());
+            reef.add(new ReefFusion1());
             reef.add(new ReefIodide());
             reef.add(new ReefStrontium());
             ProductMap.put(SeachemProductType.Reef, reef);
