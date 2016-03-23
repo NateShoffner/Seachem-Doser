@@ -10,7 +10,7 @@ public class Meridian extends GravelBase {
     private String mName;
 
     public Meridian() {
-        mName = DoserApplication.getContext().getString(R.string.product_merdian);
+        mName = DoserApplication.getContext().getString(R.string.product_meridian);
     }
 
     @Override
