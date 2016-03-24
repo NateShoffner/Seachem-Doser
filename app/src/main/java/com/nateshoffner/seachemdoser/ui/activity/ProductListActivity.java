@@ -37,7 +37,7 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
             productSelectionFragment.setActivateOnItemClick(true);
         }
 
-        DoserChangelog cl = new DoserChangelog(this);
+        final DoserChangelog cl = new DoserChangelog(this);
         if (cl.isFirstRun()) {
             final AlertDialog dialog = cl.getLogDialog();
             dialog.show();
@@ -45,6 +45,8 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
+
+                    cl.updateVersionInPreferences();
 
                     if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
                         showUnitMeasurementPrompt();
