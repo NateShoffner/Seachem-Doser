@@ -13,12 +13,11 @@
             android:entries="@array/unit_measurements"
             android:entryValues="@array/unit_measurements" />
 
-        <SwitchPreferenceCompat
-            android:title="Remember Last Product"
-            android:defaultValue="false"
-            android:summary="Open last product used on startup."
-            android:key="@string/pref_remember_last_product" />
-    </PreferenceCategory>
+        <ListPreference
+            android:title="Default Product"
+            android:summary="Default product to open on startup."
+            android:key="@string/pref_default_product" />
+</PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/pref_category_about"

@@ -7,13 +7,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.nateshoffner.seachemdoser.BuildConfig;
 import com.nateshoffner.seachemdoser.R;
+import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
+import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 
-import de.cketti.library.changelog.dialog.DialogChangeLog;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class PreferencesFragment extends PreferenceFragmentCompat
         implements SharedPreferences.OnSharedPreferenceChangeListener,
@@ -27,6 +33,29 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+        List<CharSequence> entries = new ArrayList<>();
+        entries.add(getActivity().getString(R.string.most_recent));
+        List<CharSequence> entryValues = new ArrayList<>();
+        entryValues.add(getActivity().getString(R.string.most_recent));
+
+        List<SeachemProduct> products = SeachemManager.GetProducts();
+        Collections.sort(products, new Comparator<SeachemProduct>() {
+            @Override
+            public int compare(SeachemProduct p1, SeachemProduct p2) {
+                return p1.getName().compareTo(p2.getName());
+            }
+        });
+
+        for (SeachemProduct product : products) {
+            entries.add(product.getName());
+            entryValues.add(product.getName());
+        }
+
+        ListPreference lp = (ListPreference) findPreference(getString(R.string.pref_default_product));
+        lp.setEntries(entries.toArray(new CharSequence[entries.size()]));
+        lp.setEntryValues(entryValues.toArray(new CharSequence[entryValues.size()]));
+        lp.setDefaultValue(getActivity().getString(R.string.most_recent));
+
         String revision = getString(R.string.build_revision);
         findPreference("app_version").setSummary(String.format("%s (rev. %s)",
                 BuildConfig.VERSION_NAME, revision));
@@ -36,21 +65,32 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    @Override
+    public void onDetach() {
+        mSharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        super.onDetach();
+    }
+
     private void updatePreferenceSummary(String key, String defaultValue) {
         findPreference(key).setSummary(mSharedPreferences.getString(key, defaultValue));
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.pref_unit_measurement))) {
-            updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
-        }
+        if (isMenuVisible())
+            if (key.equals(getString(R.string.pref_unit_measurement))) {
+                updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
+            }
+
+            if (key.equals(getString(R.string.pref_default_product))) {
+                updatePreferenceSummary(getString(R.string.pref_default_product), null);
+            }
     }
 
     @Override
     public boolean onPreferenceClick(android.support.v7.preference.Preference preference) {
         if (preference.getKey().equals("about_changelog")) {
-            DialogChangeLog cl = DoserChangelog.newInstance(getActivity());
+            DoserChangelog cl = new DoserChangelog(getActivity());
             cl.getFullLogDialog().show();
             return true;
         }

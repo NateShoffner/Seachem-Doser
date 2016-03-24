@@ -33,13 +33,9 @@
     <string name="pref_category_general">General</string>
 
     <!-- preference keys -->
-    <string name="pref_last_product_type">last_product_type</string>
-    <string name="pref_remember_last_product">remember_last_product</string>
     <string name="pref_last_product">last_product</string>
+    <string name="pref_default_product">default_product</string>
     <string name="pref_unit_measurement">unit_measurement</string>
-
-    <!-- preference defaults -->
-    <string name="pref_last_product_type_default">Planted</string>
 
     <!-- product names -->
     <string name="product_flourite">Flourite</string>
@@ -149,5 +145,6 @@
     <string name="label_dosage_or">or</string>
     <string name="label_dosage_requirements">Dosage Requirements:</string>
     <string name="label_aquarium_parameters">Aquarium Parameters:</string>
+    <string name="most_recent">Most Recent</string>
 
 </resources>

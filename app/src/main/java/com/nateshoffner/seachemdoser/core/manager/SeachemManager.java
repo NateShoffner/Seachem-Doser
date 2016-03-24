@@ -68,6 +68,19 @@ public class SeachemManager {
         return types;
     }
 
+    public static SeachemProduct getProductByName(String name) {
+        InitializeProducts();
+        for (List<SeachemProduct> products : ProductMap.values()) {
+            for (SeachemProduct product : products) {
+                if (product.getName().equals(name)) {
+                    return product;
+                }
+            }
+        }
+
+        return null;
+    }
+
     private static void InitializeProducts() {
         if (ProductMap == null) {
             ProductMap = new HashMap<>();

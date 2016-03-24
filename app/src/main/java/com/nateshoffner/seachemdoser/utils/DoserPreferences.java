@@ -3,6 +3,7 @@ package com.nateshoffner.seachemdoser.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
@@ -41,7 +42,7 @@ public class DoserPreferences {
         return str != null;
     }
 
-    public void setUnitMeasurment(UnitMeasurement unitMeasurement) {
+    public void setUnitMeasurement(UnitMeasurement unitMeasurement) {
         SharedPreferences.Editor editor = getEditor();
         editor.putString(getPreferenceKey(R.string.pref_unit_measurement), unitMeasurement.toString());
         editor.commit();
@@ -53,33 +54,38 @@ public class DoserPreferences {
         return UnitMeasurement.fromString(str);
     }
 
-    public void setLastProductUsed(SeachemProduct product) {
+    public void setDefaultProduct(SeachemProduct product) {
+        SharedPreferences.Editor editor = getEditor();
+        editor.putString(getPreferenceKey(R.string.pref_default_product), product.getName());
+        editor.commit();
+    }
+
+    public void setLastProduct(SeachemProduct product) {
         SharedPreferences.Editor editor = getEditor();
         editor.putString(getPreferenceKey(R.string.pref_last_product), product.getName());
         editor.commit();
     }
 
-    public SeachemProduct getLastProductUsed() {
+    public SeachemProduct getDefaultProduct() {
+        Boolean restoreLastProduct = mSharedPreferences.getString(
+                getPreferenceKey(R.string.pref_default_product),
+                mContext.getString(R.string.most_recent)).
+                equals(mContext.getString(R.string.most_recent));
 
-        if (mSharedPreferences.getBoolean(getPreferenceKey(R.string.pref_remember_last_product),
-                false)) {
-
+        if (restoreLastProduct) {
             String name = mSharedPreferences.getString(
                     getPreferenceKey(R.string.pref_last_product), null);
 
-            if (name == null)
-                return null;
+            if (name != null)
+                return SeachemManager.getProductByName(name);
+        }
 
-            SeachemProduct lastProduct = null;
+        else {
+            String name = mSharedPreferences.getString(
+                    getPreferenceKey(R.string.pref_default_product), null);
 
-            for (SeachemProduct product : SeachemManager.GetProducts()) {
-                if (product.getName().equalsIgnoreCase(name)) {
-                    lastProduct = product;
-                    break;
-                }
-            }
-
-            return lastProduct;
+            if (name != null)
+                return SeachemManager.getProductByName(name);
         }
 
         return null;

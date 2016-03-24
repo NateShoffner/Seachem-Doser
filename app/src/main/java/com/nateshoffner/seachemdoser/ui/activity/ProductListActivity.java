@@ -3,9 +3,7 @@ package com.nateshoffner.seachemdoser.ui.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,14 +23,11 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
     private static final String TAG = "ProductListActivity";
 
     private boolean mTwoPane;
-    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         ProductSelectionFragment productSelectionFragment = (ProductSelectionFragment)
                 getSupportFragmentManager().findFragmentById(R.id.product_selection);
@@ -88,7 +83,7 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
                     @Override
                     public void onClick(DialogInterface dialog, int index) {
                         UnitMeasurement unitMeasurement = unitMeasurements[index];
-                        DoserApplication.getDoserPreferences().setUnitMeasurment(unitMeasurement);
+                        DoserApplication.getDoserPreferences().setUnitMeasurement(unitMeasurement);
                     }
                 })
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -100,14 +95,16 @@ public class ProductListActivity extends BaseActivity implements ProductSelectio
     }
 
     private void showDefaultProduct() {
-        SeachemProduct lastProductUsed = DoserApplication.getDoserPreferences().getLastProductUsed();
-        if (lastProductUsed != null) {
-            onProductSelected(lastProductUsed);
+        SeachemProduct defaultProduct = DoserApplication.getDoserPreferences().getDefaultProduct();
+        if (defaultProduct != null) {
+            onProductSelected(defaultProduct);
         }
     }
 
     @Override
     public void onProductSelected(SeachemProduct product) {
+        DoserApplication.getDoserPreferences().setLastProduct(product);
+
         if (mTwoPane) {
             getSupportActionBar().setSubtitle(product.getName());
 
