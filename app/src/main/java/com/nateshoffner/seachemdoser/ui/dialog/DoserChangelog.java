@@ -10,6 +10,10 @@ public class DoserChangelog extends ChangeLog {
             "body { color: #FFFFFF; background-color: #282828; }" + "\n" + DEFAULT_CSS;
 
     public DoserChangelog(Context context) {
-        super(new ContextThemeWrapper(context, R.style.DoserDark), DARK_THEME_CSS);
+        super(new ContextThemeWrapper(context, R.style.Doser_Theme), DARK_THEME_CSS);
+    }
+
+    public void updateVersionInPreferences() {
+        super.updateVersionInPreferences();
     }
 }
