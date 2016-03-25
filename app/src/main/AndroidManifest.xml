@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/Doser.Theme" >
         <activity
-            android:name=".ui.activity.ProductListActivity"
+            android:name=".ui.activity.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name" >
             <intent-filter>
@@ -20,18 +20,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.ProductDetailActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".ui.activity.ProductListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.activity.ProductListActivity" />
-        </activity>
-        <activity
-            android:name=".ui.activity.SettingsActivity"
-            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

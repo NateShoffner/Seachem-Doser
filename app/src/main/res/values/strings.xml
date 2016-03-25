@@ -15,9 +15,9 @@
     <string name="version">Version v</string>
 
     <!-- product types -->
-    <string name="product_type_gravel">Gravel</string>
-    <string name="product_type_planted">Planted</string>
-    <string name="product_type_reef">Reef</string>
+    <string name="product_type_gravel">Sands and Gravels</string>
+    <string name="product_type_planted">Plant Products</string>
+    <string name="product_type_reef">Saltwater Products</string>
 
     <string name="calculate_btn_text">Calculate</string>
     <string name="btn_about_text">About…</string>
@@ -25,7 +25,6 @@
     <string name="calculation_error">A calculation error occurred</string>
 
     <string name="product_placeholder">Select a product from the left to begin</string>
-    <string name="title_activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
 
     <!-- preference categories -->
@@ -146,5 +145,7 @@
     <string name="label_dosage_requirements">Dosage Requirements:</string>
     <string name="label_aquarium_parameters">Aquarium Parameters:</string>
     <string name="most_recent">Most Recent</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
 
 </resources>
