@@ -31,9 +31,9 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 * Fixed: Full-screen keyboard on landscape orientation
 * Added: Changelog dialog
 * Added: Metric/imperial settings
-* Added: Option to remember last product used
+* Added: Default product options
 * Added: Swiping between product tabs
-* Changed: Minor UI modifications
+* Changed: Material interface
 
 ### Version 1.1 (December 23rd, 2015)
 * Added: Tablet support
