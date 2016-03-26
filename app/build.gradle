@@ -41,8 +41,10 @@ dependencies {
         transitive = true
     }
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
+        transitive = true
+    }
 }
-
 
 def revision() {
     def code = new ByteArrayOutputStream()

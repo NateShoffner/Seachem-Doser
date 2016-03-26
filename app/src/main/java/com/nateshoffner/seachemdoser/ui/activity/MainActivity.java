@@ -1,14 +1,17 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -26,9 +29,11 @@ import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
+import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.fragment.DefaultFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
+import com.nateshoffner.seachemdoser.utils.UnitLocale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
             List<SeachemProduct> products = SeachemManager.GetProducts(type);
 
             for (SeachemProduct product : products) {
@@ -164,6 +168,40 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.addStickyFooterItem(settingsItem);
 
         showDefaultProduct();
+
+        if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
+            showUnitMeasurementPrompt();
+        }
+    }
+
+    private void showUnitMeasurementPrompt() {
+        UnitMeasurement detected = UnitLocale.getLocaleMeasurmentUnit();
+
+        final CharSequence[] items = new CharSequence[UnitMeasurement.values().length];
+        final UnitMeasurement[] unitMeasurements = UnitMeasurement.values();
+
+        int checkedIndex = -1;
+        String[] stringArray = getResources().getStringArray(R.array.unit_measurements);
+        for (int i = 0; i < stringArray.length; i++) {
+            UnitMeasurement unitMeasurement = unitMeasurements[i];
+            items[i] = stringArray[i];
+
+            if (unitMeasurement == detected)
+                checkedIndex = i;
+        }
+
+        new MaterialDialog.Builder(this)
+                .title("Unit Measurement")
+                .items(items)
+                .itemsCallbackSingleChoice(checkedIndex, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                        UnitMeasurement unitMeasurement = unitMeasurements[i];
+                        DoserApplication.getDoserPreferences().setUnitMeasurement(unitMeasurement);
+                        return true;
+                    }
+                })
+                .show();
     }
 
     private void setCurrentFragment(String title, String subtitle, Fragment fragment) {
