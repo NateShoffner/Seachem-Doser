@@ -26,15 +26,12 @@ import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
-import com.nateshoffner.seachemdoser.ui.listener.ProductSelectionListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity implements
-        ProductSelectionListener {
+public class MainActivity extends AppCompatActivity {
 
     private class ProductTypeItem {
 
@@ -168,14 +165,7 @@ public class MainActivity extends AppCompatActivity implements
                             SeachemProduct product = SeachemManager.getProductByName(title);
 
                             if (product != null) {
-                                Bundle arguments = new Bundle();
-                                arguments.putSerializable(ProductDetailFragment.EXTRA_PRODUCT, product);
-                                ProductDetailFragment fragment = new ProductDetailFragment();
-                                fragment.setArguments(arguments);
-
-                                setCurrentFragment(getString(R.string.app_name),
-                                        product.getName(), fragment);
-
+                                showProduct(product);
                             }
 
                             else if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
@@ -200,6 +190,8 @@ public class MainActivity extends AppCompatActivity implements
                 .withName(R.string.action_settings)
                 .withIdentifier(SETTINGS_ITEM_IDENTIFIER);
         mDrawer.addStickyFooterItem(settingsItem);
+
+        showDefaultProduct();
     }
 
     private void setCurrentFragment(String title, String subtitle, Fragment fragment) {
@@ -237,11 +229,21 @@ public class MainActivity extends AppCompatActivity implements
         return null;
     }
 
+    public void showProduct(SeachemProduct product) {
+        Bundle arguments = new Bundle();
+        arguments.putSerializable(ProductDetailFragment.EXTRA_PRODUCT, product);
+        ProductDetailFragment fragment = new ProductDetailFragment();
+        fragment.setArguments(arguments);
+        setCurrentFragment(getString(R.string.app_name), product.getName(), fragment);
+    }
+
     private void showDefaultProduct() {
         SeachemProduct defaultProduct = DoserApplication.getDoserPreferences().getDefaultProduct();
         if (defaultProduct != null) {
-            onProductSelected(defaultProduct);
+            showProduct(defaultProduct);
         }
+
+        // select drawer item
     }
 
     @Override
@@ -251,17 +253,6 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void onProductSelected(SeachemProduct product) {
-        getSupportActionBar().setSubtitle(product.getName());
-
-        Bundle arguments = new Bundle();
-        arguments.putSerializable(ProductDetailFragment.EXTRA_PRODUCT, product);
-        ProductDetailFragment fragment = new ProductDetailFragment();
-        fragment.setArguments(arguments);
-
     }
 
     @Override
