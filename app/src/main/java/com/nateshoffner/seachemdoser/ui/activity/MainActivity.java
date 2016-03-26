@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         new ProfileDrawerItem()
                                 .withName(getString(R.string.app_name))
                                 .withIcon(R.mipmap.ic_launcher)
+                                .withEmail(getString(R.string.version_name))
                 )
                 .withSelectionListEnabledForSingleProfile(false)
                 .withProfileImagesClickable(false)

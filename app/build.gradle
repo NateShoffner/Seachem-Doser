@@ -11,6 +11,7 @@ android {
         versionCode 3
         versionName "1.2"
         resValue "string", "build_revision", revision()
+        resValue "string", "version_name", versionName
     }
     buildTypes {
         release {
