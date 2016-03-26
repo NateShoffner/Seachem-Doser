@@ -114,10 +114,23 @@ public class MainActivity extends AppCompatActivity {
 
             ex.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
-                public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
+                public boolean onItemClick(View view, int i, IDrawerItem drawerItem) {
                     if (mSelectedProductItem != null) {
                         // re-select product item
                         mDrawer.setSelection(mSelectedProductItem, false);
+                    }
+
+                    // only allow one item to be expanded at a time
+                    if(drawerItem instanceof ExpandableDrawerItem) {
+                        boolean expanded = ((ExpandableDrawerItem) drawerItem).isExpanded();
+
+                        if(expanded) {
+                            for(int expandedPosition : mDrawer.getAdapter().getExpandedItems()) {
+                                if(expandedPosition != mDrawer.getPosition(drawerItem)) {
+                                    mDrawer.getAdapter().collapse(expandedPosition);
+                                }
+                            }
+                        }
                     }
 
                     return false;
