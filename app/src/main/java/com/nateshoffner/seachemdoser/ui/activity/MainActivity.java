@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             for(int expandedPosition : mDrawer.getAdapter().getExpandedItems()) {
                                 if(expandedPosition != mDrawer.getPosition(drawerItem)) {
                                     mDrawer.getAdapter().collapse(expandedPosition);
+                                    mDrawer.getAdapter().notifyItemChanged(expandedPosition);
                                 }
                             }
                         }
