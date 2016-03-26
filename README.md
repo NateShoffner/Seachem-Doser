@@ -24,6 +24,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 * Added: Flourite Sand
 * Removed: Silver Shores
 * Removed: Kona Coast
+* Added: Small (3.5 kg) gravel/sand bags
 * Fixed: Gray Coast calculation
 * Fixed: Meridian name typo
 * Added: Reef Fusion 1 & 2
@@ -36,7 +37,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 * Changed: Material interface
 
 ### Version 1.1 (December 23rd, 2015)
-* Added: Tablet support
+* Added: Initial tablet support
 
 ### Version 1.0 (April 8th, 2015)
 * Initial release
@@ -51,12 +52,10 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
     * Flourite Dark
     * Flourite Red
     * Gray Coast
-    * Kona Coast
-    * Merdian
+    * Meridian
     * Onyx
     * Onyx Sand
     * Pearl Beach
-    * Silver Shores
 
 * #### Planted
     * Akaline Buffer
