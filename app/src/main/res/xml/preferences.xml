@@ -16,7 +16,8 @@
         <ListPreference
             android:title="Default Product"
             android:summary="Default product to open on startup."
-            android:key="@string/pref_default_product" />
+            android:key="@string/pref_default_product"
+            android:defaultValue="@string/most_recent"/>
 </PreferenceCategory>
 
     <PreferenceCategory
