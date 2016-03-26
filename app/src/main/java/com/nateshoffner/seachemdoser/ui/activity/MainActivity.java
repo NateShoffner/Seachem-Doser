@@ -30,6 +30,7 @@ import com.nateshoffner.seachemdoser.ui.fragment.DefaultFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -38,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
     private Drawer mDrawer = null;
     private PreferencesFragment mPreferencesFragment = new PreferencesFragment();
+    private List<ExpandableDrawerItem> mProductTypeItems = new ArrayList<>();
 
     private final static long SETTINGS_ITEM_IDENTIFIER = 999;
+
+    // manually track selected item between item expand/collapse
+    private IDrawerItem mSelectedProductItem;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -86,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                             SeachemProduct product = SeachemManager.getProductByName(title);
 
                             if (product != null) {
+                                mSelectedProductItem = drawerItem;
                                 showProduct(product);
                             }
                         }
@@ -93,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-
 
         // populate product items
         int identifierIncrementor = 0;
@@ -107,16 +112,29 @@ public class MainActivity extends AppCompatActivity {
                     .withLevel(2)
                     .withTextColor(getProductTypeColor(type));
 
+            ex.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
+                    if (mSelectedProductItem != null) {
+                        // re-select product item
+                        mDrawer.setSelection(mSelectedProductItem, false);
+                    }
+
+                    return false;
+                }
+            });
+
+
             List<SeachemProduct> products = SeachemManager.GetProducts(type);
 
             for (SeachemProduct product : products) {
                 ex.withSubItems(new SecondaryDrawerItem()
                         .withName(product.getName())
-                        .withIcon(GoogleMaterial.Icon.gmd_play_arrow)
                         .withIdentifier(identifierIncrementor++)
                         .withLevel(3));
             }
 
+            mProductTypeItems.add(ex);
             builder.addDrawerItems(ex);
         }
 
@@ -186,14 +204,12 @@ public class MainActivity extends AppCompatActivity {
             String parentTitle = getProductTypeString(type);
 
             // first open parent item
-            for (IDrawerItem item : mDrawer.getDrawerItems()) {
-                if (item instanceof ExpandableDrawerItem) {
-                    ExpandableDrawerItem expandableDrawerItem = (ExpandableDrawerItem)item;
-                    String title = ((Nameable) item).getName().getText();
-                    if (title != null && title.equals(parentTitle)) {
-                        expandableDrawerItem.withIsExpanded(true);
-                        break;
-                    }
+            for (ExpandableDrawerItem item : mProductTypeItems) {
+                String title = item.getName().getText();
+                if (title != null && title.equals(parentTitle)) {
+                    item.withIsExpanded(true);
+                    mDrawer.updateItem(item);
+                    break;
                 }
             }
 
