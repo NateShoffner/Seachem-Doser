@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .withSelectedItem(-1)
+                .withTranslucentStatusBar(false)
+                .withTranslucentNavigationBar(false)
+                .withFullscreen(false)
                 .addDrawerItems(new SectionDrawerItem().withName(R.string.products))
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
