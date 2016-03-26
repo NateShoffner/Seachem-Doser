@@ -54,6 +54,11 @@ public class DoserPreferences {
         return UnitMeasurement.fromString(str);
     }
 
+    public String getDefaultProductString() {
+        return mSharedPreferences.getString(getPreferenceKey(R.string.pref_default_product),
+                mContext.getString(R.string.most_recent));
+    }
+
     public void setDefaultProduct(SeachemProduct product) {
         SharedPreferences.Editor editor = getEditor();
         editor.putString(getPreferenceKey(R.string.pref_default_product), product.getName());
@@ -67,10 +72,10 @@ public class DoserPreferences {
     }
 
     public SeachemProduct getDefaultProduct() {
-        Boolean restoreLastProduct = mSharedPreferences.getString(
-                getPreferenceKey(R.string.pref_default_product),
-                mContext.getString(R.string.most_recent)).
-                equals(mContext.getString(R.string.most_recent));
+        String defaultProductStr = getDefaultProductString();
+
+        Boolean restoreLastProduct = defaultProductStr
+                .equals(mContext.getString(R.string.most_recent));
 
         if (restoreLastProduct) {
             String name = mSharedPreferences.getString(
@@ -81,11 +86,7 @@ public class DoserPreferences {
         }
 
         else {
-            String name = mSharedPreferences.getString(
-                    getPreferenceKey(R.string.pref_default_product), null);
-
-            if (name != null)
-                return SeachemManager.getProductByName(name);
+            return SeachemManager.getProductByName(defaultProductStr);
         }
 
         return null;

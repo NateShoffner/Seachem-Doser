@@ -11,10 +11,12 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.nateshoffner.seachemdoser.BuildConfig;
+import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
+import com.nateshoffner.seachemdoser.utils.DoserPreferences;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,6 +61,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         String revision = getString(R.string.build_revision);
         findPreference("app_version").setSummary(String.format("%s (rev. %s)",
                 BuildConfig.VERSION_NAME, revision));
+        findPreference(getString(R.string.pref_default_product)).setSummary(
+                DoserApplication.getDoserPreferences().getDefaultProductString());
         findPreference("about_changelog").setOnPreferenceClickListener(this);
         findPreference("about_rate").setOnPreferenceClickListener(this);
         updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
