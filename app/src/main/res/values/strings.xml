@@ -147,5 +147,8 @@
     <string name="most_recent">Most Recent</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
+    <string name="get_started">Get Started</string>
+    <string name="products">Products</string>
+    <string name="welcome">Welcome</string>
 
 </resources>
