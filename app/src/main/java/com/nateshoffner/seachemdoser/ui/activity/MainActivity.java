@@ -1,7 +1,6 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +25,7 @@ import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -217,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String getProductTypeString(SeachemProductType type) {
         switch(type) {
-
             case Gravel:
                 return getString(R.string.product_type_gravel);
             case Planted:
@@ -240,10 +239,27 @@ public class MainActivity extends AppCompatActivity {
     private void showDefaultProduct() {
         SeachemProduct defaultProduct = DoserApplication.getDoserPreferences().getDefaultProduct();
         if (defaultProduct != null) {
-            showProduct(defaultProduct);
-        }
+            SeachemProductType type = SeachemManager.getProductType(defaultProduct);
+            String parentTitle = getProductTypeString(type);
 
-        // select drawer item
+            // first open parent item
+            for (IDrawerItem item : mDrawer.getDrawerItems()) {
+                String title = ((Nameable)item).getName().getText();
+                if (title.equals(parentTitle)) {
+                    mDrawer.setSelection(item, true);
+                    break;
+                }
+            }
+
+            // now select + click child item
+            for (IDrawerItem item : mDrawer.getDrawerItems()) {
+                String title = ((Nameable)item).getName().getText();
+                if (title.equals(defaultProduct.getName())) {
+                    mDrawer.setSelection(item, true);
+                    break;
+                }
+            }
+        }
     }
 
     @Override

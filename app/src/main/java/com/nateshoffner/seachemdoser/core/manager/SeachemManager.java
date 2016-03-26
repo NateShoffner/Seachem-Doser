@@ -39,6 +39,7 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SeachemManager {
 
@@ -76,6 +77,15 @@ public class SeachemManager {
                     return product;
                 }
             }
+        }
+
+        return null;
+    }
+
+    public static SeachemProductType getProductType(SeachemProduct product) {
+        for (Map.Entry<SeachemProductType, List<SeachemProduct>> e : ProductMap.entrySet()) {
+            if (e.getValue().contains(product))
+                return e.getKey();
         }
 
         return null;
