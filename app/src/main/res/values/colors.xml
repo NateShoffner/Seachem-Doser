@@ -2,13 +2,15 @@
     <color name="primary">#3677D1</color>
     <color name="primary_dark">#195AB8</color>
     <color name="accent">#3677D1</color>
+    <color name="titleTextColor">#FFFFFF</color>
+    <color name="subtitleTextColor">#CCCCCC</color>
+
 
     <color name="product_list_text_color">#0088CC</color>
 
     <!-- light -->
 
     <color name="text_color">#777777</color>
-    <color name="header_text_color">#000000</color>
     <color name="link_color">#000000</color>
     <color name="background">#FFFFFF</color>
 
@@ -19,7 +21,6 @@
     <!-- dark -->
 
     <color name="text_color_inverse">#999999</color>
-    <color name="header_text_color_inverse">#FFFFFF</color>
     <color name="link_color_inverse">#FFFFFF</color>
     <color name="background_inverse">#0E0F11</color>
     <color name="product_list_selection_inverse">#26282D</color>

@@ -14,4 +14,19 @@
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 
+    <style name="DoserToolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/titleTextColor</item>
+        <item name="android:textColorPrimaryInverse">@color/titleTextColor</item>
+        <item name="android:textColorSecondary">@color/titleTextColor</item>
+        <item name="actionMenuTextColor">@color/titleTextColor</item>
+        <item name="titleTextColor">@color/titleTextColor</item>
+        <item name="subtitleTextColor">@color/subtitleTextColor</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/titleTextColor</item>
+    </style>
+
 </resources>
