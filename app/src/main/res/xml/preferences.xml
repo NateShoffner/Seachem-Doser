@@ -23,9 +23,9 @@
             android:title="Theme"
             android:summary="Application theme."
             android:key="@string/pref_theme"
-            android:defaultValue="Dark"
+            android:defaultValue="0"
             android:entries="@array/themes"
-            android:entryValues="@array/themes"/>
+            android:entryValues="@array/theme_values"/>
 
 </PreferenceCategory>
 

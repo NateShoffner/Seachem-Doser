@@ -93,7 +93,8 @@ public class DoserPreferences {
     }
 
     public ThemeHelper.Theme getTheme() {
-        String name = mSharedPreferences.getString(getPreferenceKey(R.string.pref_theme), null);
-        return name != null ? ThemeHelper.Theme.valueOf(name) : ThemeHelper.Theme.Dark;
+        int themeId = Integer.parseInt(mSharedPreferences.getString(
+                getPreferenceKey(R.string.pref_theme), "0"));
+        return ThemeHelper.fromId(themeId);
     }
 }

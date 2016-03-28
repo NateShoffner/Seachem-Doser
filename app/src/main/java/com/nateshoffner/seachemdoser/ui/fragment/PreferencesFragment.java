@@ -66,8 +66,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat
                 DoserApplication.getDoserPreferences().getDefaultProductString());
         findPreference("about_changelog").setOnPreferenceClickListener(this);
         findPreference("about_rate").setOnPreferenceClickListener(this);
-        updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
-        updatePreferenceSummary(getString(R.string.pref_theme), null);
+        updatePreferenceSummary(getString(R.string.pref_unit_measurement), null, null);
+        updatePreferenceSummary(getString(R.string.pref_theme),
+                DoserApplication.getDoserTheme().getName(), null);
         mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -77,25 +78,29 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         super.onDetach();
     }
 
-    private void updatePreferenceSummary(String key, String defaultValue) {
-        findPreference(key).setSummary(mSharedPreferences.getString(key, defaultValue));
+    private void updatePreferenceSummary(String key, String summary, String defaultValue) {
+        if (summary == null) // get summary value based on key
+            summary = mSharedPreferences.getString(key, defaultValue);
+
+        findPreference(key).setSummary(summary);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (isMenuVisible())
             if (key.equals(getString(R.string.pref_unit_measurement))) {
-                updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
+                updatePreferenceSummary(getString(R.string.pref_unit_measurement), null, null);
             }
 
         if (key.equals(getString(R.string.pref_default_product))) {
-            updatePreferenceSummary(getString(R.string.pref_default_product), null);
+            updatePreferenceSummary(getString(R.string.pref_default_product), null, null);
         }
 
         if (key.equals(getString(R.string.pref_theme))) {
-            updatePreferenceSummary(getString(R.string.pref_theme), null);
-
-            Snackbar.make(getView(), "This change will be made after the next app start", Snackbar.LENGTH_LONG).show();
+            String name = DoserApplication.getDoserTheme().getName();
+            updatePreferenceSummary(key, name, null);
+            Snackbar.make(getView(), "This change will be made after the next app start",
+                    Snackbar.LENGTH_LONG).show();
         }
     }
 

@@ -3,6 +3,7 @@ package com.nateshoffner.seachemdoser;
 import android.content.Context;
 
 import com.nateshoffner.seachemdoser.utils.DoserPreferences;
+import com.nateshoffner.seachemdoser.utils.ThemeHelper;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -33,8 +34,8 @@ public class DoserApplication extends android.app.Application {
         return mDoserPreferences;
     }
 
-    public static int getThemeId() {
-        return mDoserPreferences.getTheme().resValue;
+    public static ThemeHelper.Theme getDoserTheme() {
+        return mDoserPreferences.getTheme();
     }
 
 }
