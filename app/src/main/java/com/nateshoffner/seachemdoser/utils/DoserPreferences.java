@@ -91,4 +91,9 @@ public class DoserPreferences {
 
         return null;
     }
+
+    public ThemeHelper.Theme getTheme() {
+        String name = mSharedPreferences.getString(getPreferenceKey(R.string.pref_theme), null);
+        return name != null ? ThemeHelper.Theme.valueOf(name) : ThemeHelper.Theme.Dark;
+    }
 }

@@ -2,12 +2,28 @@
     <color name="primary">#3677D1</color>
     <color name="primary_dark">#195AB8</color>
     <color name="accent">#3677D1</color>
-    <color name="text_color">#999999</color>
-    <color name="header_text_color">#FFFFFF</color>
-    <color name="link_color">#FFFFFF</color>
-    <color name="background">#0E0F11</color>
-    <color name="product_list_selection">#26282D</color>
-    <color name="product_type_gravel">#FB3A01</color>
-    <color name="product_type_planted">#42B502</color>
-    <color name="product_type_reef">#1C96FF</color>
+
+    <color name="product_list_text_color">#0088CC</color>
+
+    <!-- light -->
+
+    <color name="text_color">#777777</color>
+    <color name="header_text_color">#000000</color>
+    <color name="link_color">#000000</color>
+    <color name="background">#FFFFFF</color>
+
+    <color name="product_list_selection">#CCCCCC</color>
+    <color name="input_background">#FFFFFF</color>
+    <color name="input_border">#CCCCCC</color>
+
+    <!-- dark -->
+
+    <color name="text_color_inverse">#999999</color>
+    <color name="header_text_color_inverse">#FFFFFF</color>
+    <color name="link_color_inverse">#FFFFFF</color>
+    <color name="background_inverse">#0E0F11</color>
+    <color name="product_list_selection_inverse">#26282D</color>
+    <color name="input_background_inverse">#353535</color>
+    <color name="input_border_inverse">#26282D</color>
+
 </resources>

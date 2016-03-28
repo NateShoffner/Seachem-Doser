@@ -1,14 +1,11 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -54,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(DoserApplication.getThemeId());
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,19 +62,17 @@ public class MainActivity extends AppCompatActivity {
                 .withActivity(this)
                 .withCompactStyle(true)
                 .withHeaderBackground(R.drawable.action_bar_gradient)
-                .addProfiles(
-                        new ProfileDrawerItem()
+                .addProfiles(new ProfileDrawerItem()
                                 .withName(getString(R.string.app_name))
                                 .withIcon(R.mipmap.ic_launcher)
-                                .withEmail(getString(R.string.version_name))
-                )
+                                .withEmail(String.format("v%s", getString(R.string.version_name))))
                 .withSelectionListEnabledForSingleProfile(false)
                 .withProfileImagesClickable(false)
                 .build();
 
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)
-                .withAccountHeader(headerResult)
+                .withAccountHeader(headerResult, true)
                 .withToolbar(toolbar)
                 .withDelayOnDrawerClose(250)
                 .withActionBarDrawerToggle(true)
@@ -85,16 +81,13 @@ public class MainActivity extends AppCompatActivity {
                 .withTranslucentStatusBar(false)
                 .withTranslucentNavigationBar(false)
                 .withFullscreen(false)
-                .addDrawerItems(new SectionDrawerItem().withName(R.string.products))
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
                             setCurrentFragment(getString(R.string.action_settings), null,
                                     mPreferencesFragment);
-                        }
-
-                        else {
+                        } else {
                             String title = ((Nameable) drawerItem).getName().getText();
                             SeachemProduct product = SeachemManager.getProductByName(title);
 
@@ -117,8 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     .withName(getProductTypeString(type))
                     .withIdentifier(identifierIncrementor++)
                     .withSelectable(false)
-                    .withLevel(2)
-                    .withTextColor(getProductTypeColor(type));
+                    .withIconColorRes(R.color.product_list_text_color);
 
             ex.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
@@ -152,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
                 ex.withSubItems(new SecondaryDrawerItem()
                         .withName(product.getName())
                         .withIdentifier(identifierIncrementor++)
-                        .withLevel(3));
+                        .withLevel(2)
+                        .withTextColorRes(R.color.product_list_text_color));
             }
 
             mProductTypeItems.add(ex);
@@ -215,18 +208,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (mDrawer.isDrawerOpen())
             mDrawer.closeDrawer();
-    }
-
-    private int getProductTypeColor(SeachemProductType type) {
-        switch (type) {
-            case Gravel:
-                return ContextCompat.getColor(this, R.color.product_type_gravel);
-            case Planted:
-                return ContextCompat.getColor(this, R.color.product_type_planted);
-            case Reef:
-                return ContextCompat.getColor(this, R.color.product_type_reef);
-        }
-        return 0;
     }
 
     private String getProductTypeString(SeachemProductType type) {

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nateshoffner.seachemdoser.R;
 
@@ -29,7 +30,10 @@ public class DefaultFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_default, container, false);
+
+        TextView tvVersion = (TextView) mRootView.findViewById(R.id.version);
+        tvVersion.append(getString(R.string.version_name));
+
         return mRootView;
     }
-
 }

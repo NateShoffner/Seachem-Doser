@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
@@ -66,6 +67,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         findPreference("about_changelog").setOnPreferenceClickListener(this);
         findPreference("about_rate").setOnPreferenceClickListener(this);
         updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
+        updatePreferenceSummary(getString(R.string.pref_theme), null);
         mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -86,9 +88,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat
                 updatePreferenceSummary(getString(R.string.pref_unit_measurement), null);
             }
 
-            if (key.equals(getString(R.string.pref_default_product))) {
-                updatePreferenceSummary(getString(R.string.pref_default_product), null);
-            }
+        if (key.equals(getString(R.string.pref_default_product))) {
+            updatePreferenceSummary(getString(R.string.pref_default_product), null);
+        }
+
+        if (key.equals(getString(R.string.pref_theme))) {
+            updatePreferenceSummary(getString(R.string.pref_theme), null);
+
+            Snackbar.make(getView(), "This change will be made after the next app start", Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override

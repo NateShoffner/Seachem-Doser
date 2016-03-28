@@ -32,4 +32,9 @@ public class DoserApplication extends android.app.Application {
     public static DoserPreferences getDoserPreferences() {
         return mDoserPreferences;
     }
+
+    public static int getThemeId() {
+        return mDoserPreferences.getTheme().resValue;
+    }
+
 }

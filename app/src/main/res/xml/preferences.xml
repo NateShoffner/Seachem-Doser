@@ -18,6 +18,15 @@
             android:summary="Default product to open on startup."
             android:key="@string/pref_default_product"
             android:defaultValue="@string/most_recent"/>
+
+        <ListPreference
+            android:title="Theme"
+            android:summary="Application theme."
+            android:key="@string/pref_theme"
+            android:defaultValue="Dark"
+            android:entries="@array/themes"
+            android:entryValues="@array/themes"/>
+
 </PreferenceCategory>
 
     <PreferenceCategory
