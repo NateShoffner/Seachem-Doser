@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <changelog>
-    <release version="1.2" versioncode="3">
+    <release
+        version="1.2"
+        versioncode="3">
         <change>Added: Reef Fusion 1 &amp; 2</change>
         <change>Added: Flourish Trace</change>
         <change>Fixed: Full-screen keyboard on landscape orientation</change>
@@ -9,10 +11,14 @@
         <change>Added: Swiping between product tabs</change>
         <change>Changed: Minor UI modifications</change>
     </release>
-    <release version="1.1" versioncode="2">
+    <release
+        version="1.1"
+        versioncode="2">
         <change>Added: Tablet support</change>
     </release>
-    <release version="1.0" versioncode="1">
+    <release
+        version="1.0"
+        versioncode="1">
         <change>Initial release</change>
     </release>
 </changelog>

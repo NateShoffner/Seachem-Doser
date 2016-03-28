@@ -35,7 +35,7 @@ public class ThemeHelper {
     }
 
     public static Theme fromId(int id) {
-        switch(id) {
+        switch (id) {
             case 0:
                 return Theme.Dark;
             case 1:

@@ -63,14 +63,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
     private void displayTheme() {
         ThemeHelper.Theme theme = DoserApplication.getDoserTheme();
-        ListPreference listPreference = (ListPreference)findPreference(getString(R.string.pref_theme));
+        ListPreference listPreference = (ListPreference) findPreference(getString(R.string.pref_theme));
         listPreference.setSummary(theme.getName());
         listPreference.setValueIndex(theme.getId());
     }
 
-    private void displayUnitMeasurement(){
+    private void displayUnitMeasurement() {
         UnitMeasurement unit = DoserApplication.getDoserPreferences().getUnitMeasurement();
-        ListPreference listPreference = (ListPreference)findPreference(
+        ListPreference listPreference = (ListPreference) findPreference(
                 getString(R.string.pref_unit_measurement));
         listPreference.setSummary(unit.getName());
         listPreference.setValueIndex(unit.getId());

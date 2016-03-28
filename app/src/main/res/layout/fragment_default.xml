@@ -19,7 +19,7 @@
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +60,7 @@
         android:text="@string/about_eula"
         android:layout_above="@+id/disclaimer"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp" />
 
     <TextView
         android:id="@+id/disclaimer"

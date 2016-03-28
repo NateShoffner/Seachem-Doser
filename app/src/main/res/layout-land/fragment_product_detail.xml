@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/product_name"
             android:textSize="@dimen/product_detail_text_size"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -33,15 +33,14 @@
                 android:textSize="@dimen/product_detail_dosage_title_size"
                 android:text="@string/label_aquarium_parameters"
                 android:layout_marginBottom="15dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
             <LinearLayout
                 android:id="@+id/params_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
 
             <Button
                 android:id="@+id/btnCalculate"
@@ -49,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/calculate_btn_text"
                 android:textSize="@dimen/product_detail_text_size"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
 
@@ -71,8 +70,7 @@
                 android:id="@+id/dosages_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

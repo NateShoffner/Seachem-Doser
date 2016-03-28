@@ -7,7 +7,7 @@
 
     <style name="DoserButton" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@drawable/button_background_selector</item>
-        <item name="android:textColor">#FFFFFF</item>                                 
+        <item name="android:textColor">#FFFFFF</item>
         <item name="textAllCaps">false</item>
         <item name="android:padding">10dp</item>
         <item name="android:minHeight">1dip</item>

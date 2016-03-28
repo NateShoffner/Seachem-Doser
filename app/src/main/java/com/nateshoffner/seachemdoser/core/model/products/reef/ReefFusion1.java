@@ -7,7 +7,6 @@ import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.utils.Constants;
-import com.nateshoffner.seachemdoser.utils.MathUtils;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
 
 import java.util.Dictionary;
@@ -70,7 +69,7 @@ public class ReefFusion1 implements SeachemProduct {
         }
 
         double ml = ((volume / 6.5) * ((desired - current) / .176));
-        double caps =  (ml / Constants.CapmL);
+        double caps = (ml / Constants.CapmL);
 
         return new SeachemDosage[]{
                 new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),

@@ -56,7 +56,7 @@ public class FlourishTrace implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = ((volume / 20) * 5 );
+        double doseB = ((volume / 20) * 5);
         double doseA = doseB / Constants.CapmL;
 
         return new SeachemDosage[]{

@@ -24,9 +24,7 @@ public class DoserChangelog extends ChangeLog {
         if (theme == ThemeHelper.Theme.Dark) {
             backgroundColor = ContextCompat.getColor(context, R.color.background_inverse);
             textColor = ContextCompat.getColor(context, R.color.text_color_inverse);
-        }
-
-        else if (theme == ThemeHelper.Theme.Light) {
+        } else if (theme == ThemeHelper.Theme.Light) {
             backgroundColor = ContextCompat.getColor(context, R.color.background);
             textColor = ContextCompat.getColor(context, R.color.text_color);
         }

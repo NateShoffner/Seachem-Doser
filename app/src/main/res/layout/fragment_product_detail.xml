@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <Button
             android:id="@+id/btnCalculate"
@@ -27,14 +26,13 @@
             android:text="@string/calculate_btn_text"
             android:textSize="@dimen/product_detail_text_size"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/button_background_selector"/>
+            android:background="@drawable/button_background_selector" />
 
         <LinearLayout
             android:id="@+id/dosages_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
     </LinearLayout>
 </ScrollView>

@@ -33,7 +33,7 @@ public class DosageResultView extends LinearLayout {
         tvLabel.setText(text);
     }
 
-    public void setValue(String value){
+    public void setValue(String value) {
         etValue.setText(value);
     }
 
