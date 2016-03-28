@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:text="@string/calculate_btn_text"
             android:textSize="@dimen/product_detail_text_size"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_background_selector"/>
 
         <LinearLayout
             android:id="@+id/dosages_container"

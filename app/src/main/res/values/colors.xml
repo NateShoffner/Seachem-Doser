@@ -1,10 +1,9 @@
 <resources>
     <color name="primary">#3677D1</color>
     <color name="primary_dark">#195AB8</color>
-    <color name="accent">#3677D1</color>
+    <color name="accent">#0088CC</color>
     <color name="titleTextColor">#FFFFFF</color>
     <color name="subtitleTextColor">#CCCCCC</color>
-
 
     <color name="product_list_text_color">#0088CC</color>
 
@@ -18,6 +17,15 @@
     <color name="input_background">#FFFFFF</color>
     <color name="input_border">#CCCCCC</color>
 
+    <!-- AboutLibraries -->
+    <color name="about_libraries_window_background">@color/background</color>
+    <color name="about_libraries_card">@color/background</color>
+    <color name="about_libraries_title_openSource">@color/accent</color>
+    <color name="about_libraries_text_openSource">@color/text_color</color>
+    <color name="about_libraries_special_button_openSource">@color/accent</color>
+    <color name="about_libraries_dividerDark_openSource">#0088CC</color>
+    <color name="about_libraries_dividerLight_openSource">#0088CC</color>
+
     <!-- dark -->
 
     <color name="text_color_inverse">#999999</color>
@@ -26,5 +34,14 @@
     <color name="product_list_selection_inverse">#26282D</color>
     <color name="input_background_inverse">#353535</color>
     <color name="input_border_inverse">#26282D</color>
+
+    <!-- AboutLibraries -->
+    <color name="about_libraries_window_background_dark">@color/background_inverse</color>
+    <color name="about_libraries_card_dark">@color/background_inverse</color>
+    <color name="about_libraries_title_openSource_dark">@color/accent</color>
+    <color name="about_libraries_text_openSource_dark">@color/text_color_inverse</color>
+    <color name="about_libraries_special_button_openSource_dark">@color/accent</color>
+    <color name="about_libraries_dividerDark_openSource_dark">#0088CC</color>
+    <color name="about_libraries_dividerLight_openSource_dark">#0088CC</color>
 
 </resources>

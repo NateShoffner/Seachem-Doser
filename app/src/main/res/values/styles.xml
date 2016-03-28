@@ -5,13 +5,13 @@
         <item name="android:textColor">@color/text_color</item>
     </style>
 
-    <style name="DoserButton" parent="Base.Widget.AppCompat.Button">
-        <item name="android:background">@drawable/button_background_selector</item>
+    <style name="DoserButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@drawable/button_background_selector</item>
         <item name="android:textColor">#FFFFFF</item>                                 
         <item name="textAllCaps">false</item>
-        <item name="android:minHeight">32dp</item>
-        <item name="android:minWidth">64dp</item>
-        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:minHeight">1dip</item>
+        <item name="android:minWidth">1dip</item>
     </style>
 
     <style name="DoserToolbar" parent="ThemeOverlay.AppCompat.ActionBar">

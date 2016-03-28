@@ -27,33 +27,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/pref_category_about"
-        android:key="@string/pref_category_about">
-        <Preference
-            android:key="app_version"
-            android:title="Version"
-            android:summary="1.0" />
-        <PreferenceScreen
-            android:key="about_author"
-            android:title="@string/about_author"
-            android:summary="@string/about_homepage">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/about_homepage" />
-        </PreferenceScreen>
-        <Preference
-            android:key="about_rate"
-            android:title="Rate this app"
-            android:summary="@string/about_rate" />
-        <Preference
-            android:key="about_changelog"
-            android:title="Change Log"
-            android:summary="@string/about_changelog" />
-        <Preference
-            android:key="about_disclaimer"
-            android:title="Disclaimer"
-            android:summary="@string/about_disclaimer" />
-    </PreferenceCategory>
-
 </PreferenceScreen>

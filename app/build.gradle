@@ -41,7 +41,11 @@ dependencies {
         transitive = true
     }
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
+    //todo upgrade this after pre-lollipop NPE is fixed
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.6@aar') {
+        transitive = true
+    }
+    compile('com.mikepenz:aboutlibraries:5.6.1@aar') {
         transitive = true
     }
 }
