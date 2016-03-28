@@ -1,17 +1,22 @@
 apply plugin: 'com.android.application'
 
+project.ext.set("versionMajor", "1")
+project.ext.set("versionMinor", "2")
+project.ext.set("versionRevision", "0")
+
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "com.nateshoffner.seachemdoser"
         minSdkVersion 10
         targetSdkVersion 23
         versionCode 3
-        versionName "1.2"
+        versionName buildVersionName()
         resValue "string", "build_revision", revision()
         resValue "string", "version_name", versionName
+        resValue "string", "version_name_human", buildHumanVersionName()
     }
     buildTypes {
         release {
@@ -27,6 +32,7 @@ android {
 
 ext {
     supportLibVersion = '23.2.1'
+    versionName = '1.2.0'
 }
 
 dependencies {
@@ -57,4 +63,41 @@ def revision() {
         standardOutput = code
     }
     return code.toString()
+}
+
+def buildNumber() {
+    return System.getenv('TRAVIS_BUILD_NUMBER') ?: "0"
+}
+
+def buildBaseVersion() {
+    def major = project.ext.versionMajor
+    def minor = project.ext.versionMinor
+    def revision = project.ext.versionRevision
+
+    def version = major + "." + minor
+
+    if (revision != "0")
+        version = version + "." + revision
+
+    return version
+}
+
+def buildVersionName(){
+    def version = buildBaseVersion()
+    def buildNumber = buildNumber()
+
+    if (buildNumber != "0")
+        version = version + "." + buildNumber
+
+    return version
+}
+
+def buildHumanVersionName(){
+    def version = buildBaseVersion()
+    def buildNumber = buildNumber()
+
+    if (buildNumber != "0")
+        version = version + " (Build " + buildNumber + ")"
+
+    return version
 }
