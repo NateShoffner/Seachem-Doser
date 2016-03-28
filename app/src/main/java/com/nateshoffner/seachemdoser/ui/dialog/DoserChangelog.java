@@ -1,19 +1,40 @@
 package com.nateshoffner.seachemdoser.ui.dialog;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.ContextThemeWrapper;
 
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
-import com.nateshoffner.seachemdoser.utils.DoserPreferences;
+import com.nateshoffner.seachemdoser.utils.ThemeHelper;
 
 public class DoserChangelog extends ChangeLog {
-    public static final String DARK_THEME_CSS =
-            "body { color: #FFFFFF; background-color: #282828; }" + "\n" + DEFAULT_CSS;
 
     public DoserChangelog(Context context) {
         super(new ContextThemeWrapper(context, DoserApplication.getDoserTheme().getResourceId()),
-                DARK_THEME_CSS);
+                getCss(context));
+    }
+
+    private static String getCss(Context context) {
+        ThemeHelper.Theme theme = DoserApplication.getDoserTheme();
+
+        int backgroundColor = 0;
+        int textColor = 0;
+
+        if (theme == ThemeHelper.Theme.Dark) {
+            backgroundColor = ContextCompat.getColor(context, R.color.background_inverse);
+            textColor = ContextCompat.getColor(context, R.color.text_color_inverse);
+        }
+
+        else if (theme == ThemeHelper.Theme.Light) {
+            backgroundColor = ContextCompat.getColor(context, R.color.background);
+            textColor = ContextCompat.getColor(context, R.color.text_color);
+        }
+
+        return String.format("body { color: #%s; background-color: #%s }\n%s",
+                String.format("%06X", (0xFFFFFF & textColor)),
+                String.format("%06X", (0xFFFFFF & backgroundColor)),
+                DEFAULT_CSS);
     }
 
     public void updateVersionInPreferences() {
