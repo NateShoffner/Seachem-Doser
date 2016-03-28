@@ -1,13 +1,33 @@
 package com.nateshoffner.seachemdoser.core.model;
 
 public enum UnitMeasurement {
-    ImperialUS, Metric;
+    Metric("Metric", 0),
+    ImperialUS("Imperial (US)", 1);
 
-    public static UnitMeasurement fromString(String str) {
-        if (str.equalsIgnoreCase("Imperial (US)"))
-            return ImperialUS;
-        if (str.equalsIgnoreCase("Metric"))
-            return Metric;
-        return ImperialUS;
+    private String mName;
+    private int mId;
+
+    UnitMeasurement(String name, int id) {
+        mName = name;
+        mId = id;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public int getId() {
+        return mId;
+    }
+
+    public static UnitMeasurement fromId(int id) {
+        switch (id) {
+            case 0:
+                return UnitMeasurement.Metric;
+            case 1:
+                return UnitMeasurement.ImperialUS;
+        }
+
+        return null;
     }
 }

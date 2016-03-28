@@ -3,7 +3,6 @@ package com.nateshoffner.seachemdoser.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
@@ -37,21 +36,20 @@ public class DoserPreferences {
     }
 
     public boolean isUnitMeasurementSet() {
-        String str = mSharedPreferences.getString(
-                getPreferenceKey(R.string.pref_unit_measurement), null);
-        return str != null;
+        return getUnitMeasurement() != null;
     }
 
     public void setUnitMeasurement(UnitMeasurement unitMeasurement) {
         SharedPreferences.Editor editor = getEditor();
-        editor.putString(getPreferenceKey(R.string.pref_unit_measurement), unitMeasurement.toString());
+        editor.putString(getPreferenceKey(R.string.pref_unit_measurement),
+                Integer.toString(unitMeasurement.getId()));
         editor.commit();
     }
 
     public UnitMeasurement getUnitMeasurement() {
-        String str = mSharedPreferences.getString(
-                getPreferenceKey(R.string.pref_unit_measurement), "Imperial (US)");
-        return UnitMeasurement.fromString(str);
+        int id = Integer.parseInt(mSharedPreferences.getString(
+                getPreferenceKey(R.string.pref_unit_measurement), "-1"));
+        return UnitMeasurement.fromId(id);
     }
 
     public String getDefaultProductString() {

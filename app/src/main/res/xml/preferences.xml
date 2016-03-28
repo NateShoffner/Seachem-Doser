@@ -9,9 +9,8 @@
             android:title="Unit Measurement"
             android:summary="Unit measurement to use for dosages."
             android:key="@string/pref_unit_measurement"
-            android:defaultValue="Imperial (US)"
             android:entries="@array/unit_measurements"
-            android:entryValues="@array/unit_measurements" />
+            android:entryValues="@array/unit_measurement_values" />
 
         <ListPreference
             android:title="Default Product"
@@ -23,11 +22,10 @@
             android:title="Theme"
             android:summary="Application theme."
             android:key="@string/pref_theme"
-            android:defaultValue="0"
             android:entries="@array/themes"
             android:entryValues="@array/theme_values"/>
 
-</PreferenceCategory>
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/pref_category_about"
