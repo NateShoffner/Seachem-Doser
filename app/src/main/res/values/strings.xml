@@ -10,8 +10,6 @@
     <string name="about_homepage">http://nateshoffner.com</string>
     <string name="about_eula">This app is not licensed, affiliated, nor endorsed by Seachem Laboratories, Inc.</string>
     <string name="about_disclaimer">This software is provided \'as-is\', without any express or implied warranty. In no event will the author be held liable for any damages arising from the use of this software.</string>
-    <string name="about_changelog">View Seachem Doser changelog.</string>
-    <string name="about_rate">Rate Seachem Doser on the Google Play Store.</string>
 
     <string name="version">Version v</string>
 
@@ -37,6 +35,8 @@
     <string name="pref_default_product">default_product</string>
     <string name="pref_unit_measurement">unit_measurement</string>
     <string name="pref_theme">theme</string>
+    <string name="pref_total_calculations">total_calculations</string>
+    <string name="pref_prompted_for_rating">prompted_for_rating</string>
 
     <!-- product names -->
     <string name="product_flourite">Flourite</string>
@@ -153,5 +153,7 @@
     <string name="welcome">Welcome</string>
     <string name="about_support">About / Support</string>
     <string name="unit_measurement_dialog_title">Unit Measurement</string>
+
+    <string name="rate">Rate</string>
 
 </resources>

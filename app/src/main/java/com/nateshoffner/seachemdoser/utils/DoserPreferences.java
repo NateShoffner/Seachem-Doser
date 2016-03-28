@@ -81,9 +81,7 @@ public class DoserPreferences {
 
             if (name != null)
                 return SeachemManager.getProductByName(name);
-        }
-
-        else {
+        } else {
             return SeachemManager.getProductByName(defaultProductStr);
         }
 
@@ -94,5 +92,25 @@ public class DoserPreferences {
         int themeId = Integer.parseInt(mSharedPreferences.getString(
                 getPreferenceKey(R.string.pref_theme), "0"));
         return ThemeHelper.fromId(themeId);
+    }
+
+    public int getTotalCalculations() {
+        return mSharedPreferences.getInt(getPreferenceKey(R.string.pref_total_calculations), 0);
+    }
+
+    public void incrementTotalCalculations() {
+        int total = getTotalCalculations();
+        getEditor().putInt(getPreferenceKey(R.string.pref_total_calculations), total + 1);
+    }
+
+    public boolean getHasBeenPromptedForRating() {
+        return mSharedPreferences.getBoolean(getPreferenceKey(R.string.pref_prompted_for_rating),
+                false);
+    }
+
+    public void setHasBeenPromptedForRating(boolean prompted) {
+        SharedPreferences.Editor editor = getEditor();
+        editor.putBoolean(getPreferenceKey(R.string.pref_prompted_for_rating), prompted);
+        editor.commit();
     }
 }

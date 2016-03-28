@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nateshoffner.seachemdoser.DoserApplication;
@@ -164,13 +163,13 @@ public class ProductDetailFragment extends Fragment
                         return;
                     }
 
-                    if (dosages != null) {
-                        for (int i = 0, dosagesLength = dosages.length; i < dosagesLength; i++) {
-                            SeachemDosage dosage = dosages[i];
-                            String value = decimalFormat.format(dosage.getAmount());
-                            dosageResultViews.get(i).setValue(value);
-                        }
+                    for (int i = 0, dosagesLength = dosages.length; i < dosagesLength; i++) {
+                        SeachemDosage dosage = dosages[i];
+                        String value = decimalFormat.format(dosage.getAmount());
+                        dosageResultViews.get(i).setValue(value);
                     }
+
+                    DoserApplication.getDoserPreferences().incrementTotalCalculations();
                 }
             });
 

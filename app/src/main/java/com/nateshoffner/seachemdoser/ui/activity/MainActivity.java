@@ -9,18 +9,15 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.aboutlibraries.LibsConfiguration;
 import com.mikepenz.aboutlibraries.entity.Library;
 import com.mikepenz.aboutlibraries.ui.LibsSupportFragment;
-import com.mikepenz.aboutlibraries.ui.item.HeaderItem;
-import com.mikepenz.aboutlibraries.ui.item.LibraryItem;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -82,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
         if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
             showUnitMeasurementPrompt();
         }
+
+        // prompt for rating after 5 calculations
+        if (!DoserApplication.getDoserPreferences().getHasBeenPromptedForRating() &&
+                DoserApplication.getDoserPreferences().getTotalCalculations() == 5) {
+            showRatingPrompt();
+        }
     }
 
     private void initializeAboutFragment() {
@@ -115,12 +118,9 @@ public class MainActivity extends AppCompatActivity {
                     Uri uriUrl = Uri.parse(getString(R.string.about_homepage));
                     Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                     startActivity(launchBrowser);
-                }
-                else if (specialButton == Libs.SpecialButton.SPECIAL2) {
+                } else if (specialButton == Libs.SpecialButton.SPECIAL2) {
                     PlayStoreUtils.GoToPlayStore(MainActivity.this);
-                }
-
-                else if (specialButton == Libs.SpecialButton.SPECIAL3) {
+                } else if (specialButton == Libs.SpecialButton.SPECIAL3) {
                     DoserChangelog cl = new DoserChangelog(MainActivity.this);
                     cl.getFullLogDialog().show();
                 }
@@ -208,8 +208,7 @@ public class MainActivity extends AppCompatActivity {
                         if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
                             setCurrentFragment(getString(R.string.action_settings), null,
                                     mPreferencesFragment);
-                        }
-                        else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
+                        } else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
                             setCurrentFragment(getString(R.string.about_support), null,
                                     mSupportFragment);
                         } else {
@@ -231,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
 
         for (SeachemProductType type : productTypes) {
-            ExpandableDrawerItem ex =  new ExpandableDrawerItem()
+            ExpandableDrawerItem ex = new ExpandableDrawerItem()
                     .withName(getProductTypeString(type))
                     .withIdentifier(identifierIncrementor++)
                     .withSelectable(false)
@@ -246,12 +245,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     // only allow one item to be expanded at a time
-                    if(drawerItem instanceof ExpandableDrawerItem) {
+                    if (drawerItem instanceof ExpandableDrawerItem) {
                         boolean expanded = ((ExpandableDrawerItem) drawerItem).isExpanded();
 
-                        if(expanded) {
-                            for(int expandedPosition : mDrawer.getAdapter().getExpandedItems()) {
-                                if(expandedPosition != mDrawer.getPosition(drawerItem)) {
+                        if (expanded) {
+                            for (int expandedPosition : mDrawer.getAdapter().getExpandedItems()) {
+                                if (expandedPosition != mDrawer.getPosition(drawerItem)) {
                                     mDrawer.getAdapter().collapse(expandedPosition);
                                     mDrawer.getAdapter().notifyItemChanged(expandedPosition);
                                 }
@@ -280,7 +279,26 @@ public class MainActivity extends AppCompatActivity {
         mDrawer = builder.build();
     }
 
-
+    private void showRatingPrompt() {
+        new MaterialDialog.Builder(this)
+                .title(String.format("%s %s", getString(R.string.rate), getString(R.string.app_name)))
+                .content("Now that you've used the app for a little while, how about leaving a rating/some feedback?")
+                .positiveText("Rate Now")
+                .negativeText("No Thanks")
+                .neutralText("Later")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        PlayStoreUtils.GoToPlayStore(MainActivity.this);
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        DoserApplication.getDoserPreferences().setHasBeenPromptedForRating(true);
+                    }
+                }).show();
+    }
 
     private void showUnitMeasurementPrompt() {
         UnitMeasurement detected = UnitLocale.getLocaleMeasurmentUnit();
@@ -326,7 +344,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getProductTypeString(SeachemProductType type) {
-        switch(type) {
+        switch (type) {
             case Gravel:
                 return getString(R.string.product_type_gravel);
             case Planted:
@@ -366,15 +384,13 @@ public class MainActivity extends AppCompatActivity {
 
             // now select + click child item
             for (IDrawerItem item : mDrawer.getDrawerItems()) {
-                String title = ((Nameable)item).getName().getText();
+                String title = ((Nameable) item).getName().getText();
                 if (title != null && title.equals(defaultProduct.getName())) {
                     mDrawer.setSelection(item, true);
                     break;
                 }
             }
-        }
-
-        else {
+        } else {
             setCurrentFragment(getString(R.string.welcome), null, new DefaultFragment());
         }
     }
