@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -29,6 +30,7 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
+import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         setSupportActionBar(mToolbar);
 
-        initializeDrawer();
+        initializeDrawer(savedInstanceState);
         initializeAboutFragment();
 
         showDefaultProduct();
@@ -164,20 +166,9 @@ public class MainActivity extends AppCompatActivity {
                 .withListener(libsListener);
 
         mSupportFragment = libsBuilder.supportFragment();
-
-        PrimaryDrawerItem supportItem = new PrimaryDrawerItem()
-                .withName(R.string.about_support)
-                .withIdentifier(SUPPORT_ITEM_IDENTIFIER)
-                .withIcon(GoogleMaterial.Icon.gmd_help);
-        mDrawer.addStickyFooterItem(supportItem);
-        PrimaryDrawerItem settingsItem = new PrimaryDrawerItem()
-                .withName(R.string.action_settings)
-                .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
-                .withIcon(GoogleMaterial.Icon.gmd_settings);
-        mDrawer.addStickyFooterItem(settingsItem);
     }
 
-    private void initializeDrawer() {
+    private void initializeDrawer(Bundle savedInstanceState) {
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -202,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 .withTranslucentStatusBar(false)
                 .withTranslucentNavigationBar(false)
                 .withFullscreen(false)
+                .withSavedInstance(savedInstanceState)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -222,6 +214,21 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         return true;
+                    }
+                }).withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        KeyboardUtil.hideKeyboard(MainActivity.this);
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+
+                    }
+
+                    @Override
+                    public void onDrawerSlide(View drawerView, float slideOffset) {
+
                     }
                 });
 
@@ -277,6 +284,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mDrawer = builder.build();
+
+        PrimaryDrawerItem supportItem = new PrimaryDrawerItem()
+                .withName(R.string.about_support)
+                .withIdentifier(SUPPORT_ITEM_IDENTIFIER)
+                .withIcon(GoogleMaterial.Icon.gmd_help);
+        mDrawer.addStickyFooterItem(supportItem);
+        PrimaryDrawerItem settingsItem = new PrimaryDrawerItem()
+                .withName(R.string.action_settings)
+                .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
+                .withIcon(GoogleMaterial.Icon.gmd_settings);
+        mDrawer.addStickyFooterItem(settingsItem);
     }
 
     private void showRatingPrompt() {
@@ -393,6 +411,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             setCurrentFragment(getString(R.string.welcome), null, new DefaultFragment());
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState = mDrawer.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
