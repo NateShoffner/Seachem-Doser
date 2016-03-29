@@ -38,60 +38,6 @@
     <string name="pref_total_calculations">total_calculations</string>
     <string name="pref_prompted_for_rating">prompted_for_rating</string>
 
-    <!-- product names -->
-    <string name="product_flourite">Flourite</string>
-    <string name="product_meridian">Meridian</string>
-    <string name="product_flourite_dark">Flourite Dark</string>
-    <string name="product_flourite_red">Flourite Red</string>
-    <string name="product_gray_coast">Gray Coast</string>
-    <string name="product_onyx">Onyx</string>
-    <string name="product_onyx_sand">Onyx Sand</string>
-    <string name="product_pearl_beach">Pearl Beach</string>
-    <string name="product_flourite_sand">Flourite Sand</string>
-    <string name="product_alkaline_buffer">Alkaline Buffer</string>
-    <string name="product_flourish_phosphorus">Flourish Phosphorus</string>
-    <string name="product_liquid_alkaline_buffer">Liquid Alkaline Buffer</string>
-    <string name="product_flourish_potassium">Flourish Potassium</string>
-    <string name="product_flourish_iron">Flourish Iron</string>
-    <string name="product_equilibrium">Equilibrium</string>
-    <string name="product_flourish_nitrogen">Flourish Nitrogen</string>
-    <string name="product_flourish_trace">Flourish Trace</string>
-    <string name="product_flourite_black">Flourite Black</string>
-    <string name="product_flourite_black_sand">Flourite Black Sand</string>
-    <string name="product_reef_advantage_magnesium">Reef Advantage Magnesium</string>
-    <string name="product_reef_iodide">Reef Iodide</string>
-    <string name="product_reef_builder">Reef Builder</string>
-    <string name="product_reef_advantage_calcium">Reef Advantage Calcium</string>
-    <string name="product_reef_advantage_strontium">Reef Advantage Strontium</string>
-    <string name="product_reef_buffer">Reef Buffer</string>
-    <string name="product_reef_complete">Reef Complete</string>
-    <string name="product_reef_carbonate">Reef Carbonate</string>
-    <string name="product_reef_calcium">Reef Calcium</string>
-    <string name="product_reef_fusion_1">Reef Fusion 1</string>
-    <string name="product_reef_fusion_2">Reef Fusion 2</string>
-
-    <!-- product comments -->
-    <string name="product_comment_alkaline_buffer">Considerations: 2 meq/L is equal to  5.6 dKH. If your test kit measures in dKH, divide your test kit reading by 2.8 to determine your current KH levels in meq/L. Do the same for desired KH.</string>
-    <string name="product_comment_liquid_alkaline_buffer">Considerations: Liquid Alkaine Buffer raises KH in much smaller increments than Alkaline Buffer. Depending on your requirements, you may choose to use Alkaline Buffer instead. 2 meq/L is equal to  5.6 dKH. If your test kit measures in dKH, divide your test kit reading by 2.8 to determine your current KH levels in meq/L. Do the same for desired KH.</string>
-    <string name="product_comment_flourish_phosphorus">Considerations: Use once or twice a week or as needed in response to signs of phosphorus deficiency (e.g. stunted growth, plant dark green). The ideal phosphate level will vary, but generally ranges from 0.15–1.0 mg/L. Use MultiTest: Phosphate™ to monitor phosphate levels.</string>
-    <string name="product_comment_flourish_iron">Considerations: We recommend maintaining an Fe level of about 0.10 mg/L. Iron is used quickly, so you will want to initially exceed 0.10 mg/L in order to prevent iron levels from falling below that level. For smaller doses, please note that each cap thread is about 1 mL</string>
-    <string name="product_comment_flourish_potassium">Considerations: Repeat - 2-3 times per week or as needed (in response to signs of potassium deficiency in older leaves which includes: chlorosis (yellowing), necrossis (death/browning), and weak stems and roots.</string>
-    <string name="product_comment_flourish_nitrogen">Considerations: If using a \"nitrate equivalent\" value for Current and Desired Nitrogen levels, divide the result by 5.</string>
-    <string name="product_comment_equilibrium">Considerations: Equilibrium™ can be added straight, although for optimum solubility we recommend mixing with ~ 1 L (1 qt.) of water (the resulting mixture will have a white opaque appearance). When this mixture is added to the aquarium it will impart a slight haze that should clear within 15–30 minutes.</string>
-    <string name="product_comment_reef_advantage_calcium"><![CDATA[Considerations:  We recommend a Ca level between 380-420 mg/L with an alkalinity between 4-6 meq/L. It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. Each 5 g/150 L will raise calcium by about 12 mg/L. Quantity or frequency can be adjusted, but do not exceed 10 g/150L per day.]]></string>
-    <string name="product_comment_gravel">If you plan on varying the depth of your substrate, use an average depth as your desired substrate depth.</string>
-    <string name="product_comment_reef_carbonate">Considerations: Reef alkalinity should ideally be maintained at 4-5 meq/L (11-17 dKH). It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. Each dose will raise alkalinity by about 0.25 meq/L. Size or frequency of dose can be adjusted, but do not exceed 1 meq/L per day.</string>
-    <string name="product_comment_reef_calcium">Considerations: We recommend a Ca level between 380-420 mg/L with an alkalinity between 4-6 meq/L. It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. do not exceed 3 capfuls (15 mL) per 80 L (20 gallons) per day.</string>
-    <string name="product_comment_reef_advantage_magnesium"><![CDATA[Considerations: We recommend a magnesium  level between 1200-1350 mg/L. Make large adjustments slowly to avoid overshooting intended level. Amount or frequency can be adjusted, but do not exceed 25 g/80 L per day. Dissolve in at least one cup of freshwater. Excess magnesium may enhance the loss of carbonate alkalinity. Do not directly mix with any carbonate supplement.]]></string>
-    <string name="product_comment_reef_buffer">Considerations: Reef alkalinity should ideally be maintained at 4-5 meq/L (11-14 dKH).  Reef Buffer™ will raise carbonate alkalinity; however, it is intended primarily for use as a buffer in a reef system where the maintenance of a pH of 8.3 is often difficult. When pH is not an issue, try  Reef Builder™ or Reef Carbonate™</string>
-    <string name="product_comment_reef_complete">Considerations: We recommend a Ca level between 380-420 mg/L with an alkalinity between 4-6 meq/L. It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. Each capful will raise calcium by about 10 mg/L. Size or frequency of amount added can be adjusted, but do not exceed 25 mg/L per day.</string>
-    <string name="product_comment_reef_advantage_strontium">Considerations: We recommend a strontium level between 8-12 mg/L. It is advisable to make large adjustments slowly to avoid overshooting intended level. Excess strontium  may enhance the loss of carbonate alkalinity. Do not directly mix with any carbonate supplement.</string>
-    <string name="product_comment_reef_iodide">Considerations: If necessary, adjust amount so that iodide reads 0.06–0.08 mg/L 6–12 hours after the last dose. Natural seawater has an iodine concentration of .06 mg/L; however, many corals and crustaceans can benefit from a slightly higher concentration. Make large adjustments slowly to avoid overshooting intended level.</string>
-    <string name="product_comment_reef_strontium">Considerations: We recommend a strontium level between 8-12 mg/L. It is advisable to make large adjustments slowly to avoid overshooting intended level. Excess strontium  may enhance the loss of carbonate alkalinity. Do not directly mix with any carbonate supplement.</string>
-    <string name="product_comment_reef_builder">Considerations: Reef alkalinity should ideally be maintained at 4-5 meq/L (11-17 dKH). Alkalinity should not be allowed to fall below  2 meq/L. It is advisable to make large adjustments slowly to avoid overshooting intended level or shocking  corals and inverts. Dissolve in at least one cup of freshwater. Do not exceed 12 g/150 L per day.</string>
-    <string name="product_comment_reef_fusion_1">Considerations: Reef Fusion 1 &amp; 2 are designed to be used together in a 1:1 ratio, but may be used separately to target specific ranges. When using this calculator to calculate a dose for a desired calcium value, keep in mind that a 1:1 dose with Reef Fusion 2 may produce undesired results.</string>
-    <string name="product_comment_reef_fusion_2">Considerations: Reef Fusion 1 &amp; 2 are designed to be used together in a 1:1 ratio, but may be used separately to target specific ranges. When using this calculator to calculate a dose for a desired alkalinity value, keep in mind that a 1:1 dose with Reef Fusion 1 may produce undesired results.</string>
-
     <!-- units -->
     <string name="unit_us_gallons">US Gallons</string>
     <string name="unit_litres">Litres</string>
@@ -106,34 +52,6 @@
     <string name="unit_inches">in</string>
     <string name="unit_centimeters">cm</string>
     <string name="mgL_ppm">mg/L (ppm)</string>
-
-    <string name="water_volume">Water Volume</string>
-    <string name="current_gh">Current GH</string>
-    <string name="desired_gh">Desired GH</string>
-    <string name="current_nitrogen">Current Nitrogen</string>
-    <string name="desired_nitrogen">Desired Nitrogen</string>
-    <string name="current_kh">Current KH</string>
-    <string name="desired_kh">Desired KH</string>
-    <string name="current_phosphorus">Current Phosphorus</string>
-    <string name="desired_phosphorus">Desired Phosphorus</string>
-    <string name="current_potassium">Current Potassium</string>
-    <string name="desired_potassium">Desired Potassium</string>
-    <string name="current_iron">Current Iron</string>
-    <string name="desired_iron">Desired Iron</string>
-    <string name="current_calcium">Current Calcium</string>
-    <string name="desired_calcium">Desired Calcium</string>
-    <string name="aquarium_width">Aquarium Width</string>
-    <string name="aquarium_length">Aquarium Length</string>
-    <string name="desired_substrate_depth">Desired Substrate Depth</string>
-    <string name="current_magnesium">Current Magnesium</string>
-    <string name="desired_magnesium">Desired Magnesium</string>
-    <string name="current_iodide">Current Iodide</string>
-    <string name="desired_iodide">Desired Iodide</string>
-    <string name="current_strontium">Current Strontium</string>
-    <string name="desired_strontium">Desired Strontium</string>
-    <string name="product_reef_strontium">Reef Strontium</string>
-    <string name="current_alkalinity">Current Alkalinity</string>
-    <string name="desired_alkalinity">Desired Alkalinity</string>
 
     <!-- changelog -->
     <string name="changelog_full_title">Change Log</string>
