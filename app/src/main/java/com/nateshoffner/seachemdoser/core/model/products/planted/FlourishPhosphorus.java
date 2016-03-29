@@ -68,14 +68,12 @@ public class FlourishPhosphorus implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = volume / 20 * ((desired - current) * 16.600000);
-        double doseA = doseB / Constants.CapmL;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double ml = ((volume / 20) * ((desired - current) * 16.6));
+        double caps = ml / Constants.CapmL;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), ml)
         };
     }
 }

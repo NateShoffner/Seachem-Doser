@@ -6,6 +6,7 @@ import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
+import com.nateshoffner.seachemdoser.utils.Constants;
 import com.nateshoffner.seachemdoser.utils.MathUtils;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
 
@@ -66,14 +67,12 @@ public class ReefAdvantageMagnesium implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseA = 0.009500 * volume * (desired - current);
-        double doseB = doseA * 5;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double tspns = ( 0.0095 * volume * ( desired - current ));
+        double grams = tspns * 5;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), tspns),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), grams)
         };
     }
 }

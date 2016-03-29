@@ -68,14 +68,12 @@ public class ReefComplete implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = 0.025000 * volume * (desired - current);
-        double doseA = doseB / Constants.CapmL;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double ml = ((.025 * volume) * (desired - current));
+        double caps = ml / Constants.CapmL;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), ml)
         };
     }
 }

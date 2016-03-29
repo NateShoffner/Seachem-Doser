@@ -56,12 +56,12 @@ public class FlourishTrace implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = ((volume / 20) * 5);
-        double doseA = doseB / Constants.CapmL;
+        double ml = ((volume / 20) * 5);
+        double caps = ml / Constants.CapmL;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), ml)
         };
     }
 }

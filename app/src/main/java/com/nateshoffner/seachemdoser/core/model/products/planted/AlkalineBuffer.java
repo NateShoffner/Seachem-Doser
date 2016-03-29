@@ -65,14 +65,12 @@ public class AlkalineBuffer implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = (desired - current) * 3.500000 * (volume / 10);
-        double doseA = doseB / 7;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double grams = (((desired - current) * 3.5) * (volume / 10));
+        double tspns = grams / 7;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), tspns),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), grams)
         };
     }
 }

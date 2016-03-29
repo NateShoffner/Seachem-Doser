@@ -69,7 +69,7 @@ public class ReefFusion1 implements SeachemProduct {
         }
 
         double ml = ((volume / 6.5) * ((desired - current) / .176));
-        double caps = (ml / Constants.CapmL);
+        double caps = ml / Constants.CapmL;
 
         return new SeachemDosage[]{
                 new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),

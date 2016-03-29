@@ -67,14 +67,12 @@ public class ReefAdvantageStrontium implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = volume * (desired - current) / 7.500000;
-        double doseA = doseB / 8;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double grams = (( volume * ( desired - current )) / 7.5);
+        double tspns = ((grams / 8));
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), tspns),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), grams)
         };
     }
 }

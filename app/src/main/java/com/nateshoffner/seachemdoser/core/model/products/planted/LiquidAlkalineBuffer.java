@@ -68,14 +68,12 @@ public class LiquidAlkalineBuffer implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseB = (desired - current) * 12.500000 * (volume / 2.500000);
-        double doseA = doseB / Constants.CapmL;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double ml = (desired - current) * 12.5 * (volume / 2.5);
+        double caps = ml / Constants.CapmL;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), ml)
         };
     }
 }

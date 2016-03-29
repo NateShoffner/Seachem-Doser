@@ -67,14 +67,12 @@ public class ReefBuffer implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseA = (desired - current) / 0.500000 * (volume / 40);
-        double doseB = doseA * 5;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double tspns = (((desired - current) / 0.5) * (volume / 40));
+        double grams = tspns * 5;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_tspns), tspns),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_grams), grams)
         };
     }
 }

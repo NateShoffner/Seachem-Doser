@@ -66,14 +66,12 @@ public class ReefCalcium implements SeachemProduct {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double doseA = (desired - current) / 3 * (volume / 20);
-        double doseB = doseA * Constants.CapmL;
-        doseA = MathUtils.round(doseA * 10) / 10;
-        doseB = MathUtils.round(doseB * 10) / 10;
+        double ml = ( ( ((desired - current) / 3) * (volume / 20) ) * 5 );
+        double caps = ml / Constants.CapmL;
 
         return new SeachemDosage[]{
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), doseA),
-                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), doseB)
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_caps), caps),
+                new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_ml), ml)
         };
     }
 }
