@@ -6,21 +6,14 @@ import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
 import com.nateshoffner.seachemdoser.core.model.SeachemParameter;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
-import com.nateshoffner.seachemdoser.utils.MathUtils;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-
-public class ReefAdvantageStrontium implements SeachemProduct {
-
-    private Dictionary<UnitMeasurement, SeachemParameter[]> mParameters = new Hashtable<>();
-    private String mComment;
-    private String mName;
+public class ReefAdvantageStrontium extends SeachemProduct {
 
     public ReefAdvantageStrontium() {
+        super(DoserApplication.getContext().getString(R.string.product_reef_advantage_strontium), DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_strontium));
 
-        mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
+        setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_us_gallons)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_strontium),
@@ -29,7 +22,7 @@ public class ReefAdvantageStrontium implements SeachemProduct {
                         DoserApplication.getContext().getString(R.string.mgL_ppm))
         });
 
-        mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
+        setParameters(UnitMeasurement.Metric, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_litres)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_strontium),
@@ -37,37 +30,19 @@ public class ReefAdvantageStrontium implements SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_strontium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm))
         });
-
-        mName = DoserApplication.getContext().getString(R.string.product_reef_advantage_strontium);
-        mComment = DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_strontium);
-    }
-
-    @Override
-    public String getName() {
-        return mName;
-    }
-
-    @Override
-    public SeachemParameter[] getParameters(UnitMeasurement unitMeasurement) {
-        return mParameters.get(unitMeasurement);
-    }
-
-    @Override
-    public String getComment() {
-        return mComment;
     }
 
     @Override
     public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
-        double volume = mParameters.get(unitMeasurement)[0].getValue();
-        double current = mParameters.get(unitMeasurement)[1].getValue();
-        double desired = mParameters.get(unitMeasurement)[2].getValue();
+        double volume = getParameters().get(unitMeasurement)[0].getValue();
+        double current = getParameters().get(unitMeasurement)[1].getValue();
+        double desired = getParameters().get(unitMeasurement)[2].getValue();
 
         if (unitMeasurement == UnitMeasurement.Metric) {
             volume = UnitConversion.LitresToGallons(volume);
         }
 
-        double grams = (( volume * ( desired - current )) / 7.5);
+        double grams = ((volume * (desired - current)) / 7.5);
         double tspns = ((grams / 8));
 
         return new SeachemDosage[]{

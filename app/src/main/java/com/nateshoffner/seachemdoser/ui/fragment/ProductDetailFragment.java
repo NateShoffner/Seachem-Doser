@@ -66,7 +66,7 @@ public class ProductDetailFragment extends Fragment
             paramsLayout.removeAllViews();
         }
 
-        for (SeachemParameter param : mProduct.getParameters(unitMeasurement)) {
+        for (SeachemParameter param : mProduct.getParameters().get(unitMeasurement)) {
             ParameterInputView view = new ParameterInputView(getActivity(), null);
             view.setLabelText(param.getName() + ":");
             view.setUnitText(param.getUnit());
@@ -131,7 +131,7 @@ public class ProductDetailFragment extends Fragment
                             break;
                         }
 
-                        mProduct.getParameters(DoserApplication.getDoserPreferences().getUnitMeasurement())[inputCount].
+                        mProduct.getParameters().get(DoserApplication.getDoserPreferences().getUnitMeasurement())[inputCount].
                                 setValue(Double.parseDouble(String.valueOf(input.getText().toString())));
                         inputCount++;
                     }

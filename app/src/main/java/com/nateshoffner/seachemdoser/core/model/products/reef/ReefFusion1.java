@@ -9,18 +9,12 @@ import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.utils.Constants;
 import com.nateshoffner.seachemdoser.utils.UnitConversion;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-
-public class ReefFusion1 implements SeachemProduct {
-
-    private Dictionary<UnitMeasurement, SeachemParameter[]> mParameters = new Hashtable<>();
-    private String mComment;
-    private String mName;
+public class ReefFusion1 extends SeachemProduct {
 
     public ReefFusion1() {
+        super(DoserApplication.getContext().getString(R.string.product_reef_fusion_1), DoserApplication.getContext().getString(R.string.product_comment_reef_fusion_1));
 
-        mParameters.put(UnitMeasurement.ImperialUS, new SeachemParameter[]{
+        setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_us_gallons)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium),
@@ -29,7 +23,7 @@ public class ReefFusion1 implements SeachemProduct {
                         DoserApplication.getContext().getString(R.string.mgL_ppm))
         });
 
-        mParameters.put(UnitMeasurement.Metric, new SeachemParameter[]{
+        setParameters(UnitMeasurement.Metric, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
                         DoserApplication.getContext().getString(R.string.unit_litres)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium),
@@ -37,32 +31,13 @@ public class ReefFusion1 implements SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_calcium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm))
         });
-
-        mName = DoserApplication.getContext().getString(R.string.product_reef_fusion_1);
-        mComment = DoserApplication.getContext().getString(R.string.product_comment_reef_fusion_1);
-    }
-
-
-    @Override
-    public String getName() {
-        return mName;
-    }
-
-    @Override
-    public SeachemParameter[] getParameters(UnitMeasurement unitMeasurement) {
-        return mParameters.get(unitMeasurement);
-    }
-
-    @Override
-    public String getComment() {
-        return mComment;
     }
 
     @Override
     public SeachemDosage[] calculateDosage(UnitMeasurement unitMeasurement) {
-        double volume = mParameters.get(unitMeasurement)[0].getValue();
-        double current = mParameters.get(unitMeasurement)[1].getValue();
-        double desired = mParameters.get(unitMeasurement)[2].getValue();
+        double volume = getParameters().get(unitMeasurement)[0].getValue();
+        double current = getParameters().get(unitMeasurement)[1].getValue();
+        double desired = getParameters().get(unitMeasurement)[2].getValue();
 
         if (unitMeasurement == UnitMeasurement.Metric) {
             volume = UnitConversion.LitresToGallons(volume);
