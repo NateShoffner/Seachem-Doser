@@ -9,6 +9,8 @@ public class GrayCoast extends Gravel {
 
     public GrayCoast() {
         super(DoserApplication.getContext().getString(R.string.product_gray_coast));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_gray_coast));
     }
 
     @Override

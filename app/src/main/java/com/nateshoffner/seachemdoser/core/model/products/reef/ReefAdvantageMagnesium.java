@@ -11,7 +11,9 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class ReefAdvantageMagnesium extends SeachemProduct {
 
     public ReefAdvantageMagnesium() {
-        super(DoserApplication.getContext().getString(R.string.product_reef_advantage_magnesium), DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_magnesium));
+        super(DoserApplication.getContext().getString(R.string.product_reef_advantage_magnesium));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_magnesium));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

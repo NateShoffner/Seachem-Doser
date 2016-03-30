@@ -12,7 +12,12 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class ReefComplete extends SeachemProduct {
 
     public ReefComplete() {
-        super(DoserApplication.getContext().getString(R.string.product_reef_complete), DoserApplication.getContext().getString(R.string.product_comment_reef_complete));
+        super(DoserApplication.getContext().getString(R.string.product_reef_complete));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_complete));
+
+
+        addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_complete));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

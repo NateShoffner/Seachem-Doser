@@ -12,7 +12,12 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class ReefCalcium extends SeachemProduct {
 
     public ReefCalcium() {
-        super(DoserApplication.getContext().getString(R.string.product_reef_calcium), DoserApplication.getContext().getString(R.string.product_comment_reef_calcium));
+        super(DoserApplication.getContext().getString(R.string.product_reef_calcium));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_calcium));
+
+        addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_calcium));
+
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

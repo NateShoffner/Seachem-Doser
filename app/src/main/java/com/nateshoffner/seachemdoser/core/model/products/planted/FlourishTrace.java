@@ -12,7 +12,7 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class FlourishTrace extends SeachemProduct {
 
     public FlourishTrace() {
-        super(DoserApplication.getContext().getString(R.string.product_flourish_trace), null);
+        super(DoserApplication.getContext().getString(R.string.product_flourish_trace));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

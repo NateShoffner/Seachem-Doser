@@ -12,7 +12,11 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class ReefIodide extends SeachemProduct {
 
     public ReefIodide() {
-        super(DoserApplication.getContext().getString(R.string.product_reef_iodide), DoserApplication.getContext().getString(R.string.product_comment_reef_iodide));
+        super(DoserApplication.getContext().getString(R.string.product_reef_iodide));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_iodide));
+
+        addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_iodide));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

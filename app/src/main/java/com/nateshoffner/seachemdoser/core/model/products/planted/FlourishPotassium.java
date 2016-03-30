@@ -12,7 +12,9 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class FlourishPotassium extends SeachemProduct {
 
     public FlourishPotassium() {
-        super(DoserApplication.getContext().getString(R.string.product_flourish_potassium), DoserApplication.getContext().getString(R.string.product_comment_flourish_potassium));
+        super(DoserApplication.getContext().getString(R.string.product_flourish_potassium));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_flourish_potassium));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

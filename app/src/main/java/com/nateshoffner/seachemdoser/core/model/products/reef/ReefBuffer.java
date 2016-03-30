@@ -11,7 +11,9 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class ReefBuffer extends SeachemProduct {
 
     public ReefBuffer() {
-        super(DoserApplication.getContext().getString(R.string.product_reef_buffer), DoserApplication.getContext().getString(R.string.product_comment_reef_buffer));
+        super(DoserApplication.getContext().getString(R.string.product_reef_buffer));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_buffer));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

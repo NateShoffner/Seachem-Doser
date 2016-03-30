@@ -11,8 +11,9 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class AlkalineBuffer extends SeachemProduct {
 
     public AlkalineBuffer() {
-        super(DoserApplication.getContext().getString(R.string.product_alkaline_buffer),
-                DoserApplication.getContext().getString(R.string.product_comment_alkaline_buffer));
+        super(DoserApplication.getContext().getString(R.string.product_alkaline_buffer));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_alkaline_buffer));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

@@ -9,6 +9,8 @@ public class OnyxSand extends Gravel {
 
     public OnyxSand() {
         super(DoserApplication.getContext().getString(R.string.product_onyx_sand));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_onyx_sand));
     }
 
     @Override

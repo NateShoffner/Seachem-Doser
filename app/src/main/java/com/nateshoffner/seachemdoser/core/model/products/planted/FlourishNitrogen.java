@@ -13,7 +13,9 @@ public class FlourishNitrogen extends SeachemProduct {
 
     public FlourishNitrogen() {
 
-        super(DoserApplication.getContext().getString(R.string.product_flourish_nitrogen), DoserApplication.getContext().getString(R.string.product_comment_flourish_nitrogen));
+        super(DoserApplication.getContext().getString(R.string.product_flourish_nitrogen));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_flourish_nitrogen));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

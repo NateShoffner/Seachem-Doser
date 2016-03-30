@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="water_volume">Water Volume</string>
+    <string name="current_gh">Current GH</string>
+    <string name="desired_gh">Desired GH</string>
+    <string name="current_nitrogen">Current Nitrogen</string>
+    <string name="desired_nitrogen">Desired Nitrogen</string>
+    <string name="current_kh">Current KH</string>
+    <string name="desired_kh">Desired KH</string>
+    <string name="current_phosphorus">Current Phosphorus</string>
+    <string name="desired_phosphorus">Desired Phosphorus</string>
+    <string name="current_potassium">Current Potassium</string>
+    <string name="desired_potassium">Desired Potassium</string>
+    <string name="current_iron">Current Iron</string>
+    <string name="desired_iron">Desired Iron</string>
+    <string name="current_calcium">Current Calcium</string>
+    <string name="desired_calcium">Desired Calcium</string>
+    <string name="aquarium_width">Aquarium Width</string>
+    <string name="aquarium_length">Aquarium Length</string>
+    <string name="desired_substrate_depth">Desired Substrate Depth</string>
+    <string name="current_magnesium">Current Magnesium</string>
+    <string name="desired_magnesium">Desired Magnesium</string>
+    <string name="current_iodide">Current Iodide</string>
+    <string name="desired_iodide">Desired Iodide</string>
+    <string name="current_strontium">Current Strontium</string>
+    <string name="desired_strontium">Desired Strontium</string>
+    <string name="current_alkalinity">Current Alkalinity</string>
+    <string name="desired_alkalinity">Desired Alkalinity</string>
+</resources>

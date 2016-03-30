@@ -11,7 +11,7 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public abstract class Gravel extends SeachemProduct {
 
     protected Gravel(String name) {
-        super(name, DoserApplication.getContext().getString(R.string.product_comment_gravel));
+        super(name);
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.aquarium_width),

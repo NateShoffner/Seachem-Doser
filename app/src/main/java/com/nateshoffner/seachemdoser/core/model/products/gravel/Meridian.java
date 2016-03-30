@@ -9,6 +9,8 @@ public class Meridian extends Gravel {
 
     public Meridian() {
         super(DoserApplication.getContext().getString(R.string.product_meridian));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_meridian));
     }
 
     @Override

@@ -11,7 +11,9 @@ import com.nateshoffner.seachemdoser.utils.UnitConversion;
 public class ReefAdvantageStrontium extends SeachemProduct {
 
     public ReefAdvantageStrontium() {
-        super(DoserApplication.getContext().getString(R.string.product_reef_advantage_strontium), DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_strontium));
+        super(DoserApplication.getContext().getString(R.string.product_reef_advantage_strontium));
+
+        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_strontium));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
