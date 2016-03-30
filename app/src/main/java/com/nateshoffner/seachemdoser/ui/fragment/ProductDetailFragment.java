@@ -1,10 +1,14 @@
 package com.nateshoffner.seachemdoser.ui.fragment;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,6 +16,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
@@ -38,6 +44,8 @@ public class ProductDetailFragment extends Fragment
 
     private View mRootView;
 
+    private MenuItem btnPin;
+
     private SeachemProduct mProduct;
 
     public ProductDetailFragment() {
@@ -50,6 +58,8 @@ public class ProductDetailFragment extends Fragment
         if (getArguments().containsKey(EXTRA_PRODUCT)) {
             mProduct = (SeachemProduct) getArguments().getSerializable(EXTRA_PRODUCT);
         }
+
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -112,73 +122,106 @@ public class ProductDetailFragment extends Fragment
         DoserApplication.getDoserPreferences().getSharedPreferences().
                 registerOnSharedPreferenceChangeListener(this);
 
-        if (mProduct != null) {
+        Button btnCalc = (Button) mRootView.findViewById(R.id.btnCalculate);
+        btnCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            Button btnCalc = (Button) mRootView.findViewById(R.id.btnCalculate);
-            btnCalc.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                boolean invalidInput = false;
 
-                    boolean invalidInput = false;
+                int inputCount = 0;
+                for (EditText input : dosageInputs) {
 
-                    int inputCount = 0;
-                    for (EditText input : dosageInputs) {
+                    String value = input.getText().toString();
 
-                        String value = input.getText().toString();
-
-                        if (value.length() == 0) {
-                            invalidInput = true;
-                            break;
-                        }
-
-                        mProduct.getParameters().get(DoserApplication.getDoserPreferences().getUnitMeasurement())[inputCount].
-                                setValue(Double.parseDouble(String.valueOf(input.getText().toString())));
-                        inputCount++;
+                    if (value.length() == 0) {
+                        invalidInput = true;
+                        break;
                     }
 
-                    if (invalidInput) {
-                        Toast.makeText(getActivity(),
-                                getString(R.string.invalid_parameters),
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    SeachemDosage[] dosages;
-
-                    try {
-                        dosages = mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement());
-
-                        // prevent negative dosages
-                        for (SeachemDosage dosage : dosages) {
-                            if (dosage.getAmount() <= 0) {
-                                throw new ArithmeticException("Dosage can't be negative.");
-                            }
-                        }
-                    } catch (ArithmeticException ex) {
-                        Log.e(TAG, ex.toString());
-                        //shouldn't happen, but just incase
-                        Toast.makeText(getActivity(),
-                                getString(R.string.calculation_error),
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    for (int i = 0, dosagesLength = dosages.length; i < dosagesLength; i++) {
-                        SeachemDosage dosage = dosages[i];
-                        String value = decimalFormat.format(dosage.getAmount());
-                        dosageResultViews.get(i).setValue(value);
-                    }
-
-                    DoserApplication.getDoserPreferences().incrementTotalCalculations();
+                    mProduct.getParameters().get(DoserApplication.getDoserPreferences().getUnitMeasurement())[inputCount].
+                            setValue(Double.parseDouble(String.valueOf(input.getText().toString())));
+                    inputCount++;
                 }
-            });
 
-            UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
-            initializeParameterViews(unitMeasurement, mRootView);
-            initializeDosageViews(unitMeasurement, mRootView);
-        }
+                if (invalidInput) {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.invalid_parameters),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                SeachemDosage[] dosages;
+
+                try {
+                    dosages = mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement());
+
+                    // prevent negative dosages
+                    for (SeachemDosage dosage : dosages) {
+                        if (dosage.getAmount() <= 0) {
+                            throw new ArithmeticException("Dosage can't be negative.");
+                        }
+                    }
+                } catch (ArithmeticException ex) {
+                    Log.e(TAG, ex.toString());
+                    //shouldn't happen, but just incase
+                    Toast.makeText(getActivity(),
+                            getString(R.string.calculation_error),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                for (int i = 0, dosagesLength = dosages.length; i < dosagesLength; i++) {
+                    SeachemDosage dosage = dosages[i];
+                    String value = decimalFormat.format(dosage.getAmount());
+                    dosageResultViews.get(i).setValue(value);
+                }
+
+                DoserApplication.getDoserPreferences().incrementTotalCalculations();
+            }
+        });
+
+        UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
+        initializeParameterViews(unitMeasurement, mRootView);
+        initializeDosageViews(unitMeasurement, mRootView);
 
         return mRootView;
+    }
+
+    private void updatePinnedButton() {
+        boolean isPinned = DoserApplication.getDoserPreferences().isProductPinned(mProduct);
+        IconicsDrawable icon = new IconicsDrawable(getContext(),
+                FontAwesome.Icon.faw_thumb_tack).actionBar();
+
+        icon.color(isPinned ? Color.WHITE : Color.GRAY);
+
+        btnPin.setIcon(icon);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_pin:
+                boolean isPinned = DoserApplication.getDoserPreferences().isProductPinned(mProduct);
+
+                if (isPinned)
+                    DoserApplication.getDoserPreferences().removePinnedProduct(mProduct);
+                else
+                    DoserApplication.getDoserPreferences().addPinnedProduct(mProduct);
+
+                updatePinnedButton();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.detail_fragment_menu, menu);
+        btnPin = menu.findItem(R.id.action_pin);
+        updatePinnedButton();
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

@@ -47,6 +47,7 @@ dependencies {
         transitive = true
     }
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
     //todo upgrade this after pre-lollipop NPE is fixed
     compile('com.github.afollestad.material-dialogs:core:0.8.5.6@aar') {
         transitive = true
@@ -54,6 +55,7 @@ dependencies {
     compile('com.mikepenz:aboutlibraries:5.6.1@aar') {
         transitive = true
     }
+    compile "com.google.code.gson:gson:2.3"
 }
 
 def revision() {

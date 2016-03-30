@@ -2,6 +2,7 @@ package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,11 +19,13 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.aboutlibraries.LibsConfiguration;
 import com.mikepenz.aboutlibraries.entity.Library;
 import com.mikepenz.aboutlibraries.ui.LibsSupportFragment;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.ExpandableDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
@@ -48,7 +51,9 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final String TAG = "MainActivity";
 
     private Toolbar mToolbar = null;
     private Drawer mDrawer = null;
@@ -56,8 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private PreferencesFragment mPreferencesFragment = new PreferencesFragment();
     private List<ExpandableDrawerItem> mProductTypeItems = new ArrayList<>();
 
+    private final static long PINNED_ITEM_IDENTIFIER = 997;
     private final static long SUPPORT_ITEM_IDENTIFIER = 998;
     private final static long SETTINGS_ITEM_IDENTIFIER = 999;
+
+    private long mIdentifierIncrementor;
 
     // manually track selected item between item expand/collapse
     private IDrawerItem mSelectedProductItem;
@@ -75,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
         initializeDrawer(savedInstanceState);
         initializeAboutFragment();
 
+        populatePinnedProducts();
+
         showDefaultProduct();
+
+        DoserApplication.getDoserPreferences().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
         if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
             showUnitMeasurementPrompt();
@@ -231,14 +243,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        builder.addDrawerItems(new ExpandableDrawerItem()
+                .withName(R.string.pinned)
+                .withSelectable(false)
+                .withIcon(FontAwesome.Icon.faw_thumb_tack)
+                .withIdentifier(PINNED_ITEM_IDENTIFIER)
+                .withIconColorRes(R.color.product_list_text_color));
+
+        builder.addDrawerItems(new DividerDrawerItem());
+
         // populate product items
-        int identifierIncrementor = 0;
         List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
 
         for (SeachemProductType type : productTypes) {
             ExpandableDrawerItem ex = new ExpandableDrawerItem()
                     .withName(getProductTypeString(type))
-                    .withIdentifier(identifierIncrementor++)
+                    .withIdentifier(mIdentifierIncrementor++)
                     .withSelectable(false)
                     .withIconColorRes(R.color.product_list_text_color);
 
@@ -273,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
             for (SeachemProduct product : products) {
                 ex.withSubItems(new SecondaryDrawerItem()
                         .withName(product.getName())
-                        .withIdentifier(identifierIncrementor++)
+                        .withIdentifier(mIdentifierIncrementor++)
                         .withLevel(2)
                         .withTextColorRes(R.color.product_list_text_color));
             }
@@ -294,6 +314,37 @@ public class MainActivity extends AppCompatActivity {
                 .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
                 .withIcon(GoogleMaterial.Icon.gmd_settings);
         mDrawer.addStickyFooterItem(settingsItem);
+    }
+
+    private void populatePinnedProducts() {
+        List<SeachemProduct> pinnedProducts =
+                DoserApplication.getDoserPreferences().getPinnedProducts();
+
+        ExpandableDrawerItem parent =
+                (ExpandableDrawerItem)mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER);
+        int parentPosition = mDrawer.getPosition(parent);
+
+        boolean isExpanded = parent.isExpanded();
+
+        if(parent.getSubItems() != null) {
+            // collapse the item before clearing to avoid item being locked
+            mDrawer.getAdapter().collapse(parentPosition);
+            parent.getSubItems().clear();
+        }
+
+        for (SeachemProduct product : pinnedProducts) {
+            parent.withSubItems(new SecondaryDrawerItem()
+                    .withName(product.getName())
+                    .withIdentifier(mIdentifierIncrementor++)
+                    .withLevel(2)
+                    .withTextColorRes(R.color.product_list_text_color));
+        }
+
+        // restore expansion if children exist
+        if (isExpanded && parent.getSubItems() != null)
+            mDrawer.getAdapter().expand(parentPosition);
+
+        mDrawer.getAdapter().notifyItemChanged(parentPosition);
     }
 
     private void showRatingPrompt() {
@@ -358,6 +409,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (mDrawer.isDrawerOpen())
             mDrawer.closeDrawer();
+
+        invalidateOptionsMenu();
     }
 
     private String getProductTypeString(SeachemProductType type) {
@@ -389,10 +442,13 @@ public class MainActivity extends AppCompatActivity {
             SeachemProductType type = SeachemManager.getProductType(defaultProduct);
             String parentTitle = getProductTypeString(type);
 
+            ExpandableDrawerItem parent = null;
+
             // first open parent item
             for (ExpandableDrawerItem item : mProductTypeItems) {
                 String title = item.getName().getText();
                 if (title != null && title.equals(parentTitle)) {
+                    parent = item;
                     item.withIsExpanded(true);
                     mDrawer.updateItem(item);
                     break;
@@ -400,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // now select + click child item
-            for (IDrawerItem item : mDrawer.getDrawerItems()) {
+            for (IDrawerItem item : parent.getSubItems()) {
                 String title = ((Nameable) item).getName().getText();
                 if (title != null && title.equals(defaultProduct.getName())) {
                     mDrawer.setSelection(item, true);
@@ -430,5 +486,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (s.equals(getString(R.string.pref_pinned_products))) {
+            populatePinnedProducts();
+        }
     }
 }

@@ -4,10 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DoserPreferences {
 
@@ -112,5 +117,58 @@ public class DoserPreferences {
         SharedPreferences.Editor editor = getEditor();
         editor.putBoolean(getPreferenceKey(R.string.pref_prompted_for_rating), prompted);
         editor.commit();
+    }
+
+    public List<SeachemProduct> getPinnedProducts() {
+        String json = mSharedPreferences.getString(getPreferenceKey(R.string.pref_pinned_products), null);
+
+        if (json != null) {
+            GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+            String[] names = gson.fromJson(json, String[].class);
+
+            List<SeachemProduct> products = new ArrayList<>();
+
+            for (String name : names) {
+                SeachemProduct productMatch = SeachemManager.getProductByName(name);
+                if (productMatch != null)
+                    products.add(productMatch);
+            }
+
+            return products;
+        }
+
+        return new ArrayList<>();
+    }
+
+    private void savePinnedProducts(List<SeachemProduct> products) {
+        String[] names = new String[products.size()];
+        for (int i = 0; i < products.size(); i++) {
+            SeachemProduct product = products.get(i);
+            names[i] = product.getName();
+        }
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String value = gson.toJson(names);
+        SharedPreferences.Editor editor = getEditor();
+        editor.putString(getPreferenceKey(R.string.pref_pinned_products), value);
+        editor.commit();
+    }
+
+    public boolean isProductPinned(SeachemProduct product) {
+        return getPinnedProducts().contains(product);
+    }
+
+    public void addPinnedProduct(SeachemProduct product) {
+        List<SeachemProduct> products = getPinnedProducts();
+        products.add(product);
+        savePinnedProducts(products);
+    }
+
+    public void removePinnedProduct(SeachemProduct product) {
+        List<SeachemProduct> products = getPinnedProducts();
+        products.remove(product);
+        savePinnedProducts(products);
     }
 }
