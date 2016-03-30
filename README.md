@@ -30,20 +30,20 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 ## Changelog
 
 ### Version 1.2 (TBD)
-* Added: Light theme
+* Added: Light/Dark theme selection
 * Added: Flourite Sand
-* Removed: Silver Shores
-* Removed: Kona Coast
-* Added: Small (3.5 kg) gravel/sand bags
-* Fixed: Gray Coast calculation
-* Fixed: Meridian name typo
-* Added: Reef Fusion 1 & 2
 * Added: Flourish Trace
-* Fixed: Full-screen keyboard on landscape orientation
+* Added: Reef Fusion 1 & 2
+* Added: Small (3.5 kg) gravel/sand bag dosage
 * Added: Changelog dialog
 * Added: Metric/imperial settings
 * Added: Default product options
-* Added: Swiping between product tabs
+* Changed: All gravel values now round up to next bag(s)
+* Added: Pinnable products
+* Fixed reef advantage calcium dosage
+* Fixed: Gray Coast calculation
+* Fixed: Meridian name typo
+* Fixed: Full-screen keyboard on landscape orientation
 * Changed: Material interface
 
 ### Version 1.1 (December 23rd, 2015)
@@ -51,42 +51,3 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 
 ### Version 1.0 (April 8th, 2015)
 * Initial release
-
-
-## Supported Products
-
-* #### Gravel
-    * Flourite
-    * Flourite Black
-    * Flourite Black Sand
-    * Flourite Dark
-    * Flourite Red
-    * Gray Coast
-    * Meridian
-    * Onyx
-    * Onyx Sand
-    * Pearl Beach
-
-* #### Planted
-    * Akaline Buffer
-    * Equilibrium
-    * Flourish Iron
-    * Flourish Nitrogen
-    * Flourish Phosphorus
-    * Flourish Potassium
-    * Flourish Trace
-    * Liquid Alkaline Buffer
-
-* #### Reef
-    * Reef Advantage Calcium
-    * Reef Advantage Magnesium
-    * Reef Advantage Strontium
-    * Reef Buffer
-    * Reef Builder
-    * Reef Calcium
-    * Reef Carbonate
-    * Reef Complete
-    * Reef Fusion 1
-    * Reef Fusion 2
-    * Reef Iodide
-    * Reef Strontium
