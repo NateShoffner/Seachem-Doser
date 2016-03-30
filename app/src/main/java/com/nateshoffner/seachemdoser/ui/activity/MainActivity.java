@@ -321,12 +321,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 DoserApplication.getDoserPreferences().getPinnedProducts();
 
         ExpandableDrawerItem parent =
-                (ExpandableDrawerItem)mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER);
+                (ExpandableDrawerItem) mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER);
         int parentPosition = mDrawer.getPosition(parent);
 
         boolean isExpanded = parent.isExpanded();
 
-        if(parent.getSubItems() != null) {
+        if (parent.getSubItems() != null) {
             // collapse the item before clearing to avoid item being locked
             mDrawer.getAdapter().collapse(parentPosition);
             parent.getSubItems().clear();
