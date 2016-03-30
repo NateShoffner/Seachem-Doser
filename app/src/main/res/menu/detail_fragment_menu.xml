@@ -5,7 +5,20 @@
     tools:context=".ui.activity.MainActivity" >
 
     <item
+        android:id="@+id/action_warning"
+        android:orderInCategory="0"
+        app:showAsAction="always|collapseActionView"
+        android:title="Warning" />
+
+    <item
+        android:id="@+id/action_info"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="Info" />
+
+    <item
         android:id="@+id/action_pin"
-        android:orderInCategory="100"
-        app:showAsAction="ifRoom|collapseActionView" />
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="Pin/Unpin" />
 </menu>

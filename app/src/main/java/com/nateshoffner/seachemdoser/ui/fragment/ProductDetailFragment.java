@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.nateshoffner.seachemdoser.DoserApplication;
@@ -26,6 +27,7 @@ import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.view.DosageResultView;
 import com.nateshoffner.seachemdoser.ui.view.ParameterInputView;
+import com.nateshoffner.seachemdoser.utils.StringUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -188,6 +190,19 @@ public class ProductDetailFragment extends Fragment
         return mRootView;
     }
 
+    private void showWarningDialog() {
+        new MaterialDialog.Builder(getActivity())
+                .content(StringUtils.join(mProduct.getWarnings(), "\n\n"))
+                .show();
+    }
+
+
+    private void showCommentDialog() {
+        new MaterialDialog.Builder(getActivity())
+                .content(StringUtils.join(mProduct.getComments(), "\n\n"))
+                .show();
+    }
+
     private void updatePinnedButton() {
         boolean isPinned = DoserApplication.getDoserPreferences().isProductPinned(mProduct);
         IconicsDrawable icon = new IconicsDrawable(getContext(),
@@ -211,6 +226,12 @@ public class ProductDetailFragment extends Fragment
 
                 updatePinnedButton();
                 return true;
+            case R.id.action_warning:
+                showWarningDialog();
+                return true;
+            case R.id.action_info:
+                showCommentDialog();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -220,6 +241,12 @@ public class ProductDetailFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.detail_fragment_menu, menu);
         btnPin = menu.findItem(R.id.action_pin);
+        menu.findItem(R.id.action_warning).setIcon(new IconicsDrawable(getContext(),
+                FontAwesome.Icon.faw_exclamation_triangle).actionBar().color(Color.LTGRAY))
+                .setVisible(mProduct.getWarnings().length > 0);
+        menu.findItem(R.id.action_info).setIcon(new IconicsDrawable(getContext(),
+                FontAwesome.Icon.faw_info).actionBar().color(Color.LTGRAY))
+                .setVisible(mProduct.getComments().length > 0);
         updatePinnedButton();
         super.onCreateOptionsMenu(menu, inflater);
     }
