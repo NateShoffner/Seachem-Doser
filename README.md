@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/NateShoffner/Seachem-Doser.svg?branch=master)](https://travis-ci.org/NateShoffner/Seachem-Doser)
+Seachem Doser
+====================
 
-# Seachem Doser
+[![Build Status](https://travis-ci.org/NateShoffner/Seachem-Doser.svg?branch=master)](https://travis-ci.org/NateShoffner/Seachem-Doser)
 
 Seachem Doser is a dosage calculator for various Seachem products.
 
