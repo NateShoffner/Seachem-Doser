@@ -219,11 +219,15 @@ public class ProductDetailFragment extends Fragment
             case R.id.action_pin:
                 boolean isPinned = DoserApplication.getDoserPreferences().isProductPinned(mProduct);
 
-                if (isPinned)
+                if (isPinned) {
                     DoserApplication.getDoserPreferences().removePinnedProduct(mProduct);
-                else
+                    Toast.makeText(getActivity(), String.format("%s %s", mProduct.getName(),
+                            getString(R.string.has_been_unpinned)), Toast.LENGTH_SHORT).show();
+                }else {
                     DoserApplication.getDoserPreferences().addPinnedProduct(mProduct);
-
+                    Toast.makeText(getActivity(), String.format("%s %s", mProduct.getName(),
+                            getString(R.string.has_been_pinned)), Toast.LENGTH_SHORT).show();
+                }
                 updatePinnedButton();
                 return true;
             case R.id.action_warning:

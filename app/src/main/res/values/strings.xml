@@ -75,5 +75,7 @@
 
     <string name="rate">Rate</string>
     <string name="pinned">Pinned</string>
+    <string name="has_been_pinned">has been pinned</string>
+    <string name="has_been_unpinned">has been unpinned</string>
 
 </resources>
