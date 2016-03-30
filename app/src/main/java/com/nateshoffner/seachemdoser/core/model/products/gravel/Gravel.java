@@ -45,6 +45,10 @@ public abstract class Gravel extends SeachemProduct {
         double bags = Math.ceil(width * length * depth) / divisor;
         double bagsSmall = Math.ceil(width * length * depth) / divisorSmall;
 
+        // round up all values
+        bags = Math.ceil(bags);
+        bagsSmall = Math.ceil(bagsSmall);
+
         return new SeachemDosage[]{
                 new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_bags), bags),
                 new SeachemDosage(DoserApplication.getContext().getString(R.string.unit_bags_small), bagsSmall)
