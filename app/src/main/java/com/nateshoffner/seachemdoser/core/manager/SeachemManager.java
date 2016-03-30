@@ -75,10 +75,12 @@ public class SeachemManager {
             gravel.add(new FlouriteRed());
             gravel.add(new FlouriteSand());
             gravel.add(new GrayCoast());
+            gravel.add(new KonaCoast());
             gravel.add(new Meridian());
             gravel.add(new Onyx());
             gravel.add(new OnyxSand());
             gravel.add(new PearlBeach());
+            gravel.add(new SilverShores());
             ProductMap.put(SeachemProductType.Gravel, gravel);
 
             List<SeachemProduct> planted = new ArrayList<>();

@@ -12,6 +12,7 @@ public abstract class SeachemProduct implements Serializable {
     private List<String> mComments = new ArrayList<>();
     private Dictionary<UnitMeasurement, SeachemParameter[]> mParameters = new Hashtable<>();
     private List<String> mWarnings = new ArrayList<>();
+    private boolean mDiscontinued;
 
     public SeachemProduct(String name) {
         mName = name;
@@ -19,6 +20,14 @@ public abstract class SeachemProduct implements Serializable {
 
     public String getName() {
         return mName;
+    }
+
+    public void setDiscontinued(boolean discontinued) {
+        mDiscontinued = discontinued;
+    }
+
+    public boolean isDiscontinued() {
+        return mDiscontinued;
     }
 
     public void addComment(String comment) {

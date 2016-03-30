@@ -2,4 +2,10 @@
 <resources>
     <string name="product_liquid_alkaline_buffer">Liquid Alkaline Buffer</string>
     <string name="product_comment_liquid_alkaline_buffer">Considerations: Liquid Alkaine Buffer raises KH in much smaller increments than Alkaline Buffer. Depending on your requirements, you may choose to use Alkaline Buffer instead. 2 meq/L is equal to  5.6 dKH. If your test kit measures in dKH, divide your test kit reading by 2.8 to determine your current KH levels in meq/L. Do the same for desired KH.</string>
+
+    <string name="product_kona_coast">Kona Coast</string>
+    <string name="product_comment_kona_coast">If you plan on varying the depth of your substrate, use an average depth as your desired substrate depth. Note: The calculator will always round up. For example, you can\'t purchase 1.3 bags, so it will return 2 bags.</string>
+
+    <string name="product_silver_shores">Silver Shores</string>
+    <string name="product_comment_silver_shores">If you plan on varying the depth of your substrate, use an average depth as your desired substrate depth. Note: The calculator will always round up. For example, you can\'t purchase 1.3 bags, so it will return 2 bags.</string>
 </resources>
