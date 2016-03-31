@@ -13,7 +13,7 @@
     <color name="link_color">#000000</color>
     <color name="background">#FFFFFF</color>
 
-    <color name="product_list_selection">#CCCCCC</color>
+    <color name="product_list_selection">#F7F7F7</color>
     <color name="input_background">#FFFFFF</color>
     <color name="input_border">#CCCCCC</color>
 
