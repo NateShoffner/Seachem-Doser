@@ -84,7 +84,8 @@ public class ProductDetailFragment extends Fragment
             view.setUnitText(param.getUnit());
             dosageInputs.add(view.getInputView());
 
-            if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues())
+            if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues() &&
+                    param.getValue() > 0)
                 view.setValue(decimalFormat.format(param.getValue()));
 
             paramsLayout.addView(view);
