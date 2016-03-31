@@ -192,6 +192,9 @@ public class ProductDetailFragment extends Fragment
         initializeParameterViews(unitMeasurement, mRootView);
         initializeDosageViews(unitMeasurement, mRootView);
 
+        // manually focus on first param
+        dosageInputs.get(0).requestFocus();
+
         return mRootView;
     }
 
