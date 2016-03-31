@@ -21,7 +21,7 @@ public class ReefAdvantageStrontium extends SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_strontium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_strontium),
-                        DoserApplication.getContext().getString(R.string.mgL_ppm))
+                        DoserApplication.getContext().getString(R.string.mgL_ppm), 420)
         });
 
         setParameters(UnitMeasurement.Metric, new SeachemParameter[]{
@@ -30,7 +30,7 @@ public class ReefAdvantageStrontium extends SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_strontium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_strontium),
-                        DoserApplication.getContext().getString(R.string.mgL_ppm))
+                        DoserApplication.getContext().getString(R.string.mgL_ppm), 420)
         });
     }
 

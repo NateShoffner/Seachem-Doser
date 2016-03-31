@@ -21,7 +21,7 @@ public class ReefBuffer extends SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_alkalinity),
                         DoserApplication.getContext().getString(R.string.meqL)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_alkalinity),
-                        DoserApplication.getContext().getString(R.string.meqL))
+                        DoserApplication.getContext().getString(R.string.meqL), 4)
         });
 
         setParameters(UnitMeasurement.Metric, new SeachemParameter[]{
@@ -30,7 +30,7 @@ public class ReefBuffer extends SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_alkalinity),
                         DoserApplication.getContext().getString(R.string.meqL)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_alkalinity),
-                        DoserApplication.getContext().getString(R.string.meqL))
+                        DoserApplication.getContext().getString(R.string.meqL), 4)
         });
     }
 

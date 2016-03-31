@@ -171,4 +171,9 @@ public class DoserPreferences {
         products.remove(product);
         savePinnedProducts(products);
     }
+
+    public boolean getUseRecommendedParamValues() {
+        return mSharedPreferences.getBoolean(getPreferenceKey(
+                R.string.pref_use_recommended_param_values), true);
+    }
 }

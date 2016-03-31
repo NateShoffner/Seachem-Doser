@@ -27,7 +27,6 @@
     <string name="action_settings">Settings</string>
 
     <!-- preference categories -->
-    <string name="pref_category_about">About</string>
     <string name="pref_category_general">General</string>
 
     <!-- preference keys -->
@@ -38,6 +37,7 @@
     <string name="pref_total_calculations">total_calculations</string>
     <string name="pref_prompted_for_rating">prompted_for_rating</string>
     <string name="pref_pinned_products">pinned_products</string>
+    <string name="pref_use_recommended_param_values">se_recommended_param_values</string>
 
     <!-- units -->
     <string name="unit_us_gallons">US Gallons</string>

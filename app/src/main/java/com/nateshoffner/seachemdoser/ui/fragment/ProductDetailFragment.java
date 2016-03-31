@@ -83,6 +83,10 @@ public class ProductDetailFragment extends Fragment
             view.setLabelText(param.getName() + ":");
             view.setUnitText(param.getUnit());
             dosageInputs.add(view.getInputView());
+
+            if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues())
+                view.setValue(decimalFormat.format(param.getValue()));
+
             paramsLayout.addView(view);
         }
     }

@@ -25,7 +25,7 @@ public class ReefCalcium extends SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_calcium),
-                        DoserApplication.getContext().getString(R.string.mgL_ppm))});
+                        DoserApplication.getContext().getString(R.string.mgL_ppm), 420)});
 
         setParameters(UnitMeasurement.Metric, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),
@@ -33,7 +33,7 @@ public class ReefCalcium extends SeachemProduct {
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.current_calcium),
                         DoserApplication.getContext().getString(R.string.mgL_ppm)),
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.desired_calcium),
-                        DoserApplication.getContext().getString(R.string.mgL_ppm))});
+                        DoserApplication.getContext().getString(R.string.mgL_ppm), 420)});
     }
 
     @Override

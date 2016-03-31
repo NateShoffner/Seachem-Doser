@@ -13,6 +13,12 @@ public class SeachemParameter implements Serializable {
         mUnit = unit;
     }
 
+    public SeachemParameter(String name, String unit, double value) {
+        mName = name;
+        mUnit = unit;
+        mValue = value;
+    }
+
     public String getName() {
         return mName;
     }

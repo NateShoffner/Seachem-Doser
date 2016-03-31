@@ -25,6 +25,11 @@
             android:entries="@array/themes"
             android:entryValues="@array/theme_values" />
 
+        <SwitchPreferenceCompat
+            android:title="Seachem Recommendations"
+            android:summary="Automatically use Seachem-recommended parameter values"
+            android:key="@string/pref_use_recommended_param_values" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
