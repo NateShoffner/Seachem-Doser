@@ -7,13 +7,13 @@
     <item
         android:id="@+id/action_warning"
         android:orderInCategory="0"
-        app:showAsAction="always|collapseActionView"
-        android:title="Warning" />
+        app:showAsAction="never|collapseActionView"
+        android:title="Warnings" />
 
     <item
         android:id="@+id/action_info"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom|collapseActionView"
+        app:showAsAction="never|collapseActionView"
         android:title="Info" />
 
     <item
