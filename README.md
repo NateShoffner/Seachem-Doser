@@ -28,24 +28,39 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
     See the License for the specific language governing permissions and
     limitations under the License.
 
+#License of Fonts
+
+#### Liberation Fonts
+
+    Digitized data copyright (c) 2010 Google Corporation
+    with Reserved Font Arimo, Tinos and Cousine.
+    Copyright (c) 2012 Red Hat, Inc.
+    with Reserved Font Name Liberation.
+
+    This Font Software is licensed under the SIL Open Font License,
+    Version 1.1.
+
+    This license is copied below, and is also available with a FAQ at:
+    http://scripts.sil.org/OFL
+
+
 ## Changelog
 
 ### Version 1.2 (TBD)
+* Added: Pinnable products
 * Added: Light/Dark theme selection
 * Added: Flourite Sand
 * Added: Flourish Trace
 * Added: Reef Fusion 1 & 2
 * Added: Small (3.5 kg) gravel/sand bag dosage
-* Added: Changelog dialog
 * Added: Metric/imperial settings
-* Added: Default product options
-* Changed: All gravel values now round up to next bag(s)
-* Added: Pinnable products
-* Fixed reef advantage calcium dosage
+* Added: Default product settings
+* Fixed Reef Advantage Calcium dosage
 * Fixed: Gray Coast calculation
 * Fixed: Meridian name typo
 * Fixed: Full-screen keyboard on landscape orientation
-* Changed: Material interface
+* Changed: All gravel values now round up to next bag(s)
+* Changed: Improved material design
 
 ### Version 1.1 (December 23rd, 2015)
 * Added: Initial tablet support

@@ -3,7 +3,7 @@
 
     <!-- application -->
     <string name="app_name">Seachem Doser</string>
-    <string name="app_font">fonts/LiberationSans-Regular.ttf</string>
+    <string name="app_font">fonts/liberation-fonts/LiberationSans-Regular.ttf</string>
 
     <!-- about -->
     <string name="about_author">Created by Nate Shoffner</string>
