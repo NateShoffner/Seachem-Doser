@@ -8,10 +8,13 @@ import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.utils.ThemeHelper;
 
-public class DoserChangelog extends ChangeLog {
+import de.cketti.library.changelog.*;
 
-    public DoserChangelog(Context context) {
-        super(new ContextThemeWrapper(context, DoserApplication.getDoserTheme().getResourceId()),
+public final class DoserChangelog {
+
+    public static MaterialDialogChangeLog getInstance(Context context) {
+        return MaterialDialogChangeLog.newInstance(
+                new ContextThemeWrapper(context, DoserApplication.getDoserTheme().getResourceId()),
                 getCss(context));
     }
 
@@ -32,10 +35,6 @@ public class DoserChangelog extends ChangeLog {
         return String.format("body { color: #%s; background-color: #%s }\n%s",
                 String.format("%06X", (0xFFFFFF & textColor)),
                 String.format("%06X", (0xFFFFFF & backgroundColor)),
-                DEFAULT_CSS);
-    }
-
-    public void updateVersionInPreferences() {
-        super.updateVersionInPreferences();
+                MaterialDialogChangeLog.DEFAULT_CSS);
     }
 }

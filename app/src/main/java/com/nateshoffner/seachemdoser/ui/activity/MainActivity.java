@@ -40,6 +40,7 @@ import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
+import com.nateshoffner.seachemdoser.ui.dialog.MaterialDialogChangeLog;
 import com.nateshoffner.seachemdoser.ui.fragment.DefaultFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 } else if (specialButton == Libs.SpecialButton.SPECIAL2) {
                     PlayStoreUtils.GoToPlayStore(MainActivity.this);
                 } else if (specialButton == Libs.SpecialButton.SPECIAL3) {
-                    DoserChangelog cl = new DoserChangelog(MainActivity.this);
+                    MaterialDialogChangeLog cl = DoserChangelog.getInstance(MainActivity.this);
                     cl.getFullLogDialog().show();
                 }
 
