@@ -187,13 +187,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
 
         final LibsBuilder libsBuilder = new LibsBuilder()
-                .withAboutDescription(String.format("Created by Nate Shoffner <br><br>%s<br><br>%s<br><br>%s",
-                        getString(R.string.about_homepage),
+                .withAboutDescription(String.format("Created by Nate Shoffner<br><br>%s<br><br>%s",
                         getString(R.string.about_eula),
                         getString(R.string.about_disclaimer)))
                 .withAboutAppName(getString(R.string.app_name))
-                .withAutoDetect(false)
-                .withLibraries("calligraphy")
+                .withAutoDetect(true)
                 .withAboutVersionShown(false)
                 .withAboutVersionShownName(true)
                 .withAboutVersionShownCode(false)
