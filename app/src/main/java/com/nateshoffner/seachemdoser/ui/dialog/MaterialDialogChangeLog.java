@@ -1,14 +1,16 @@
 package com.nateshoffner.seachemdoser.ui.dialog;
 
 
-import java.util.List;
-
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.webkit.WebView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.nateshoffner.seachemdoser.R;
+
+import java.util.List;
 
 import de.cketti.library.changelog.ChangeLog;
 import de.cketti.library.changelog.ReleaseItem;
@@ -48,10 +50,10 @@ public final class MaterialDialogChangeLog {
      * Get the "What's New" dialog.
      *
      * @return An AlertDialog displaying the changes since the previous installed version of your
-     *         app (What's New). But when this is the first run of your app including
-     *         {@code ChangeLog} then the full log dialog is show.
+     * app (What's New). But when this is the first run of your app including
+     * {@code ChangeLog} then the full log dialog is show.
      */
-    public AlertDialog getLogDialog() {
+    public MaterialDialog getLogDialog() {
         return getDialog(changeLog.isFirstRunEver());
     }
 
@@ -60,7 +62,7 @@ public final class MaterialDialogChangeLog {
      *
      * @return An AlertDialog with a full change log displayed.
      */
-    public AlertDialog getFullLogDialog() {
+    public MaterialDialog getFullLogDialog() {
         return getDialog(true);
     }
 
@@ -68,41 +70,39 @@ public final class MaterialDialogChangeLog {
         return changeLog.isFirstRun();
     }
 
-    private AlertDialog getDialog(boolean full) {
+    private MaterialDialog getDialog(boolean full) {
         WebView wv = new WebView(context);
         //wv.setBackgroundColor(0); // transparent
         wv.loadDataWithBaseURL(null, getLog(full), "text/html", "UTF-8", null);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(context);
+        builder.title(
                 context.getResources().getString(
                         full ? R.string.changelog_full_title : R.string.changelog_title))
-                .setView(wv)
-                .setCancelable(false)
-                        // OK button
-                .setPositiveButton(
-                        context.getResources().getString(R.string.changelog_ok_button),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // The user clicked "OK" so save the current version code as
-                                // "last version code".
-                                changeLog.writeCurrentVersion();
-                            }
-                        });
+                .customView(wv, false)
+                .cancelable(false)
+                .positiveText(R.string.changelog_ok_button)
+                .dismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        // The user clicked "OK" so save the current version code as
+                        // "last version code".
+                        changeLog.writeCurrentVersion();
+                    }
+                });
 
         if (!full) {
             // Show "More…" button if we're only displaying a partial change log.
-            builder.setNegativeButton(R.string.changelog_show_full,
-                    new DialogInterface.OnClickListener() {
+            builder.negativeText(R.string.changelog_show_full)
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public void onClick(DialogInterface dialog, int id) {
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                             getFullLogDialog().show();
                         }
                     });
         }
 
-        return builder.create();
+        return builder.build();
     }
 
     private String getLog(boolean full) {

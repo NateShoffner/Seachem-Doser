@@ -90,9 +90,30 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         DoserApplication.getDoserPreferences().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
+        final MaterialDialogChangeLog cl = DoserChangelog.getInstance(this);
+        if (cl.isFirstRun()) {
+            final MaterialDialog dialog = cl.getLogDialog();
+            dialog.getActionButton(DialogAction.POSITIVE).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    showInitialPrompts();
+                }
+            });
+            dialog.show();
+        }
+
+        else {
+            showInitialPrompts();
+        }
+    }
+
+    private void showInitialPrompts() {
         if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
             showUnitMeasurementPrompt();
         }
+
+        showDefaultProduct();
 
         // prompt for rating after 5 calculations
         if (!DoserApplication.getDoserPreferences().getHasBeenPromptedForRating() &&
@@ -100,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             showRatingPrompt();
         }
     }
+
 
     private void initializeAboutFragment() {
 

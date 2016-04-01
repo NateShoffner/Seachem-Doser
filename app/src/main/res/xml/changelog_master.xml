@@ -3,13 +3,20 @@
     <release
         version="1.2"
         versioncode="3">
-        <change>Added: Reef Fusion 1 &amp; 2</change>
+        <change>Added: Pinnable products</change>
+        <change>Added: Light/Dark theme selection</change>
+        <change>Added: Flourite Sand</change>
         <change>Added: Flourish Trace</change>
-        <change>Fixed: Full-screen keyboard on landscape orientation</change>
+        <change>Added: Reef Fusion 1 &amp; 2</change>
+        <change>Added: Small (3.5 kg) gravel/sand bag dosage</change>
         <change>Added: Metric/imperial settings</change>
-        <change>Added: Option to remember last product used</change>
-        <change>Added: Swiping between product tabs</change>
-        <change>Changed: Minor UI modifications</change>
+        <change>Added: Default product settings</change>
+        <change>Fixed Reef Advantage Calcium dosage</change>
+        <change>Fixed: Gray Coast calculation</change>
+        <change>Fixed: Meridian name typo</change>
+        <change>Fixed: Full-screen keyboard on landscape orientation</change>
+        <change>Changed: All gravel values now round up to next bag(s)</change>
+        <change>Changed: Improved material design</change>
     </release>
     <release
         version="1.1"
