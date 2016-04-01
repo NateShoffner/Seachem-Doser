@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         getString(R.string.about_disclaimer)))
                 .withAboutAppName(getString(R.string.app_name))
                 .withAutoDetect(true)
+                .withLibraries("liberation_fonts")
                 .withAboutVersionShown(false)
                 .withAboutVersionShownName(true)
                 .withAboutVersionShownCode(false)

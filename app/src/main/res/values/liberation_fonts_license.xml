@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="define_liberation_fonts"></string>
+    <string name="library_liberation_fonts_author">Red Hat, Inc.</string>
+    <string name="library_liberation_fonts_libraryName">Liberation Fonts</string>
+    <string name="library_liberation_fonts_libraryDescription">
+        Digitized data copyright (c) 2010 Google Corporation
+            with Reserved Font Arimo, Tinos and Cousine.
+        Copyright (c) 2012 Red Hat, Inc.
+            with Reserved Font Name Liberation.
+
+        This Font Software is licensed under the SIL Open Font License,
+        Version 1.1.
+
+        This license is copied below, and is also available with a FAQ at:
+        http://scripts.sil.org/OFL
+    </string>
+</resources>
