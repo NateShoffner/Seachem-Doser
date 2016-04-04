@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Light Theme -->
+
+    <style name="AppTheme" parent="MaterialDrawerTheme.Light">
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:panelFullBackground">@color/background</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorSecondary">@color/text_color</item>
+        <item name="android:textColorTertiary">@color/text_color</item>
+        <item name="android:textColorLink">@color/link_color</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar</item>
+
+        <!-- custom attributes -->
+        <item name="inputBackgroundColor">@color/input_background</item>
+        <item name="inputBorderColor">@color/input_border</item>
+
+        <!-- custom styles -->
+        <item name="buttonStyle">@style/DoserButton</item>
+        <item name="editTextStyle">@style/DoserEditText</item>
+        <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/background</item>
+        <item name="material_drawer_primary_text">@color/text_color</item>
+        <item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>
+        <item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>
+        <item name="material_drawer_divider">@color/material_drawer_divider</item>
+        <item name="material_drawer_selected">@color/product_list_selection</item>
+        <item name="material_drawer_selected_text">@color/text_color</item>
+
+        <!-- AboutLibraries specific values -->
+        <item name="about_libraries_window_background">@color/about_libraries_window_background</item>
+        <item name="about_libraries_card">@color/about_libraries_card</item>
+        <item name="about_libraries_title_openSource">@color/about_libraries_title_openSource</item>
+        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource</item>
+        <item name="about_libraries_special_button_openSource">@color/about_libraries_special_button_openSource</item>
+        <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource</item>
+        <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
+    </style>
+
+    <!-- Dark Theme -->
+
+    <style name="AppTheme.Dark" parent="MaterialDrawerTheme">
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="android:windowBackground">@color/background_inverse</item>
+        <item name="android:panelFullBackground">@color/background_inverse</item>
+        <item name="android:textColor">@color/text_color_inverse</item>
+        <item name="android:textColorSecondary">@color/text_color_inverse</item>
+        <item name="android:textColorTertiary">@color/text_color_inverse</item>
+        <item name="android:textColorLink">@color/link_color_inverse</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar</item>
+
+        <!-- custom attributes -->
+        <item name="inputBackgroundColor">@color/input_background_inverse</item>
+        <item name="inputBorderColor">@color/input_border_inverse</item>
+
+        <!-- custom styles -->
+        <item name="buttonStyle">@style/DoserButton</item>
+        <item name="editTextStyle">@style/DoserEditText</item>
+        <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/background_inverse</item>
+        <item name="material_drawer_primary_text">@color/text_color_inverse</item>
+        <item name="material_drawer_primary_icon">@color/material_drawer_dark_primary_icon</item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_dark_secondary_text
+        </item>
+        <item name="material_drawer_hint_text">@color/material_drawer_dark_hint_text</item>
+        <item name="material_drawer_divider">@color/material_drawer_dark_divider</item>
+        <item name="material_drawer_selected">@color/material_drawer_dark_selected</item>
+        <item name="material_drawer_selected_text">@color/material_drawer_dark_selected_text</item>
+
+        <!-- AboutLibraries specific values -->
+        <item name="about_libraries_window_background">@color/about_libraries_window_background_dark</item>
+        <item name="about_libraries_card">@color/about_libraries_card_dark</item>
+        <item name="about_libraries_title_openSource">@color/about_libraries_title_openSource_dark</item>
+        <item name="about_libraries_text_openSource">@color/about_libraries_text_openSource_dark</item>
+        <item name="about_libraries_special_button_openSource">@color/about_libraries_special_button_openSource_dark</item>
+        <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
+        <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
+    </style>
+
+    <style name="ListSeparatorTextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+</resources>

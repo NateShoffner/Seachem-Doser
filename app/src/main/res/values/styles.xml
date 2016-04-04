@@ -29,4 +29,8 @@
         <item name="color">@color/titleTextColor</item>
     </style>
 
+    <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>
