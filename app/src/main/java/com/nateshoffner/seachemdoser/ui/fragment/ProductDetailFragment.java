@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.model.SeachemDosage;
@@ -219,6 +220,9 @@ public class ProductDetailFragment extends Fragment
                 if (mDosagesContainer.getVisibility() == View.INVISIBLE) {
                     mDosagesContainer.setVisibility(View.VISIBLE);
                 }
+
+                // hide keyboard after calculation
+                KeyboardUtil.hideKeyboard(getActivity());
 
                 // scroll to top of layout
                 mRootScroll.fullScroll(ScrollView.FOCUS_UP);
