@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        setSupportActionBar(mToolbar);
 
         initializeDrawer(savedInstanceState);
         initializeAboutFragment();
@@ -433,6 +432,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             mDrawer.closeDrawer();
 
         invalidateOptionsMenu();
+
+        mDrawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private String getProductTypeString(SeachemProductType type) {
