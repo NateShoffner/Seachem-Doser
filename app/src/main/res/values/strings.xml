@@ -63,8 +63,6 @@
 
     <string name="label_dosage_youll_need">You\'ll need:</string>
     <string name="label_dosage_or">or</string>
-    <string name="label_dosage_requirements">Dosage Requirements:</string>
-    <string name="label_aquarium_parameters">Aquarium Parameters:</string>
     <string name="most_recent">Most Recent</string>
     <string name="close">Close</string>
     <string name="open">Open</string>

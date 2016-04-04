@@ -2,6 +2,7 @@ package com.nateshoffner.seachemdoser.ui.fragment;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -47,6 +50,7 @@ public class ProductDetailFragment extends Fragment
     private View mRootView;
     private LinearLayout mDosagesContainer;
 
+    private ScrollView mRootScroll;
     private MenuItem btnPin;
 
     private SeachemProduct mProduct;
@@ -70,8 +74,8 @@ public class ProductDetailFragment extends Fragment
         super.onSaveInstanceState(outState);
     }
 
-    private void initializeParameterViews(UnitMeasurement unitMeasurement, View rootView) {
-        LinearLayout paramsLayout = (LinearLayout) rootView.findViewById(R.id.params_container);
+    private void initializeParameterViews(UnitMeasurement unitMeasurement) {
+        LinearLayout paramsLayout = (LinearLayout) mRootView.findViewById(R.id.params_container);
 
         if (dosageInputs.size() > 0) {
             dosageInputs.clear();
@@ -93,8 +97,8 @@ public class ProductDetailFragment extends Fragment
         }
     }
 
-    private void initializeDosageViews(UnitMeasurement unitMeasurement, View rootView) {
-        mDosagesContainer = (LinearLayout) rootView.findViewById(R.id.dosages_container);
+    private void initializeDosageViews(UnitMeasurement unitMeasurement) {
+        mDosagesContainer = (LinearLayout) mRootView.findViewById(R.id.dosages_container);
 
         if (dosageResultViews.size() > 0) {
             dosageResultViews.clear();
@@ -122,10 +126,37 @@ public class ProductDetailFragment extends Fragment
         }
     }
 
+    private void initializeAdditionalInfoViews() {
+        LinearLayout infoContainer = (LinearLayout) mRootView.findViewById(R.id.info_container);
+
+        if (infoContainer == null)
+            return;
+
+        TextView tvWarnings = (TextView)mRootView.findViewById(R.id.product_warnings);
+        tvWarnings.setText(StringUtils.join(mProduct.getWarnings(), "\n\n"));
+        tvWarnings.setVisibility(mProduct.getWarnings().length > 0 ? View.VISIBLE : View.GONE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            tvWarnings.setCompoundDrawablesRelativeWithIntrinsicBounds(new IconicsDrawable(getContext(),
+                    FontAwesome.Icon.faw_exclamation_circle).actionBar().color(Color.LTGRAY), null, null, null);
+        }
+
+        TextView tvInfo = (TextView)mRootView.findViewById(R.id.product_info);
+        tvInfo.setText(StringUtils.join(mProduct.getComments(), "\n\n"));
+        tvInfo.setVisibility(mProduct.getComments().length > 0 ? View.VISIBLE : View.GONE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            tvInfo.setCompoundDrawablesRelativeWithIntrinsicBounds(new IconicsDrawable(getContext(),
+                    FontAwesome.Icon.faw_info_circle).actionBar().color(Color.LTGRAY), null, null, null);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_product_detail, container, false);
+
+        mRootScroll = (ScrollView)mRootView.findViewById(R.id.root_scroll);
 
         DoserApplication.getDoserPreferences().getSharedPreferences().
                 registerOnSharedPreferenceChangeListener(this);
@@ -189,13 +220,17 @@ public class ProductDetailFragment extends Fragment
                     mDosagesContainer.setVisibility(View.VISIBLE);
                 }
 
+                // scroll to top of layout
+                mRootScroll.fullScroll(ScrollView.FOCUS_UP);
+
                 DoserApplication.getDoserPreferences().incrementTotalCalculations();
             }
         });
 
         UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
-        initializeParameterViews(unitMeasurement, mRootView);
-        initializeDosageViews(unitMeasurement, mRootView);
+        initializeParameterViews(unitMeasurement);
+        initializeDosageViews(unitMeasurement);
+        initializeAdditionalInfoViews();
 
         // manually focus on first param
         dosageInputs.get(0).requestFocus();
@@ -259,12 +294,21 @@ public class ProductDetailFragment extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.detail_fragment_menu, menu);
         btnPin = menu.findItem(R.id.action_pin);
-        menu.findItem(R.id.action_warning).setIcon(new IconicsDrawable(getContext(),
-                FontAwesome.Icon.faw_exclamation_triangle).actionBar().color(Color.LTGRAY))
-                .setVisible(mProduct.getWarnings().length > 0);
-        menu.findItem(R.id.action_info).setIcon(new IconicsDrawable(getContext(),
-                FontAwesome.Icon.faw_info).actionBar().color(Color.LTGRAY))
-                .setVisible(mProduct.getComments().length > 0);
+
+        MenuItem warningItem = menu.findItem(R.id.action_warning);
+        if (warningItem != null) {
+            warningItem.setIcon(new IconicsDrawable(getContext(),
+                    FontAwesome.Icon.faw_exclamation_circle).actionBar().color(Color.LTGRAY))
+                    .setVisible(mProduct.getWarnings().length > 0);
+        }
+
+        MenuItem infoItem = menu.findItem(R.id.action_info);
+        if (infoItem != null) {
+            infoItem.setIcon(new IconicsDrawable(getContext(),
+                    FontAwesome.Icon.faw_info_circle).actionBar().color(Color.LTGRAY))
+                    .setVisible(mProduct.getComments().length > 0);
+        }
+
         updatePinnedButton();
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -275,8 +319,8 @@ public class ProductDetailFragment extends Fragment
             if (key.equals(getString(R.string.pref_unit_measurement))) {
                 UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().
                         getUnitMeasurement();
-                initializeParameterViews(unitMeasurement, mRootView);
-                initializeDosageViews(unitMeasurement, mRootView);
+                initializeParameterViews(unitMeasurement);
+                initializeDosageViews(unitMeasurement);
             }
         }
     }
