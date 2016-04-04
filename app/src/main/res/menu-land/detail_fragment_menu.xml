@@ -7,18 +7,18 @@
     <item
         android:id="@+id/action_warning"
         android:orderInCategory="0"
-        app:showAsAction="never|collapseActionView"
+        app:showAsAction="withText|ifRoom|collapseActionView"
         android:title="@string/warnings" />
 
     <item
         android:id="@+id/action_info"
         android:orderInCategory="1"
-        app:showAsAction="never|collapseActionView"
+        app:showAsAction="withText|ifRoom|collapseActionView"
         android:title="@string/info" />
 
     <item
         android:id="@+id/action_pin"
         android:orderInCategory="2"
-        app:showAsAction="never|collapseActionView"
+        app:showAsAction="withText|ifRoom|collapseActionView"
         android:title="@string/pin" />
 </menu>

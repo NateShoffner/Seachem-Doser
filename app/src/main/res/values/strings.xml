@@ -79,5 +79,7 @@
     <string name="has_been_unpinned">has been unpinned</string>
     <string name="pin">Pin</string>
     <string name="unpin">Unpin</string>
+    <string name="info">Info</string>
+    <string name="warnings">Warnings</string>
 
 </resources>
