@@ -52,7 +52,8 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class MainActivity extends AppCompatActivity
+        implements SharedPreferences.OnSharedPreferenceChangeListener, DrawerActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -517,5 +518,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         if (s.equals(getString(R.string.pref_pinned_products))) {
             populatePinnedProducts();
         }
+    }
+
+    @Override
+    public void openDrawer() {
+        mDrawer.openDrawer();
+    }
+
+    @Override
+    public void closeDrawer() {
+        mDrawer.closeDrawer();
     }
 }
