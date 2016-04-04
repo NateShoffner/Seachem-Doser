@@ -28,7 +28,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
     See the License for the specific language governing permissions and
     limitations under the License.
 
-#License of Fonts
+#Font Licenses
 
 #### Liberation Fonts
 
@@ -47,6 +47,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 ## Changelog
 
 ### Version 1.2 (TBD)
+* Added Seachem-recommended parameter values
 * Added: Pinnable products
 * Added: Light/Dark theme selection
 * Added: Flourite Sand
