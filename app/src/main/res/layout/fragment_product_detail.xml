@@ -32,7 +32,8 @@
             android:id="@+id/dosages_container"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 </ScrollView>

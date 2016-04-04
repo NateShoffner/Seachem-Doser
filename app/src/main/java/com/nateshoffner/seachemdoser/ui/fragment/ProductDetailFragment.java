@@ -45,6 +45,7 @@ public class ProductDetailFragment extends Fragment
     private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     private View mRootView;
+    private LinearLayout mDosagesContainer;
 
     private MenuItem btnPin;
 
@@ -93,12 +94,12 @@ public class ProductDetailFragment extends Fragment
     }
 
     private void initializeDosageViews(UnitMeasurement unitMeasurement, View rootView) {
-        LinearLayout dosagesLayout = (LinearLayout) rootView.findViewById(R.id.dosages_container);
+        mDosagesContainer = (LinearLayout) rootView.findViewById(R.id.dosages_container);
 
         if (dosageResultViews.size() > 0) {
             dosageResultViews.clear();
 
-            dosagesLayout.removeAllViews();
+            mDosagesContainer.removeAllViews();
         }
 
         SeachemDosage[] dosages = mProduct.calculateDosage(unitMeasurement);
@@ -117,7 +118,7 @@ public class ProductDetailFragment extends Fragment
             }
 
             dosageResultViews.add(view);
-            dosagesLayout.addView(view);
+            mDosagesContainer.addView(view);
         }
     }
 
@@ -182,6 +183,10 @@ public class ProductDetailFragment extends Fragment
                     SeachemDosage dosage = dosages[i];
                     String value = decimalFormat.format(dosage.getAmount());
                     dosageResultViews.get(i).setValue(value);
+                }
+
+                if (mDosagesContainer.getVisibility() == View.INVISIBLE) {
+                    mDosagesContainer.setVisibility(View.VISIBLE);
                 }
 
                 DoserApplication.getDoserPreferences().incrementTotalCalculations();
