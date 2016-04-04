@@ -218,6 +218,7 @@ public class ProductDetailFragment extends Fragment
 
         icon.color(isPinned ? Color.WHITE : Color.GRAY);
 
+        btnPin.setTitle(isPinned ? R.string.unpin : R.string.pin);
         btnPin.setIcon(icon);
     }
 

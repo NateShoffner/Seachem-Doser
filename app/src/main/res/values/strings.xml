@@ -77,5 +77,7 @@
     <string name="pinned">Pinned</string>
     <string name="has_been_pinned">has been pinned</string>
     <string name="has_been_unpinned">has been unpinned</string>
+    <string name="pin">Pin</string>
+    <string name="unpin">Unpin</string>
 
 </resources>
