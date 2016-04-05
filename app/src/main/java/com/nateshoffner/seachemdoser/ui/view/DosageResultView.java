@@ -11,8 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.utils.ClipboardUtils;
+import com.nateshoffner.seachemdoser.utils.DoserPreferences;
 
 public class DosageResultView extends LinearLayout {
 
@@ -44,11 +46,13 @@ public class DosageResultView extends LinearLayout {
         etValue.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                boolean result = ClipboardUtils.copyToClipboard(getContext(), String.format("%s %s",
-                        etValue.getText().toString(), tvUnit.getText().toString()));
+                if (DoserApplication.getDoserPreferences().getCopyDosages()) {
+                    boolean result = ClipboardUtils.copyToClipboard(getContext(), String.format("%s %s",
+                            etValue.getText().toString(), tvUnit.getText().toString()));
 
-                if (result)
-                    Toast.makeText(getContext(), "Dosage copied to clipboard", Toast.LENGTH_SHORT).show();
+                    if (result)
+                        Toast.makeText(getContext(), "Dosage copied to clipboard", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

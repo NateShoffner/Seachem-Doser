@@ -36,7 +36,8 @@
     <string name="pref_total_calculations">total_calculations</string>
     <string name="pref_prompted_for_rating">prompted_for_rating</string>
     <string name="pref_pinned_products">pinned_products</string>
-    <string name="pref_use_recommended_param_values">se_recommended_param_values</string>
+    <string name="pref_use_recommended_param_values">use_recommended_param_values</string>
+    <string name="pref_copy_dosages">copy_dosages</string>
 
     <!-- units -->
     <string name="unit_us_gallons">US Gallons</string>
