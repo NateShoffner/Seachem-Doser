@@ -193,6 +193,8 @@ public class MainActivity extends AppCompatActivity
                 .withAboutAppName(getString(R.string.app_name))
                 .withAutoDetect(true)
                 .withLibraries("liberation_fonts")
+                .withLicenseShown(true)
+                .withLicenseDialog(true)
                 .withAboutVersionShown(false)
                 .withAboutVersionShownName(true)
                 .withAboutVersionShownCode(false)
