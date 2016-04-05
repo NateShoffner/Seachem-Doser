@@ -1,16 +1,19 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.RotateAnimation;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -33,7 +36,6 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
-import com.nateshoffner.seachemdoser.BuildConfig;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
@@ -130,7 +132,22 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onIconClicked(View v) {
-
+                if (v instanceof AppCompatImageView) {
+                    final AppCompatImageView imageView = (AppCompatImageView)v;
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AnimationSet anim = new AnimationSet(true);
+                            RotateAnimation rotate = new RotateAnimation(0f, 360f,
+                                    Animation.RELATIVE_TO_SELF, 0.5f,
+                                    Animation.RELATIVE_TO_SELF, 0.5f);
+                            rotate.setDuration(800);
+                            rotate.setInterpolator(new DecelerateInterpolator());
+                            anim.addAnimation(rotate);
+                            imageView.startAnimation(anim);
+                        }
+                    });
+                }
             }
 
             @Override
