@@ -4,7 +4,6 @@
     <string name="aboutLibraries_description_showIcon">true</string>
     <string name="aboutLibraries_description_showVersion">true</string>
     <!-- Just remove those entries if you don't want to use a special button with a text within your about this app view :D -->
-    <string name="aboutLibraries_description_special1_name">Homepage</string>
-    <string name="aboutLibraries_description_special2_name">Rate</string>
-    <string name="aboutLibraries_description_special3_name">Changelog</string>
+    <string name="aboutLibraries_description_special1_name">Rate</string>
+    <string name="aboutLibraries_description_special2_name">Changelog</string>
 </resources>

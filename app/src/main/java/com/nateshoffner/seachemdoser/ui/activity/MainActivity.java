@@ -152,12 +152,8 @@ public class MainActivity extends AppCompatActivity
             public boolean onExtraClicked(View v, Libs.SpecialButton specialButton) {
                 v.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.accent));
                 if (specialButton == Libs.SpecialButton.SPECIAL1) {
-                    Uri uriUrl = Uri.parse(getString(R.string.about_homepage));
-                    Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-                    startActivity(launchBrowser);
-                } else if (specialButton == Libs.SpecialButton.SPECIAL2) {
                     PlayStoreUtils.GoToPlayStore(MainActivity.this);
-                } else if (specialButton == Libs.SpecialButton.SPECIAL3) {
+                } else if (specialButton == Libs.SpecialButton.SPECIAL2) {
                     MaterialDialogChangeLog cl = DoserChangelog.getInstance(MainActivity.this);
                     cl.getFullLogDialog().show();
                 }
@@ -188,7 +184,8 @@ public class MainActivity extends AppCompatActivity
 
 
         final LibsBuilder libsBuilder = new LibsBuilder()
-                .withAboutDescription(String.format("Created by Nate Shoffner<br><br>%s<br><br>%s",
+                .withAboutDescription(String.format("%s<br><br>%s<br><br>%s",
+                        getString(R.string.about_author),
                         getString(R.string.about_eula),
                         getString(R.string.about_disclaimer)))
                 .withAboutAppName(getString(R.string.app_name))
@@ -196,8 +193,7 @@ public class MainActivity extends AppCompatActivity
                 .withLibraries("liberation_fonts")
                 .withLicenseShown(true)
                 .withLicenseDialog(true)
-                .withAboutVersionString(String.format("%s%s (rev. %s)",
-                        getString(R.string.version),
+                .withAboutVersionString(String.format("v%s (rev. %s)",
                         getString(R.string.version_name_human),
                         getString(R.string.build_revision)))
                 .withListener(libsListener);
