@@ -33,6 +33,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
+import com.nateshoffner.seachemdoser.BuildConfig;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
@@ -195,9 +196,10 @@ public class MainActivity extends AppCompatActivity
                 .withLibraries("liberation_fonts")
                 .withLicenseShown(true)
                 .withLicenseDialog(true)
-                .withAboutVersionShown(false)
-                .withAboutVersionShownName(true)
-                .withAboutVersionShownCode(false)
+                .withAboutVersionString(String.format("%s%s (rev. %s)",
+                        getString(R.string.version),
+                        getString(R.string.version_name_human),
+                        getString(R.string.build_revision)))
                 .withListener(libsListener);
 
         mSupportFragment = libsBuilder.supportFragment();
