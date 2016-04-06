@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity
     private final static long SUPPORT_ITEM_IDENTIFIER = 998;
     private final static long SETTINGS_ITEM_IDENTIFIER = 999;
 
+    private ExpandableDrawerItem mPinnedItem;
+
     private long mIdentifierIncrementor;
 
     // manually track selected item between item expand/collapse
@@ -282,14 +284,12 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-        builder.addDrawerItems(new ExpandableDrawerItem()
+        mPinnedItem = new ExpandableDrawerItem()
                 .withName(R.string.pinned)
                 .withSelectable(false)
                 .withIcon(FontAwesome.Icon.faw_thumb_tack)
                 .withIdentifier(PINNED_ITEM_IDENTIFIER)
-                .withIconColorRes(R.color.product_list_text_color));
-
-        builder.addDrawerItems(new DividerDrawerItem());
+                .withIconColorRes(R.color.product_list_text_color);
 
         // populate product items
         List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
@@ -359,20 +359,29 @@ public class MainActivity extends AppCompatActivity
         List<SeachemProduct> pinnedProducts =
                 DoserApplication.getDoserPreferences().getPinnedProducts();
 
-        ExpandableDrawerItem parent =
-                (ExpandableDrawerItem) mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER);
-        int parentPosition = mDrawer.getPosition(parent);
+        if (pinnedProducts.size() == 0) {
+            mDrawer.getAdapter().collapse(mDrawer.getPosition(mPinnedItem)); // collapse item first
+            mDrawer.removeItem(PINNED_ITEM_IDENTIFIER);
+            mDrawer.removeItemByPosition(1); // divider
+            return;
+        } else {
+            mDrawer.addItemAtPosition(mPinnedItem, 0);
+            mDrawer.addItemAtPosition(new DividerDrawerItem(), 1);
+            mPinnedItem = (ExpandableDrawerItem) mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER);
+        }
 
-        boolean isExpanded = parent.isExpanded();
+        int parentPosition = mDrawer.getPosition(mPinnedItem);
 
-        if (parent.getSubItems() != null) {
+        boolean isExpanded = mPinnedItem.isExpanded();
+
+        if (mPinnedItem.getSubItems() != null) {
             // collapse the item before clearing to avoid item being locked
             mDrawer.getAdapter().collapse(parentPosition);
-            parent.getSubItems().clear();
+            mPinnedItem.getSubItems().clear();
         }
 
         for (SeachemProduct product : pinnedProducts) {
-            parent.withSubItems(new SecondaryDrawerItem()
+            mPinnedItem.withSubItems(new SecondaryDrawerItem()
                     .withName(product.getName())
                     .withIdentifier(mIdentifierIncrementor++)
                     .withLevel(2)
@@ -380,7 +389,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // restore expansion if children exist
-        if (isExpanded && parent.getSubItems() != null)
+        if (isExpanded && mPinnedItem.getSubItems() != null)
             mDrawer.getAdapter().expand(parentPosition);
 
         mDrawer.getAdapter().notifyItemChanged(parentPosition);
