@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerBuilder builder = new DrawerBuilder()
                 .withActivity(this)
-                .withAccountHeader(headerResult, true)
+                .withAccountHeader(headerResult, false)
                 .withToolbar(mToolbar)
                 .withDelayOnDrawerClose(250)
                 .withActionBarDrawerToggle(true)
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity
                             setCurrentFragment(getString(R.string.action_settings), null,
                                     mPreferencesFragment);
                         } else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
-                            setCurrentFragment(getString(R.string.about_support), null,
+                            setCurrentFragment(getString(R.string.about), null,
                                     mSupportFragment);
                         } else {
                             String title = ((Nameable) drawerItem).getName().getText();
@@ -346,13 +346,13 @@ public class MainActivity extends AppCompatActivity
         PrimaryDrawerItem supportItem = new PrimaryDrawerItem()
                 .withName(R.string.about_support)
                 .withIdentifier(SUPPORT_ITEM_IDENTIFIER)
-                .withIcon(GoogleMaterial.Icon.gmd_help);
-        mDrawer.addStickyFooterItem(supportItem);
+                .withIcon(GoogleMaterial.Icon.gmd_info_outline);
+        mDrawer.addItem(supportItem);
         PrimaryDrawerItem settingsItem = new PrimaryDrawerItem()
                 .withName(R.string.action_settings)
                 .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
                 .withIcon(GoogleMaterial.Icon.gmd_settings);
-        mDrawer.addStickyFooterItem(settingsItem);
+        mDrawer.addItem(settingsItem);
     }
 
     private void populatePinnedProducts() {
