@@ -9,6 +9,12 @@
 
     <color name="product_list_text_color">#0088CC</color>
 
+
+    <color name="gravel">#bf360c</color>
+    <color name="planted">#66bb6a</color>
+    <color name="reef">#29b6f6</color>
+
+
     <!-- light -->
 
     <color name="text_color">#777777</color>

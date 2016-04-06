@@ -43,7 +43,7 @@ dependencies {
     compile "com.android.support:design:${supportLibVersion}"
     compile "com.android.support:preference-v7:${supportLibVersion}"
     compile "uk.co.chrisjenx:calligraphy:2.1.0"
-    compile('com.mikepenz:materialdrawer:5.1.6@aar') {
+    compile('com.mikepenz:materialdrawer:5.1.8@aar') {
         transitive = true
     }
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'

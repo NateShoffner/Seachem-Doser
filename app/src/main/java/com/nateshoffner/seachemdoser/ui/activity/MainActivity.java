@@ -297,9 +297,11 @@ public class MainActivity extends AppCompatActivity
         for (SeachemProductType type : productTypes) {
             ExpandableDrawerItem ex = new ExpandableDrawerItem()
                     .withName(getProductTypeString(type))
+                    .withIcon(GoogleMaterial.Icon.gmd_format_color_fill)
                     .withIdentifier(mIdentifierIncrementor++)
                     .withSelectable(false)
-                    .withIconColorRes(R.color.product_list_text_color);
+                    .withIconColorRes(getProductTypeColorRes(type))
+                    .withArrowColorRes(R.color.product_list_text_color);
 
             ex.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                 @Override
@@ -333,7 +335,7 @@ public class MainActivity extends AppCompatActivity
                 ex.withSubItems(new SecondaryDrawerItem()
                         .withName(product.getName())
                         .withIdentifier(mIdentifierIncrementor++)
-                        .withLevel(2)
+                        .withLevel(3)
                         .withTextColorRes(R.color.product_list_text_color));
             }
 
@@ -343,16 +345,32 @@ public class MainActivity extends AppCompatActivity
 
         mDrawer = builder.build();
 
+        mDrawer.addItem(new DividerDrawerItem());
         PrimaryDrawerItem supportItem = new PrimaryDrawerItem()
                 .withName(R.string.about_support)
                 .withIdentifier(SUPPORT_ITEM_IDENTIFIER)
-                .withIcon(GoogleMaterial.Icon.gmd_info_outline);
+                .withIcon(GoogleMaterial.Icon.gmd_info_outline)
+                .withIconColorRes(R.color.product_list_text_color);
         mDrawer.addItem(supportItem);
         PrimaryDrawerItem settingsItem = new PrimaryDrawerItem()
                 .withName(R.string.action_settings)
                 .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
-                .withIcon(GoogleMaterial.Icon.gmd_settings);
+                .withIcon(GoogleMaterial.Icon.gmd_settings)
+                .withIconColorRes(R.color.product_list_text_color);
         mDrawer.addItem(settingsItem);
+    }
+
+    private int getProductTypeColorRes(SeachemProductType productType) {
+        switch(productType) {
+            case Gravel:
+                return R.color.gravel;
+            case Planted:
+                return R.color.planted;
+            case Reef:
+                return R.color.reef;
+        }
+
+        return 0;
     }
 
     private void populatePinnedProducts() {
@@ -360,10 +378,12 @@ public class MainActivity extends AppCompatActivity
                 DoserApplication.getDoserPreferences().getPinnedProducts();
 
         if (pinnedProducts.size() == 0) {
-            mDrawer.getAdapter().collapse(mDrawer.getPosition(mPinnedItem)); // collapse item first
-            mDrawer.removeItem(PINNED_ITEM_IDENTIFIER);
-            mDrawer.removeItemByPosition(1); // divider
-            return;
+            if (mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER) != null) {
+                mDrawer.getAdapter().collapse(mDrawer.getPosition(mPinnedItem)); // collapse item first
+                mDrawer.removeItem(PINNED_ITEM_IDENTIFIER);
+                mDrawer.removeItemByPosition(1); // divider
+                return;
+            }
         } else {
             mDrawer.addItemAtPosition(mPinnedItem, 0);
             mDrawer.addItemAtPosition(new DividerDrawerItem(), 1);
