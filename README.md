@@ -47,6 +47,8 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 ## Changelog
 
 ### Version 1.2 (TBD)
+* Added: One-click dosage copying
+* Added: Seachem warnings
 * Added Seachem-recommended parameter values
 * Added: Pinnable products
 * Added: Light/Dark theme selection

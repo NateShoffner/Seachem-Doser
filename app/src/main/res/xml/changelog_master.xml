@@ -3,6 +3,8 @@
     <release
         version="1.2"
         versioncode="3">
+        <change>Added: One-click dosage copying</change>
+        <change>Added: Seachem warnings</change>
         <change>Added: Seachem-recommended parameter values</change>
         <change>Added: Pinnable products</change>
         <change>Added: Light/Dark theme selection</change>
