@@ -335,7 +335,8 @@ public class MainActivity extends AppCompatActivity
                 ex.withSubItems(new SecondaryDrawerItem()
                         .withName(product.getName())
                         .withIdentifier(mIdentifierIncrementor++)
-                        .withLevel(3)
+                        .withLevel(2)
+                        .withIcon(GoogleMaterial.Icon.gmd_play_circle_outline)
                         .withTextColorRes(R.color.product_list_text_color));
             }
 
@@ -345,19 +346,19 @@ public class MainActivity extends AppCompatActivity
 
         mDrawer = builder.build();
 
-        mDrawer.addItem(new DividerDrawerItem());
+        mDrawer.addStickyFooterItem(new DividerDrawerItem());
         PrimaryDrawerItem supportItem = new PrimaryDrawerItem()
                 .withName(R.string.about_support)
                 .withIdentifier(SUPPORT_ITEM_IDENTIFIER)
                 .withIcon(GoogleMaterial.Icon.gmd_info_outline)
                 .withIconColorRes(R.color.product_list_text_color);
-        mDrawer.addItem(supportItem);
+        mDrawer.addStickyFooterItem(supportItem);
         PrimaryDrawerItem settingsItem = new PrimaryDrawerItem()
                 .withName(R.string.action_settings)
                 .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
                 .withIcon(GoogleMaterial.Icon.gmd_settings)
                 .withIconColorRes(R.color.product_list_text_color);
-        mDrawer.addItem(settingsItem);
+        mDrawer.addStickyFooterItem(settingsItem);
     }
 
     private int getProductTypeColorRes(SeachemProductType productType) {
@@ -405,6 +406,7 @@ public class MainActivity extends AppCompatActivity
                     .withName(product.getName())
                     .withIdentifier(mIdentifierIncrementor++)
                     .withLevel(2)
+                    .withIcon(GoogleMaterial.Icon.gmd_play_circle_outline)
                     .withTextColorRes(R.color.product_list_text_color));
         }
 
