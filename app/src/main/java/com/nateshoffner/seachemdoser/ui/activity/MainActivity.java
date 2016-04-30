@@ -1,6 +1,7 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -250,8 +251,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
-                            setCurrentFragment(getString(R.string.action_settings), null,
-                                    mPreferencesFragment);
+                            startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
                         } else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
                             setCurrentFragment(getString(R.string.about), null,
                                     mSupportFragment);
