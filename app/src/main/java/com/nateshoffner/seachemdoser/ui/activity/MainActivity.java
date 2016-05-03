@@ -5,25 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.RotateAnimation;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.LibsBuilder;
-import com.mikepenz.aboutlibraries.LibsConfiguration;
-import com.mikepenz.aboutlibraries.entity.Library;
-import com.mikepenz.aboutlibraries.ui.LibsSupportFragment;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -47,7 +36,6 @@ import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.dialog.MaterialDialogChangeLog;
 import com.nateshoffner.seachemdoser.ui.fragment.DefaultFragment;
-import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
 import com.nateshoffner.seachemdoser.utils.PlayStoreUtils;
 import com.nateshoffner.seachemdoser.utils.UnitLocale;
@@ -64,8 +52,6 @@ public class MainActivity extends AppCompatActivity
 
     private Toolbar mToolbar = null;
     private Drawer mDrawer = null;
-    private LibsSupportFragment mSupportFragment;
-    private PreferencesFragment mPreferencesFragment = new PreferencesFragment();
     private List<ExpandableDrawerItem> mProductTypeItems = new ArrayList<>();
 
     private final static long PINNED_ITEM_IDENTIFIER = 997;
@@ -89,7 +75,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(mToolbar);
 
         initializeDrawer(savedInstanceState);
-        initializeAboutFragment();
 
         populatePinnedProducts();
 
@@ -141,99 +126,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-    private void initializeAboutFragment() {
-
-        LibsConfiguration.LibsListener libsListener = new LibsConfiguration.LibsListener() {
-
-            @Override
-            public void onIconClicked(View v) {
-                if (v instanceof AppCompatImageView) {
-                    final AppCompatImageView imageView = (AppCompatImageView)v;
-                    imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            AnimationSet anim = new AnimationSet(true);
-                            RotateAnimation rotate = new RotateAnimation(0f, 360f,
-                                    Animation.RELATIVE_TO_SELF, 0.5f,
-                                    Animation.RELATIVE_TO_SELF, 0.5f);
-                            rotate.setDuration(800);
-                            rotate.setInterpolator(new DecelerateInterpolator());
-                            anim.addAnimation(rotate);
-                            imageView.startAnimation(anim);
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public boolean onLibraryAuthorClicked(View v, Library library) {
-                return false;
-            }
-
-            @Override
-            public boolean onLibraryContentClicked(View v, Library library) {
-                return false;
-            }
-
-            @Override
-            public boolean onLibraryBottomClicked(View v, Library library) {
-                return false;
-            }
-
-            @Override
-            public boolean onExtraClicked(View v, Libs.SpecialButton specialButton) {
-                v.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.accent));
-                if (specialButton == Libs.SpecialButton.SPECIAL1) {
-                    PlayStoreUtils.GoToPlayStore(MainActivity.this);
-                } else if (specialButton == Libs.SpecialButton.SPECIAL2) {
-                    MaterialDialogChangeLog cl = DoserChangelog.getInstance(MainActivity.this);
-                    cl.getFullLogDialog().show();
-                }
-
-                return false;
-            }
-
-            @Override
-            public boolean onIconLongClicked(View v) {
-                return false;
-            }
-
-            @Override
-            public boolean onLibraryAuthorLongClicked(View v, Library library) {
-                return false;
-            }
-
-            @Override
-            public boolean onLibraryContentLongClicked(View v, Library library) {
-                return false;
-            }
-
-            @Override
-            public boolean onLibraryBottomLongClicked(View v, Library library) {
-                return false;
-            }
-        };
-
-
-        final LibsBuilder libsBuilder = new LibsBuilder()
-                .withAboutDescription(String.format("%s<br><br>%s<br><br>%s",
-                        getString(R.string.about_author),
-                        getString(R.string.about_eula),
-                        getString(R.string.about_disclaimer)))
-                .withAboutAppName(getString(R.string.app_name))
-                .withAutoDetect(true)
-                .withLibraries("liberation_fonts")
-                .withLicenseShown(true)
-                .withLicenseDialog(true)
-                .withAboutVersionString(String.format("v%s (rev. %s)",
-                        getString(R.string.version_name_human),
-                        getString(R.string.build_revision)))
-                .withListener(libsListener);
-
-        mSupportFragment = libsBuilder.supportFragment();
-    }
-
     private void initializeDrawer(Bundle savedInstanceState) {
 
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -266,8 +158,7 @@ public class MainActivity extends AppCompatActivity
                         if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
                             startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
                         } else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
-                            setCurrentFragment(getString(R.string.about), null,
-                                    mSupportFragment);
+                            startActivity(new Intent(MainActivity.this, AboutActivity.class));
                         } else {
                             String title = ((Nameable) drawerItem).getName().getText();
                             SeachemProduct product = SeachemManager.getProductByName(title);
