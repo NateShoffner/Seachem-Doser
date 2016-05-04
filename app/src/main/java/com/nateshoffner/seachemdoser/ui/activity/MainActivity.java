@@ -263,6 +263,9 @@ public class MainActivity extends AppCompatActivity
                 .withIcon(GoogleMaterial.Icon.gmd_settings)
                 .withIconColorRes(R.color.product_list_text_color);
         mDrawer.addStickyFooterItem(settingsItem);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        mDrawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
     }
 
     private int getProductTypeColorRes(SeachemProductType productType) {
@@ -385,9 +388,6 @@ public class MainActivity extends AppCompatActivity
             mDrawer.closeDrawer();
 
         invalidateOptionsMenu();
-
-        mDrawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private String getProductTypeString(SeachemProductType type) {
