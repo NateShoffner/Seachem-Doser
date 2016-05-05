@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 
@@ -13,6 +14,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(DoserApplication.getDoserTheme().getResourceId());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
