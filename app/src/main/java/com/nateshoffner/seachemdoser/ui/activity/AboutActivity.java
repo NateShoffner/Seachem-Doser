@@ -1,10 +1,12 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -39,6 +41,27 @@ public class AboutActivity extends AppCompatActivity {
             initializeAboutFragment();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.about_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_changelog:
+                MaterialDialogChangeLog cl = DoserChangelog.getInstance(AboutActivity.this);
+                cl.getFullLogDialog().show();
+                return true;
+            case R.id.action_rate:
+                PlayStoreUtils.GoToPlayStore(AboutActivity.this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void initializeAboutFragment() {
 
@@ -81,14 +104,6 @@ public class AboutActivity extends AppCompatActivity {
 
             @Override
             public boolean onExtraClicked(View v, Libs.SpecialButton specialButton) {
-                v.setBackgroundColor(ContextCompat.getColor(AboutActivity.this, R.color.accent));
-                if (specialButton == Libs.SpecialButton.SPECIAL1) {
-                    PlayStoreUtils.GoToPlayStore(AboutActivity.this);
-                } else if (specialButton == Libs.SpecialButton.SPECIAL2) {
-                    MaterialDialogChangeLog cl = DoserChangelog.getInstance(AboutActivity.this);
-                    cl.getFullLogDialog().show();
-                }
-
                 return false;
             }
 
@@ -112,7 +127,6 @@ public class AboutActivity extends AppCompatActivity {
                 return false;
             }
         };
-
 
         final LibsBuilder libsBuilder = new LibsBuilder()
                 .withAboutDescription(String.format("%s<br><br>%s<br><br>%s",
