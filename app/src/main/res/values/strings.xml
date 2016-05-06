@@ -68,6 +68,7 @@
     <string name="open">Open</string>
     <string name="get_started">Get Started</string>
     <string name="welcome">Welcome</string>
+    <string name="about">About</string>
     <string name="about_support">About / Support</string>
     <string name="unit_measurement_dialog_title">Unit Measurement</string>
 
@@ -79,5 +80,9 @@
     <string name="unpin">Unpin</string>
     <string name="info">Info</string>
     <string name="warnings">Warnings</string>
+    <string name="action_changelog">Changelog</string>
+    <string name="action_rate">Rate</string>
+    <string name="title_activity_preferences">Settings</string>
+    <string name="title_activity_about">About</string>
 
 </resources>
