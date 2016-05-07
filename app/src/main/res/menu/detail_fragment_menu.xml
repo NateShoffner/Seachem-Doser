@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_warning"
         android:orderInCategory="0"
-        app:showAsAction="never|collapseActionView"
+        app:showAsAction="ifRoom|collapseActionView"
         android:title="@string/warnings" />
 
     <item
