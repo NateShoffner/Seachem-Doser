@@ -10,7 +10,7 @@ import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.ui.fragment.PreferencesFragment;
 
-public class PreferencesActivity extends AppCompatActivity {
+public class PreferencesActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

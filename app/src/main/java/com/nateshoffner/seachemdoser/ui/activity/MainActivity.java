@@ -45,7 +45,7 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener, DrawerActivity {
 
     private static final String TAG = "MainActivity";

@@ -24,7 +24,7 @@ import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.dialog.MaterialDialogChangeLog;
 import com.nateshoffner.seachemdoser.utils.PlayStoreUtils;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
