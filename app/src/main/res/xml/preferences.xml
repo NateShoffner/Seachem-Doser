@@ -32,7 +32,7 @@
             android:key="@string/pref_use_recommended_param_values" />
 
         <SwitchPreferenceCompat
-            android:title="Copy Dosages"
+            android:title="Quick Copy"
             android:defaultValue="true"
             android:summary="Copy dosages to clipboard when tapped"
             android:key="@string/pref_copy_dosages" />
