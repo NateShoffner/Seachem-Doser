@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="aboutLibraries_description_name">AboutLibraries Sample</string>
+    <string name="aboutLibraries_description_name">@string/app_name</string>
     <string name="aboutLibraries_description_showIcon">true</string>
-    <string name="aboutLibraries_description_showVersion">true</string>
-    <!-- Just remove those entries if you don't want to use a special button with a text within your about this app view :D -->
-    <string name="aboutLibraries_description_special1_name">Rate</string>
-    <string name="aboutLibraries_description_special2_name">Changelog</string>
 </resources>
