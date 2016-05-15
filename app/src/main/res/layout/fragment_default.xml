@@ -13,47 +13,55 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/icon" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:id="@+id/appname"
-            android:layout_below="@+id/linearLayout"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:id="@+id/version"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version v"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/version"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal" />
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Created by"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/version"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:id="@+id/appname"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Version v"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Created by"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>        </LinearLayout>
+
+
 
         <Button
             android:id="@+id/btnGetStarted"
@@ -72,11 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/about_eula"
-            android:layout_above="@+id/disclaimer"
             android:gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:id="@+id/eula"
-            android:layout_marginTop="10dp" />
+            android:id="@+id/eula" />
 
         <TextView
             android:id="@+id/disclaimer"
@@ -84,6 +89,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_disclaimer"
             android:gravity="center_horizontal"
+            android:layout_gravity="left|right"
             android:layout_marginTop="10dp" />
 
     </LinearLayout>
