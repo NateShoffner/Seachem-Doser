@@ -85,11 +85,10 @@
 
         <TextView
             android:id="@+id/disclaimer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/about_disclaimer"
             android:gravity="center_horizontal"
-            android:layout_gravity="left|right"
             android:layout_marginTop="10dp" />
 
     </LinearLayout>
