@@ -70,6 +70,10 @@ public final class MaterialDialogChangeLog {
         return changeLog.isFirstRun();
     }
 
+    public boolean isFirstRunEver() {
+        return changeLog.isFirstRunEver();
+    }
+
     private MaterialDialog getDialog(boolean full) {
         WebView wv = new WebView(context);
         //wv.setBackgroundColor(0); // transparent

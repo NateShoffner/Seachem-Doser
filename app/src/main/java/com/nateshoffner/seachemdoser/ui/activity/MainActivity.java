@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity
         DoserApplication.getDoserPreferences().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
         final MaterialDialogChangeLog cl = DoserChangelog.getInstance(this);
-        if (cl.isFirstRun()) {
+        if (cl.isFirstRun() && !cl.isFirstRunEver()) {
             final MaterialDialog dialog = cl.getLogDialog();
             dialog.getActionButton(DialogAction.POSITIVE).setOnClickListener(new View.OnClickListener() {
                 @Override
