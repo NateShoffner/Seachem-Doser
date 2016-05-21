@@ -70,7 +70,7 @@
     <string name="welcome">Welcome</string>
     <string name="about">About</string>
     <string name="about_support">About / Support</string>
-    <string name="unit_measurement_dialog_title">Unit Measurement</string>
+    <string name="unit_measurement_dialog_title">Select Unit Measurement</string>
 
     <string name="rate">Rate</string>
     <string name="pinned">Pinned</string>

@@ -360,6 +360,7 @@ public class MainActivity extends BaseActivity
         new MaterialDialog.Builder(this)
                 .title(R.string.unit_measurement_dialog_title)
                 .items(items)
+                .cancelable(false)
                 .itemsCallbackSingleChoice(checkedIndex, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
                     public boolean onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
