@@ -7,16 +7,17 @@ public class SeachemParameter implements Serializable {
     private String mName;
     private String mUnit;
     private double mValue;
+    private double mRecommendedValue;
 
     public SeachemParameter(String name, String unit) {
         mName = name;
         mUnit = unit;
     }
 
-    public SeachemParameter(String name, String unit, double value) {
+    public SeachemParameter(String name, String unit, double recommendedValue) {
         mName = name;
         mUnit = unit;
-        mValue = value;
+        mRecommendedValue = recommendedValue;
     }
 
     public String getName() {
@@ -25,6 +26,10 @@ public class SeachemParameter implements Serializable {
 
     public String getUnit() {
         return mUnit;
+    }
+
+    public double getRecommendedValue() {
+        return mRecommendedValue;
     }
 
     public double getValue() {
