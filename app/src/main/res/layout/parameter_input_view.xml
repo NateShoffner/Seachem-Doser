@@ -20,7 +20,6 @@
         android:inputType="numberDecimal"
         android:maxLength="5"
         android:singleLine="true"
-        android:background="@drawable/rounded_edittext"
         android:gravity="center"
         android:layout_gravity="top"
         android:textSize="@dimen/product_detail_text_size"
