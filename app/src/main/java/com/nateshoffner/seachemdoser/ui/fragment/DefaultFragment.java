@@ -3,6 +3,7 @@ package com.nateshoffner.seachemdoser.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,9 +54,11 @@ public class DefaultFragment extends Fragment {
 
         TextView tvEula = (TextView)mRootView.findViewById(R.id.eula);
         tvEula.setText(Html.fromHtml(getString(R.string.about_eula)));
+        tvEula.setMovementMethod(LinkMovementMethod.getInstance());
 
         TextView tvAuthor = (TextView)mRootView.findViewById(R.id.author);
         tvAuthor.setText(Html.fromHtml(getString(R.string.about_author)));
+        tvAuthor.setMovementMethod(LinkMovementMethod.getInstance());
 
         final ImageView imageView = (ImageView)mRootView.findViewById(R.id.icon);
         imageView.setOnClickListener(new View.OnClickListener() {
