@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/get_started"
                     style="@style/DoserButton"
-                    android:background="@drawable/action_bar_gradient"
+                    android:background="@drawable/button_background_selector"
                     android:layout_gravity="center_horizontal"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:layout_marginTop="15dp"
@@ -99,6 +99,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:textAppearanceSmall"
                     android:text="@string/about_eula"
                     android:gravity="center_horizontal"
                     android:id="@+id/eula" />
@@ -107,6 +108,7 @@
                     android:id="@+id/disclaimer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="?android:textAppearanceSmall"
                     android:text="@string/about_disclaimer"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="10dp" />
