@@ -133,14 +133,9 @@ public class ProductDetailFragment extends Fragment
             DosageResultView view = new DosageResultView(getActivity(), null);
             view.setUnitText(dosage.getUnit());
 
-            if (i == 0) {
-                view.toggleLabel(true);
-                view.setLabelText(getString(R.string.label_dosage_youll_need));
-            }
-
-            if (i < dosages.length - 1) {
-                view.togglePrecursor(true);
-            }
+            view.setLabelText(i > 0 ?
+                    getString(R.string.label_dosage_or) :
+                    getString(R.string.label_dosage_youll_need));
 
             dosageResultViews.add(view);
             mDosagesContainer.addView(view);

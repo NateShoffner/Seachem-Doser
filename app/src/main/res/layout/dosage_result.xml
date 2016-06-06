@@ -37,14 +37,4 @@
             android:layout_marginLeft="10dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvPrecursor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/product_parameter_unit_text_size"
-        android:text="@string/label_dosage_or"
-        android:visibility="gone"
-        android:layout_marginLeft="@dimen/product_parameter_label_width"
-        android:layout_marginTop="5dp" />
-
 </LinearLayout>

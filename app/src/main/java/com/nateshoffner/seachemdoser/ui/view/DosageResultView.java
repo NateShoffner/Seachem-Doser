@@ -14,14 +14,12 @@ import android.widget.Toast;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.utils.ClipboardUtils;
-import com.nateshoffner.seachemdoser.utils.DoserPreferences;
 
 public class DosageResultView extends LinearLayout {
 
     private EditText etValue;
     private TextView tvUnit;
     private TextView tvLabel;
-    private TextView tvPrecursor;
 
     public DosageResultView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -32,7 +30,6 @@ public class DosageResultView extends LinearLayout {
         etValue = (EditText) findViewById(R.id.etValue);
         tvUnit = (TextView) findViewById(R.id.tvUnit);
         tvLabel = (TextView) findViewById(R.id.tvLabel);
-        tvPrecursor = (TextView) findViewById(R.id.tvPrecursor);
 
         etValue.setKeyListener(new NumberKeyListener() {
             public int getInputType() {
@@ -67,13 +64,5 @@ public class DosageResultView extends LinearLayout {
 
     public void setUnitText(String text) {
         tvUnit.setText(text);
-    }
-
-    public void togglePrecursor(boolean visible) {
-        tvPrecursor.setVisibility(visible ? View.VISIBLE : View.GONE);
-    }
-
-    public void toggleLabel(boolean visible) {
-        tvLabel.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 }
