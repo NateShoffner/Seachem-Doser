@@ -129,10 +129,11 @@ public class AboutActivity extends BaseActivity {
         };
 
         final LibsBuilder libsBuilder = new LibsBuilder()
-                .withAboutDescription(String.format("%s<br><br>%s<br><br>%s",
+                .withAboutDescription(String.format("%s<br><br>%s<br><br>%s<br><br>%s",
                         getString(R.string.about_author),
                         getString(R.string.about_eula),
-                        getString(R.string.about_disclaimer)))
+                        getString(R.string.about_disclaimer),
+                        getString(R.string.about_libraries)))
                 .withAboutAppName(getString(R.string.app_name))
                 .withAutoDetect(true)
                 .withLibraries("liberation_fonts")
