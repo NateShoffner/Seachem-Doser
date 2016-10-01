@@ -10,7 +10,7 @@ public class PearlBeach extends Gravel {
     public PearlBeach() {
         super(DoserApplication.getContext().getString(R.string.product_pearl_beach));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_pearl_beach));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_pearl_beach));
     }
 
     @Override

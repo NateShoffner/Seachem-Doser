@@ -14,7 +14,7 @@ public class ReefIodide extends SeachemProduct {
     public ReefIodide() {
         super(DoserApplication.getContext().getString(R.string.product_reef_iodide));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_iodide));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_reef_iodide));
 
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_iodide));
 

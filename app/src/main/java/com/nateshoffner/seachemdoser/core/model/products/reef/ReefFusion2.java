@@ -14,7 +14,7 @@ public class ReefFusion2 extends SeachemProduct {
     public ReefFusion2() {
         super(DoserApplication.getContext().getString(R.string.product_reef_fusion_2));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_fusion_2));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_reef_fusion_2));
 
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_fusion_2));
 

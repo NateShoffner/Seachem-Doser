@@ -14,7 +14,7 @@ public class ReefStrontium extends SeachemProduct {
     public ReefStrontium() {
         super(DoserApplication.getContext().getString(R.string.product_reef_strontium));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_strontium));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_reef_strontium));
 
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_strontium));
 

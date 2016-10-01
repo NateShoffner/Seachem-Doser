@@ -6,14 +6,16 @@ import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.utils.ClipboardUtils;
+
+import java.text.DecimalFormat;
 
 public class DosageResultView extends LinearLayout {
 
@@ -21,15 +23,28 @@ public class DosageResultView extends LinearLayout {
     private TextView tvUnit;
     private TextView tvLabel;
 
+    private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
     public DosageResultView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        inflater.inflate(R.layout.dosage_result, this, true);
+        inflater.inflate(R.layout.dosage_result_view, this, true);
 
         etValue = (EditText) findViewById(R.id.etValue);
         tvUnit = (TextView) findViewById(R.id.tvUnit);
         tvLabel = (TextView) findViewById(R.id.tvLabel);
+
+        Button btnCopy = (Button) findViewById(R.id.btnCopy);
+        btnCopy.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean result = ClipboardUtils.copyToClipboard(getContext(), String.format("%s %s",
+                        etValue.getText().toString(), tvUnit.getText().toString()));
+
+                if (result)
+                    Toast.makeText(getContext(), "Dosage copied to clipboard", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         etValue.setKeyListener(new NumberKeyListener() {
             public int getInputType() {
@@ -40,26 +55,15 @@ public class DosageResultView extends LinearLayout {
                 return new char[]{};
             }
         });
-        etValue.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (DoserApplication.getDoserPreferences().getCopyDosages()) {
-                    boolean result = ClipboardUtils.copyToClipboard(getContext(), String.format("%s %s",
-                            etValue.getText().toString(), tvUnit.getText().toString()));
-
-                    if (result)
-                        Toast.makeText(getContext(), "Dosage copied to clipboard", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     public void setLabelText(String text) {
         tvLabel.setText(text);
     }
 
-    public void setValue(String value) {
-        etValue.setText(value);
+    public void setValue(double value) {
+        String strValue = value % 1 == 0 ? Double.toString(value) : decimalFormat.format(value);
+        etValue.setText(strValue);
     }
 
     public void setUnitText(String text) {

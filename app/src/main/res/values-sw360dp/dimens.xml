@@ -1,10 +1,6 @@
 <resources>
-    <dimen name="product_type_tab_text_size">18sp</dimen>
-    <dimen name="product_list_text_size">18sp</dimen>
-    <dimen name="product_detail_text_size">14sp</dimen>
+    <dimen name="product_detail_text_size">15sp</dimen>
     <dimen name="product_parameter_unit_text_size">12sp</dimen>
-    <dimen name="product_parameter_label_width">135dp</dimen>
-    <dimen name="product_dosage_label_width">55dp</dimen>
-    <dimen name="product_detail_input_width">80dp</dimen>
-    <dimen name="product_detail_input_height">35dp</dimen>
+    <dimen name="product_unit_label_min_width">80dp</dimen>
+    <dimen name="product_name_text_size">24sp</dimen>
 </resources>

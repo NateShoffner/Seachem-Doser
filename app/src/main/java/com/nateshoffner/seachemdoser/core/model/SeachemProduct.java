@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class SeachemProduct implements Serializable {
 
     private String mName;
-    private List<String> mComments = new ArrayList<>();
+    private List<String> mNotes = new ArrayList<>();
     private Dictionary<UnitMeasurement, SeachemParameter[]> mParameters = new Hashtable<>();
     private List<String> mWarnings = new ArrayList<>();
     private boolean mDiscontinued;
@@ -30,12 +30,12 @@ public abstract class SeachemProduct implements Serializable {
         return mDiscontinued;
     }
 
-    public void addComment(String comment) {
-        mComments.add(comment);
+    public void addNote(String comment) {
+        mNotes.add(comment);
     }
 
-    public String[] getComments() {
-        return mComments.toArray(new String[mComments.size()]);
+    public String[] getNotes() {
+        return mNotes.toArray(new String[mNotes.size()]);
     }
 
     public void addWarning(String warning) {

@@ -13,7 +13,7 @@ public class ReefAdvantageCalcium extends SeachemProduct {
     public ReefAdvantageCalcium() {
         super(DoserApplication.getContext().getString(R.string.product_reef_advantage_calcium));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_calcium));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_reef_advantage_calcium));
 
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_advantage_calcium_1));
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_advantage_calcium_2));

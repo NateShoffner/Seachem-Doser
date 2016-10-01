@@ -16,7 +16,7 @@ public class LiquidAlkalineBuffer extends SeachemProduct {
 
         setDiscontinued(true);
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_liquid_alkaline_buffer));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_liquid_alkaline_buffer));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

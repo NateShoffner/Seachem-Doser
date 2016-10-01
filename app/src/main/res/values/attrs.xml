@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Attributes must be lowercase as we want to use them for drawables -->
+    <attr name="dosage_input_edittext_drawable" format="reference" />
+    <attr name="dosage_output_edittext_drawable" format="reference" />
+</resources>

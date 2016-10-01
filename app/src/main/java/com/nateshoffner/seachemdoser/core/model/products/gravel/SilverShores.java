@@ -12,7 +12,7 @@ public class SilverShores extends Gravel {
 
         setDiscontinued(true);
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_silver_shores));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_silver_shores));
     }
 
     @Override

@@ -13,7 +13,7 @@ public class ReefBuilder extends SeachemProduct {
     public ReefBuilder() {
         super(DoserApplication.getContext().getString(R.string.product_reef_builder));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_builder));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_reef_builder));
 
 
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_builder));

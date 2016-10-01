@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="6"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textSize="@dimen/product_detail_text_size"
+            android:imeOptions="flagNoExtractUi"
+            android:padding="5dp"
+            android:background="?dosage_output_edittext_drawable"
+            android:layout_centerVertical="true"
+            />
+
+        <com.mikepenz.iconics.view.IconicsButton
+            android:text="{faw-clipboard}"
+            android:id="@+id/btnCopy"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/product_parameter_unit_text_size"
+            android:background="@drawable/number_picker_button_selector_right"
+            android:enabled="true"
+            android:minWidth="20dp"
+            android:layout_toRightOf="@id/etValue"
+            android:layout_alignBottom="@id/etValue"
+            android:layout_alignTop="@id/etValue"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tvUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/product_unit_label_min_width"
+            android:textSize="@dimen/product_parameter_unit_text_size"
+            android:text="Unit"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/btnCopy" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/product_detail_text_size"
+        android:text="@string/label_dosage_or"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

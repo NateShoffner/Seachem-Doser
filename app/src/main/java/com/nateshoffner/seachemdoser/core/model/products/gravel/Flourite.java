@@ -10,7 +10,7 @@ public class Flourite extends Gravel {
     public Flourite() {
         super(DoserApplication.getContext().getString(R.string.product_flourite));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_flourite));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_flourite));
     }
 
     @Override

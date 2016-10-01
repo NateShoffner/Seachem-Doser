@@ -13,7 +13,7 @@ public class Equilibrium extends SeachemProduct {
     public Equilibrium() {
         super(DoserApplication.getContext().getString(R.string.product_equilibrium));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_equilibrium));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_equilibrium));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

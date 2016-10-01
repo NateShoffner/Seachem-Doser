@@ -405,8 +405,7 @@ public class MainActivity extends BaseActivity
         arguments.putSerializable(ProductDetailFragment.EXTRA_PRODUCT, product);
         ProductDetailFragment fragment = new ProductDetailFragment();
         fragment.setArguments(arguments);
-        setCurrentFragment(getString(R.string.app_name), product.getName(), fragment);
-
+        setCurrentFragment(getString(R.string.app_name), null, fragment);
         DoserApplication.getDoserPreferences().setLastProduct(product);
     }
 

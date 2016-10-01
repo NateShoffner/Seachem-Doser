@@ -19,8 +19,10 @@
 
         <!-- custom styles -->
         <item name="buttonStyle">@style/DoserButton</item>
-        <item name="editTextStyle">@style/DoserEditText</item>
         <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+
+        <item name="dosage_input_edittext_drawable">@drawable/dosage_input_light</item>
+        <item name="dosage_output_edittext_drawable">@drawable/dosage_output_light</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
@@ -43,6 +45,13 @@
         <item name="about_libraries_special_button_openSource">@color/about_libraries_special_button_openSource</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource</item>
+
+       <!-- MaterialDialogs specific values -->
+        <item name="md_dark_theme">false</item>
+        <item name="md_background_color">@color/background</item>
+        <item name="md_title_color">@color/text_color</item>
+        <item name="md_divider_color">@color/accent</item>
+        <item name="md_btn_ripple_color">@color/accent</item>
     </style>
 
     <!-- Dark Theme -->
@@ -63,8 +72,10 @@
 
         <!-- custom styles -->
         <item name="buttonStyle">@style/DoserButton</item>
-        <item name="editTextStyle">@style/DoserEditText.Dark</item>
         <item name="actionButtonStyle">@style/AppTheme.Widget.ActionButton</item>
+
+        <item name="dosage_input_edittext_drawable">@drawable/dosage_input_dark</item>
+        <item name="dosage_output_edittext_drawable">@drawable/dosage_output_dark</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
@@ -88,6 +99,13 @@
         <item name="about_libraries_special_button_openSource">@color/about_libraries_special_button_openSource_dark</item>
         <item name="about_libraries_dividerDark_openSource">@color/about_libraries_dividerDark_openSource_dark</item>
         <item name="about_libraries_dividerLight_openSource">@color/about_libraries_dividerLight_openSource_dark</item>
+
+       <!-- MaterialDialogs specific values -->
+        <item name="md_dark_theme">true</item>
+        <item name="md_background_color">@color/background_inverse</item>
+        <item name="md_title_color">@color/text_color</item>
+        <item name="md_divider_color">@color/accent</item>
+        <item name="md_btn_ripple_color">@color/accent</item>
     </style>
 
     <style name="ListSeparatorTextView">

@@ -10,7 +10,7 @@ public class Onyx extends Gravel {
     public Onyx() {
         super(DoserApplication.getContext().getString(R.string.product_onyx));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_onyx));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_onyx));
     }
 
     @Override

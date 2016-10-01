@@ -12,7 +12,7 @@ public class KonaCoast extends Gravel {
 
         setDiscontinued(true);
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_kona_coast));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_kona_coast));
     }
 
     @Override

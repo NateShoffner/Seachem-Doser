@@ -14,7 +14,7 @@ public class ReefComplete extends SeachemProduct {
     public ReefComplete() {
         super(DoserApplication.getContext().getString(R.string.product_reef_complete));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_reef_complete));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_reef_complete));
 
 
         addWarning(DoserApplication.getContext().getString(R.string.product_warning_reef_complete));

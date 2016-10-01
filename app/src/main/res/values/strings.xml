@@ -38,7 +38,6 @@
     <string name="pref_prompted_for_rating">prompted_for_rating</string>
     <string name="pref_pinned_products">pinned_products</string>
     <string name="pref_use_recommended_param_values">use_recommended_param_values</string>
-    <string name="pref_copy_dosages">copy_dosages</string>
 
     <!-- units -->
     <string name="unit_us_gallons">US Gallons</string>
@@ -62,7 +61,7 @@
     <string name="changelog_show_full">More…</string>
     <string name="changelog_version_format">Version <xliff:g id="version_name">%s</xliff:g></string>
 
-    <string name="label_dosage_youll_need">You\'ll need:</string>
+    <string name="label_requirements">What You\'ll Need:</string>
     <string name="label_dosage_or">or</string>
     <string name="most_recent">Most Recent</string>
     <string name="close">Close</string>
@@ -75,15 +74,16 @@
 
     <string name="rate">Rate</string>
     <string name="pinned">Pinned</string>
-    <string name="has_been_pinned">has been pinned</string>
-    <string name="has_been_unpinned">has been unpinned</string>
+    <string name="product_has_been_pinned">Product has been pinned</string>
+    <string name="product_has_been_unpinned">Product has been unpinned</string>
     <string name="pin">Pin</string>
     <string name="unpin">Unpin</string>
-    <string name="info">Info</string>
+    <string name="notes">Notes</string>
     <string name="warnings">Warnings</string>
     <string name="action_changelog">Changelog</string>
     <string name="action_rate">Rate</string>
     <string name="title_activity_preferences">Settings</string>
     <string name="title_activity_about">About</string>
+    <string name="back_to_dosages">Back to Dosages</string>
 
 </resources>

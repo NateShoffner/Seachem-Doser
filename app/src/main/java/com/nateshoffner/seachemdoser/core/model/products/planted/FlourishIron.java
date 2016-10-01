@@ -14,7 +14,7 @@ public class FlourishIron extends SeachemProduct {
     public FlourishIron() {
         super(DoserApplication.getContext().getString(R.string.product_flourish_iron));
 
-        addComment(DoserApplication.getContext().getString(R.string.product_comment_flourish_iron));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_flourish_iron));
 
         setParameters(UnitMeasurement.ImperialUS, new SeachemParameter[]{
                 new SeachemParameter(DoserApplication.getContext().getString(R.string.water_volume),

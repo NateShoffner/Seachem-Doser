@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="DoserEditText" parent="Base.Widget.AppCompat.EditText">
+    <style name="DosageInput" parent="Base.Widget.AppCompat.EditText">
         <item name="android:textColor">@color/text_color</item>
-        <item name="android:background">@drawable/edittext_selector_light</item>
+        <item name="android:background">@drawable/dosage_input_light</item>
     </style>
 
-    <style name="DoserEditText.Dark" parent="Base.Widget.AppCompat.EditText">
+    <style name="DosageInput.Dark" parent="Base.Widget.AppCompat.EditText">
         <item name="android:textColor">@color/text_color</item>
-        <item name="android:background">@drawable/edittext_selector_dark</item>
+        <item name="android:background">@drawable/dosage_input_dark</item>
+    </style>
+
+    <style name="DosageOutput" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:background">@drawable/dosage_output_light</item>
+    </style>
+
+    <style name="DosageOutput.Dark" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:background">@drawable/dosage_output_dark</item>
     </style>
 
     <style name="DoserButton" parent="Base.Widget.AppCompat.Button.Colored">
@@ -38,5 +48,7 @@
     <style name="AppTheme.Widget.ActionButton" parent="@style/Widget.AppCompat.ActionButton">
         <item name="textAllCaps">false</item>
     </style>
+
+
 
 </resources>
