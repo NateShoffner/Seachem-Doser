@@ -1,11 +1,10 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -18,6 +17,8 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.aboutlibraries.LibsConfiguration;
 import com.mikepenz.aboutlibraries.entity.Library;
 import com.mikepenz.aboutlibraries.ui.LibsSupportFragment;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
@@ -43,8 +44,17 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.about_menu, menu);
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.about_menu, menu);
+
+        MenuItem rateItem = menu.findItem(R.id.action_rate);
+        rateItem.setIcon(new IconicsDrawable(this,
+                GoogleMaterial.Icon.gmd_rate_review).actionBar().color(Color.WHITE));
+
+        MenuItem changelogItem = menu.findItem(R.id.action_changelog);
+        changelogItem.setIcon(new IconicsDrawable(this,
+                GoogleMaterial.Icon.gmd_history).actionBar().color(Color.WHITE));
+
         return true;
     }
 
