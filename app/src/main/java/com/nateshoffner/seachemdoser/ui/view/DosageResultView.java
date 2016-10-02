@@ -23,6 +23,8 @@ public class DosageResultView extends LinearLayout {
     private TextView tvUnit;
     private TextView tvLabel;
 
+    private String mUnitQualifier;
+
     private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
     public DosageResultView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -57,6 +59,28 @@ public class DosageResultView extends LinearLayout {
         });
     }
 
+    public void setUnitQualifier(String qualifier) {
+        mUnitQualifier = qualifier;
+    }
+
+    private String resolveUnitQualifier(boolean plural) {
+        int firstBracket = mUnitQualifier.indexOf('[');
+        String singular = mUnitQualifier.substring(0, firstBracket >= 0 ?
+                firstBracket : mUnitQualifier.length());
+
+        if (!plural)
+            return singular;
+        else {
+            String pluralSuffix = "";
+
+            if (firstBracket >= 0) {
+                pluralSuffix = mUnitQualifier.substring(firstBracket + 1,
+                        mUnitQualifier.indexOf(']', firstBracket));
+            }
+            return singular + pluralSuffix;
+        }
+    }
+
     public void setLabelText(String text) {
         tvLabel.setText(text);
     }
@@ -64,6 +88,7 @@ public class DosageResultView extends LinearLayout {
     public void setValue(double value) {
         String strValue = value % 1 == 0 ? Double.toString(value) : decimalFormat.format(value);
         etValue.setText(strValue);
+        setUnitText(resolveUnitQualifier(value % 1 != 0));
     }
 
     public void setUnitText(String text) {

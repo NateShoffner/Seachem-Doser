@@ -1,5 +1,6 @@
 package com.nateshoffner.seachemdoser.ui.fragment;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.materialdrawer.util.KeyboardUtil;
 import com.nateshoffner.seachemdoser.DoserApplication;
@@ -34,14 +36,14 @@ import com.nateshoffner.seachemdoser.ui.view.DosageInputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDetailFragment extends Fragment
+public class ProductFragment extends Fragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String EXTRA_PRODUCT = "PRODUCT";
 
     private static final String EXTRA_DOSAGES_CALCULATED = "DOSAGES_CALCULATED";
 
-    private static final String TAG = "ProductDetailFragment";
+    private static final String TAG = "ProductFragment";
 
     private final List<DosageInputView> dosageInputViews = new ArrayList<>();
 
@@ -55,7 +57,7 @@ public class ProductDetailFragment extends Fragment
 
     private boolean mDosagesCalculated;
 
-    public ProductDetailFragment() {
+    public ProductFragment() {
     }
 
     @Override
@@ -94,7 +96,8 @@ public class ProductDetailFragment extends Fragment
         for (SeachemParameter param : mProduct.getParameters().get(unitMeasurement)) {
             DosageInputView view = new DosageInputView(getActivity(), null);
             view.setLabelText(param.getName() + ":");
-            view.setUnitText(param.getUnit());
+            view.setUnitQualifier(param.getUnit());
+            view.setUnitText();
             dosageInputViews.add(view);
 
 
@@ -126,7 +129,7 @@ public class ProductDetailFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View mRootView = inflater.inflate(R.layout.fragment_product_detail, container, false);
+        View mRootView = inflater.inflate(R.layout.fragment_product, container, false);
         mRootScroll = (ScrollView) mRootView.findViewById(R.id.root_scroll);
         mParamsContainer = (LinearLayout) mRootView.findViewById(R.id.params_container);
         btnCalc = (Button) mRootView.findViewById(R.id.btnCalculate);
@@ -202,16 +205,29 @@ public class ProductDetailFragment extends Fragment
             mDosagesCalculated = true;
         }
 
+        // hide keyboard after calculation
+        KeyboardUtil.hideKeyboard(getActivity());
+
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
+        builder.cancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                mDosagesCalculated = false;
+            }
+        });
+        builder.dismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mDosagesCalculated = false;
+            }
+        });
+
         MaterialDialog dosageDialog = new DosageDialog(builder, dosages,
                 mProduct.getWarnings(),
                 mProduct.getNotes())
                 .getDialog(getContext());
 
         dosageDialog.show();
-
-        // hide keyboard after calculation
-        KeyboardUtil.hideKeyboard(getActivity());
 
         // scroll to top of layout
         mRootScroll.fullScroll(ScrollView.FOCUS_UP);
@@ -221,13 +237,10 @@ public class ProductDetailFragment extends Fragment
 
     private void updatePinnedButton() {
         boolean isPinned = DoserApplication.getDoserPreferences().isProductPinned(mProduct);
-        IconicsDrawable icon = new IconicsDrawable(getContext(),
-                FontAwesome.Icon.faw_thumb_tack).actionBar();
-
-        icon.color(isPinned ? Color.WHITE : Color.GRAY);
-
         btnPin.setTitle(isPinned ? R.string.unpin : R.string.pin);
-        btnPin.setIcon(icon);
+        btnPin.setIcon(new IconicsDrawable(getContext(),
+                FontAwesome.Icon.faw_thumb_tack).actionBar().color(isPinned ?
+                Color.WHITE : Color.GRAY));
     }
 
     @Override
@@ -254,9 +267,14 @@ public class ProductDetailFragment extends Fragment
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.detail_fragment_menu, menu);
+        inflater.inflate(R.menu.product_menu, menu);
         btnPin = menu.findItem(R.id.action_pin);
         updatePinnedButton();
+
+        MenuItem btnSettings = menu.findItem(R.id.action_settings);
+        btnSettings.setIcon(new IconicsDrawable(getContext(),
+                GoogleMaterial.Icon.gmd_settings).actionBar().color(Color.WHITE));
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 

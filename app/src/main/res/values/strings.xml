@@ -40,18 +40,18 @@
     <string name="pref_use_recommended_param_values">use_recommended_param_values</string>
 
     <!-- units -->
-    <string name="unit_us_gallons">US Gallons</string>
-    <string name="unit_litres">Litres</string>
-    <string name="unit_grams">Grams</string>
-    <string name="unit_tspns">Tspns</string>
-    <string name="unit_caps">Caps</string>
-    <string name="unit_tbsp">Tbsp</string>
-    <string name="unit_ml">mL</string>
+    <string name="unit_us_gallons">US Gallon[s]</string>
+    <string name="unit_litres">Litre[s]</string>
+    <string name="unit_grams">Gram[s]</string>
+    <string name="unit_tspns">Teaspoon[s]</string>
+    <string name="unit_caps">Cap[s]</string>
+    <string name="unit_tbsp">Tablespoon[s]</string>
+    <string name="unit_ml">Milliliter[s]</string>
     <string name="meqL">meq/L</string>
-    <string name="unit_bags">Bags (7 kg)</string>
-    <string name="unit_bags_small">Small Bags (3.5 kg)</string>
-    <string name="unit_inches">in</string>
-    <string name="unit_centimeters">cm</string>
+    <string name="unit_bags">Bag[s] (7 kg)</string>
+    <string name="unit_bags_small">Small Bag[s] (3.5 kg)</string>
+    <string name="unit_inches">Inch[es]</string>
+    <string name="unit_centimeters">Centimeter[s]</string>
     <string name="mgL_ppm">mg/L (ppm)</string>
 
     <!-- changelog -->

@@ -99,7 +99,7 @@ public class DosageDialog extends MaterialDialog {
         setViewingNotes(false);
         setViewingWarnings(false);
 
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
+        MaterialDialog.Builder builder = super.getBuilder()
                 .title(R.string.label_requirements)
                 .customView(R.layout.dosage_dialog, true)
                 .positiveText(R.string.changelog_ok_button)
@@ -134,7 +134,7 @@ public class DosageDialog extends MaterialDialog {
         for (int i = 0, dosagesLength = mDosages.length; i < dosagesLength; i++) {
             SeachemDosage dosage = mDosages[i];
             DosageResultView view = new DosageResultView(context, null);
-            view.setUnitText(dosage.getUnit() );
+            view.setUnitQualifier(dosage.getUnit());
             view.setValue(dosage.getAmount());
             view.setLabelText(i < dosagesLength - 1 ? context.getString(R.string.label_dosage_or) : "");
 
@@ -167,6 +167,14 @@ public class DosageDialog extends MaterialDialog {
                         }
                     });
                 }
+
+                btnOk.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 

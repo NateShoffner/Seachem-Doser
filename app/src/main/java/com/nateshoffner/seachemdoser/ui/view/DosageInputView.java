@@ -21,6 +21,8 @@ public class DosageInputView extends LinearLayout {
     private EditText etValue;
     private TextView tvUnit;
 
+    private String mUnitQualifier;
+
     private boolean autoIncrement = false;
     private boolean autoDecrement = false;
 
@@ -126,6 +128,24 @@ public class DosageInputView extends LinearLayout {
         });
     }
 
+    public void setUnitQualifier(String qualifier) {
+        mUnitQualifier = qualifier;
+    }
+
+    private String resolveUnitQualifier() {
+        int firstBracket = mUnitQualifier.indexOf('[');
+        String singular = mUnitQualifier.substring(0, firstBracket >= 0 ?
+                firstBracket : mUnitQualifier.length());
+
+        String pluralSuffix = "";
+
+        if (firstBracket >= 0) {
+            pluralSuffix = mUnitQualifier.substring(firstBracket + 1,
+                    mUnitQualifier.indexOf(']', firstBracket));
+        }
+        return singular + pluralSuffix;
+    }
+
     public String getValue() {
         return ((EditText) findViewById(R.id.etValue)).getText().toString();
     }
@@ -143,8 +163,8 @@ public class DosageInputView extends LinearLayout {
         tvLabel.setText(value);
     }
 
-    public void setUnitText(String value) {
-        tvUnit.setText(value);
+    public void setUnitText() {
+        tvUnit.setText(String.format("(%s)", resolveUnitQualifier()));
     }
 
     private void incrementValue() {
