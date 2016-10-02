@@ -32,8 +32,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
         List<CharSequence> entries = new ArrayList<>();
         entries.add(getActivity().getString(R.string.most_recent));
+        entries.add(getActivity().getString(R.string.none));
         List<CharSequence> entryValues = new ArrayList<>();
         entryValues.add(getActivity().getString(R.string.most_recent));
+        entryValues.add(getActivity().getString(R.string.none));
 
         List<SeachemProduct> products = SeachemManager.GetProducts();
         Collections.sort(products, new Comparator<SeachemProduct>() {

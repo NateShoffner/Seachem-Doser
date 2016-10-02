@@ -63,6 +63,7 @@
 
     <string name="label_requirements">What You\'ll Need:</string>
     <string name="label_dosage_or">or</string>
+    <string name="none">None</string>
     <string name="most_recent">Most Recent</string>
     <string name="close">Close</string>
     <string name="open">Open</string>
