@@ -88,7 +88,7 @@ public class DosageResultView extends LinearLayout {
     public void setValue(double value) {
         String strValue = value % 1 == 0 ? Double.toString(value) : decimalFormat.format(value);
         etValue.setText(strValue);
-        setUnitText(resolveUnitQualifier(value % 1 != 0));
+        setUnitText(resolveUnitQualifier(value != 1));
     }
 
     public void setUnitText(String text) {
