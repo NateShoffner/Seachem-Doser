@@ -2,18 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".ui.activity.AboutActivity">
 
     <item
         android:id="@+id/action_rate"
         android:orderInCategory="0"
-        app:showAsAction="never|collapseActionView"
+        app:showAsAction="ifRoom|withText|collapseActionView"
         android:title="@string/action_rate" />
 
     <item
         android:id="@+id/action_changelog"
         android:orderInCategory="1"
-        app:showAsAction="never|collapseActionView"
+        app:showAsAction="ifRoom|withText|collapseActionView"
         android:title="@string/action_changelog" />
-
 </menu>
