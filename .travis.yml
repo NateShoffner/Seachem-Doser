@@ -11,3 +11,7 @@ android:
     - extra-android-m2repository
     - build-tools-24.0.1
     - android-23
+	
+script:
+  - jdk_switcher use oraclejdk8
+  - ./gradlew assemble
