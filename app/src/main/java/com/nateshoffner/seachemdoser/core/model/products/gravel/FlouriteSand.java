@@ -10,7 +10,7 @@ public class FlouriteSand extends Gravel {
     public FlouriteSand() {
         super(DoserApplication.getContext().getString(R.string.product_flourite_sand));
 
-        addNote(DoserApplication.getContext().getString(R.string.product_flourite_sand));
+        addNote(DoserApplication.getContext().getString(R.string.product_comment_flourite_sand));
     }
 
     @Override
