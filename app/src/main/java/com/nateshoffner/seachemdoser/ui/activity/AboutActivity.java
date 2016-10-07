@@ -61,6 +61,9 @@ public class AboutActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
             case R.id.action_changelog:
                 MaterialDialogChangeLog cl = DoserChangelog.getInstance(AboutActivity.this);
                 cl.getFullLogDialog().show();
