@@ -143,7 +143,7 @@ public class MainActivity extends BaseActivity
                 .withHeaderBackground(R.drawable.action_bar_gradient)
                 .addProfiles(new ProfileDrawerItem()
                         .withName(getString(R.string.app_name))
-                        .withIcon(R.mipmap.ic_launcher)
+                        .withIcon(R.drawable.ic_launcher)
                         .withEmail(String.format("v%s", getString(R.string.version_name))))
                 .withSelectionListEnabledForSingleProfile(false)
                 .withProfileImagesClickable(false)
