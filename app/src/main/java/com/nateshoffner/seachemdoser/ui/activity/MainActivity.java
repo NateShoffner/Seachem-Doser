@@ -166,8 +166,12 @@ public class MainActivity extends BaseActivity
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
                             startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
+                            if (mSelectedProductItem != null)
+                                mDrawer.setSelection(mSelectedProductItem);
                         } else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
                             startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                            if (mSelectedProductItem != null)
+                                mDrawer.setSelection(mSelectedProductItem);
                         } else {
                             String title = ((Nameable) drawerItem).getName().getText();
                             SeachemProduct product = SeachemManager.getProductByName(title);
@@ -264,13 +268,15 @@ public class MainActivity extends BaseActivity
                 .withName(R.string.about_support)
                 .withIdentifier(SUPPORT_ITEM_IDENTIFIER)
                 .withIcon(GoogleMaterial.Icon.gmd_info_outline)
-                .withIconColorRes(R.color.product_list_text_color);
+                .withIconColorRes(R.color.product_list_text_color)
+                .withSelectable(false);
         mDrawer.addStickyFooterItem(supportItem);
         PrimaryDrawerItem settingsItem = new PrimaryDrawerItem()
                 .withName(R.string.action_settings)
                 .withIdentifier(SETTINGS_ITEM_IDENTIFIER)
                 .withIcon(GoogleMaterial.Icon.gmd_settings)
-                .withIconColorRes(R.color.product_list_text_color);
+                .withIconColorRes(R.color.product_list_text_color)
+                .withSelectable(false);
         mDrawer.addStickyFooterItem(settingsItem);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
