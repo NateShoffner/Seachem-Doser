@@ -471,7 +471,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState = mDrawer.saveInstanceState(outState);
-        if (mProductFragment != null) {
+        if (mProductFragment != null && mProductFragment.isAdded()) {
             getSupportFragmentManager().putFragment(outState, EXTRA_PRODUCT_FRAGMENT, mProductFragment);
         }
         outState.putSerializable(EXTRA_PRODUCT, mProduct);
