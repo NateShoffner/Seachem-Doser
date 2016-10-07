@@ -34,7 +34,7 @@ import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.dialog.MaterialDialogChangeLog;
 import com.nateshoffner.seachemdoser.ui.fragment.DefaultFragment;
-import com.nateshoffner.seachemdoser.ui.fragment.ProductDetailFragment;
+import com.nateshoffner.seachemdoser.ui.fragment.ProductFragment;
 import com.nateshoffner.seachemdoser.utils.PlayStoreUtils;
 import com.nateshoffner.seachemdoser.utils.UnitLocale;
 
@@ -54,12 +54,18 @@ public class MainActivity extends BaseActivity
     private final static long SUPPORT_ITEM_IDENTIFIER = 998;
     private final static long SETTINGS_ITEM_IDENTIFIER = 999;
 
+    private final static String EXTRA_PRODUCT = "PRODUCT";
+    private final static String EXTRA_PRODUCT_FRAGMENT = "PRODUCT_FRAGMENT";
+
     private ExpandableDrawerItem mPinnedItem;
 
     private long mIdentifierIncrementor;
 
     // manually track selected item between item expand/collapse
     private IDrawerItem mSelectedProductItem;
+
+    private SeachemProduct mProduct;
+    private ProductFragment mProductFragment;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -71,49 +77,56 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(mToolbar);
 
         initializeDrawer(savedInstanceState);
-
         populatePinnedProducts();
 
-        showDefaultProduct();
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(EXTRA_PRODUCT))
+                mProduct = (SeachemProduct)savedInstanceState.getSerializable(EXTRA_PRODUCT);
+            if (savedInstanceState.containsKey(EXTRA_PRODUCT_FRAGMENT))
+                mProductFragment = (ProductFragment)getSupportFragmentManager().
+                        getFragment(savedInstanceState, EXTRA_PRODUCT_FRAGMENT);
+
+            if (mProduct != null && mProductFragment != null)
+                showProduct(mProduct, mProductFragment);
+        } else {
+            showDefaultProduct();
+
+            final MaterialDialogChangeLog cl = DoserChangelog.getInstance(this);
+            if (cl.isFirstRun()) {
+                final MaterialDialog dialog = cl.getLogDialog();
+                dialog.getActionButton(DialogAction.POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        showInitialPrompts();
+                    }
+                });
+                dialog.show();
+            }
+
+            else {
+                showInitialPrompts();
+            }
+        }
 
         DoserApplication.getDoserPreferences().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-
-        final MaterialDialogChangeLog cl = DoserChangelog.getInstance(this);
-        if (cl.isFirstRun() && !cl.isFirstRunEver()) {
-            final MaterialDialog dialog = cl.getLogDialog();
-            dialog.getActionButton(DialogAction.POSITIVE).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                    showInitialPrompts();
-                }
-            });
-            dialog.show();
-        }
-
-        else {
-            showInitialPrompts();
-        }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.action_settings:
                 startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private void showInitialPrompts() {
         if (!DoserApplication.getDoserPreferences().isUnitMeasurementSet()) {
             showUnitMeasurementPrompt();
         }
-
-        showDefaultProduct();
 
         // prompt for rating after 5 calculations
         if (!DoserApplication.getDoserPreferences().getHasBeenPromptedForRating() &&
@@ -161,7 +174,7 @@ public class MainActivity extends BaseActivity
 
                             if (product != null) {
                                 mSelectedProductItem = drawerItem;
-                                showProduct(product);
+                                showProduct(product, null);
                             }
                         }
 
@@ -372,10 +385,9 @@ public class MainActivity extends BaseActivity
                 .show();
     }
 
-    private void setCurrentFragment(String title, String subtitle, Fragment fragment) {
+    private void setCurrentFragment(String title, Fragment fragment) {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(title);
-        actionBar.setSubtitle(subtitle);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content, fragment)
@@ -400,12 +412,21 @@ public class MainActivity extends BaseActivity
         return null;
     }
 
-    public void showProduct(SeachemProduct product) {
+    public void showProduct(SeachemProduct product, ProductFragment existingFragment) {
         Bundle arguments = new Bundle();
-        arguments.putSerializable(ProductDetailFragment.EXTRA_PRODUCT, product);
-        ProductDetailFragment fragment = new ProductDetailFragment();
-        fragment.setArguments(arguments);
-        setCurrentFragment(getString(R.string.app_name), null, fragment);
+        arguments.putSerializable(ProductFragment.EXTRA_PRODUCT, product);
+
+        ProductFragment fragment;
+        if (existingFragment != null)
+            fragment = existingFragment;
+        else {
+            fragment = new ProductFragment();
+            fragment.setArguments(arguments);
+        }
+
+        setCurrentFragment(getString(R.string.app_name), fragment);
+        mProduct = product;
+        mProductFragment = fragment;
         DoserApplication.getDoserPreferences().setLastProduct(product);
     }
 
@@ -437,13 +458,17 @@ public class MainActivity extends BaseActivity
                 }
             }
         } else {
-            setCurrentFragment(getString(R.string.welcome), null, new DefaultFragment());
+            setCurrentFragment(getString(R.string.welcome), new DefaultFragment());
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState = mDrawer.saveInstanceState(outState);
+        if (mProductFragment != null) {
+            getSupportFragmentManager().putFragment(outState, EXTRA_PRODUCT_FRAGMENT, mProductFragment);
+        }
+        outState.putSerializable(EXTRA_PRODUCT, mProduct);
         super.onSaveInstanceState(outState);
     }
 

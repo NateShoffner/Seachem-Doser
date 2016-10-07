@@ -1,6 +1,7 @@
 package com.nateshoffner.seachemdoser.ui.fragment;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -104,8 +105,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
         if (key.equals(getString(R.string.pref_theme))) {
             displayTheme();
-            Snackbar.make(getView(), "This change will be made after the next app start",
-                    Snackbar.LENGTH_LONG).show();
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                // recreate() not implemented
+                Snackbar.make(getView(), R.string.change_effect_restart,
+                        Snackbar.LENGTH_LONG).show();
+            }
         }
     }
 }
