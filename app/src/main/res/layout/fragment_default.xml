@@ -10,62 +10,28 @@
     android:layout_weight="1"
     android:fillViewport="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
+                android:text="@string/app_name"
+                android:textSize="@dimen/product_name_text_size"
+                android:id="@+id/appname"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/accent"/>
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
-                    android:id="@+id/icon" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:textAppearance="?android:textAppearanceLarge"
-                        android:id="@+id/appname"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
-
-                    <TextView
-                        android:id="@+id/version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Version v"
-                        android:textAppearance="?android:textAppearanceSmall"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="5dp" />
-
-                    <TextView
-                        android:id="@+id/author"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Created by"
-                        android:textAppearance="?android:textAppearanceSmall"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="5dp" />
-
-                </LinearLayout>        </LinearLayout>
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Version v"
+                android:textSize="@dimen/product_detail_text_size"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,20 +40,23 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal|center_vertical">
 
-
-                <Button
-                    android:id="@+id/btnGetStarted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/get_started"
-                    style="@style/DoserButton"
-                    android:background="@drawable/button_background_selector"
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher"
+                    android:id="@+id/icon"
                     android:layout_gravity="center_horizontal"
-                    android:textAppearance="?android:textAppearanceLarge"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:padding="15dp"
-                    android:layout_centerInParent="true" />
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/product_parameter_unit_text_size"
+                    android:text="@string/tap_icon_to_start"
+                    android:gravity="center_horizontal" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,7 +68,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/product_parameter_unit_text_size"
                     android:text="@string/about_eula"
                     android:gravity="center_horizontal"
                     android:id="@+id/eula" />
@@ -108,11 +77,11 @@
                     android:id="@+id/disclaimer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textSize="@dimen/product_parameter_unit_text_size"
                     android:text="@string/about_disclaimer"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+
 </ScrollView>

@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,48 +19,26 @@ import com.nateshoffner.seachemdoser.ui.activity.DrawerActivity;
 
 public class DefaultFragment extends Fragment {
 
-    private View mRootView;
+    private ImageView mImageView;
 
     public DefaultFragment() {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_default, container, false);
+        View mRootView = inflater.inflate(R.layout.fragment_default, container, false);
 
         TextView tvVersion = (TextView) mRootView.findViewById(R.id.version);
         tvVersion.setText(String.format("Version v%s",
                 getString(R.string.version_name)));
 
-        Button btnStart = (Button)mRootView.findViewById(R.id.btnGetStarted);
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((DrawerActivity) getActivity()).openDrawer();
-            }
-        });
-
-        TextView tvEula = (TextView)mRootView.findViewById(R.id.eula);
+        TextView tvEula = (TextView) mRootView.findViewById(R.id.eula);
         tvEula.setText(Html.fromHtml(getString(R.string.about_eula)));
         tvEula.setMovementMethod(LinkMovementMethod.getInstance());
 
-        TextView tvAuthor = (TextView)mRootView.findViewById(R.id.author);
-        tvAuthor.setText(Html.fromHtml(getString(R.string.about_author)));
-        tvAuthor.setMovementMethod(LinkMovementMethod.getInstance());
-
-        final ImageView imageView = (ImageView)mRootView.findViewById(R.id.icon);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        mImageView = (ImageView) mRootView.findViewById(R.id.icon);
+        mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AnimationSet anim = new AnimationSet(true);
@@ -71,7 +48,23 @@ public class DefaultFragment extends Fragment {
                 rotate.setDuration(800);
                 rotate.setInterpolator(new DecelerateInterpolator());
                 anim.addAnimation(rotate);
-                imageView.startAnimation(anim);
+                anim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ((DrawerActivity) getActivity()).openDrawer();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                mImageView.startAnimation(anim);
             }
         });
 

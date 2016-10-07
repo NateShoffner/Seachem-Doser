@@ -86,5 +86,7 @@
     <string name="title_activity_preferences">Settings</string>
     <string name="title_activity_about">About</string>
     <string name="back_to_dosages">Back to Dosages</string>
+    <string name="tap_icon_to_start">Tap the icon to get started</string>
+    <string name="change_effect_restart">This change will be made after the next app start</string>
 
 </resources>
