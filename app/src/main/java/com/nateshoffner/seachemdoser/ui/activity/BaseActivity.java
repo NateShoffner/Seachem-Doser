@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -28,6 +29,7 @@ public class BaseActivity extends AppCompatActivity {
             public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
                 if (key.equals(getString(R.string.pref_theme))) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        DoserApplication.reloadDoserTheme();
                         recreate();
                     }
                 }

@@ -12,6 +12,8 @@ public class DoserApplication extends android.app.Application {
     private static Context mContext;
     private static DoserPreferences mDoserPreferences;
 
+    private static ThemeHelper.Theme mTheme;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -34,8 +36,13 @@ public class DoserApplication extends android.app.Application {
         return mDoserPreferences;
     }
 
-    public static ThemeHelper.Theme getDoserTheme() {
-        return mDoserPreferences.getTheme();
+    public static void reloadDoserTheme() {
+        mTheme = mDoserPreferences.getTheme();
     }
 
+    public static ThemeHelper.Theme getDoserTheme() {
+        if (mTheme == null)
+            reloadDoserTheme();
+        return mTheme;
+    }
 }
