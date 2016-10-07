@@ -38,6 +38,12 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
+
+    @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         overridePendingTransition(0, 0);
