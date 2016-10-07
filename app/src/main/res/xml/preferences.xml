@@ -16,14 +16,15 @@
             android:title="Default Product"
             android:summary="Default product to open on startup."
             android:key="@string/pref_default_product"
-            android:defaultValue="@string/most_recent" />
+            android:defaultValue="@string/none" />
 
         <ListPreference
             android:title="Theme"
             android:summary="Application theme."
             android:key="@string/pref_theme"
             android:entries="@array/themes"
-            android:entryValues="@array/theme_values" />
+            android:entryValues="@array/theme_values"
+            android:defaultValue="0"/>
 
         <SwitchPreferenceCompat
             android:title="Seachem Recommendations"

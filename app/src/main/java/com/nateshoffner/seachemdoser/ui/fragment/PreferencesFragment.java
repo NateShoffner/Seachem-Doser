@@ -32,11 +32,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         List<CharSequence> entries = new ArrayList<>();
-        entries.add(getActivity().getString(R.string.most_recent));
         entries.add(getActivity().getString(R.string.none));
+        entries.add(getActivity().getString(R.string.most_recent));
         List<CharSequence> entryValues = new ArrayList<>();
-        entryValues.add(getActivity().getString(R.string.most_recent));
         entryValues.add(getActivity().getString(R.string.none));
+        entryValues.add(getActivity().getString(R.string.most_recent));
 
         List<SeachemProduct> products = SeachemManager.GetProducts();
         Collections.sort(products, new Comparator<SeachemProduct>() {
@@ -54,7 +54,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         ListPreference lp = (ListPreference) findPreference(getString(R.string.pref_default_product));
         lp.setEntries(entries.toArray(new CharSequence[entries.size()]));
         lp.setEntryValues(entryValues.toArray(new CharSequence[entryValues.size()]));
-        lp.setDefaultValue(getActivity().getString(R.string.most_recent));
+        lp.setDefaultValue(getActivity().getString(R.string.none));
 
         displayUnitMeasurement();
         displayTheme();
