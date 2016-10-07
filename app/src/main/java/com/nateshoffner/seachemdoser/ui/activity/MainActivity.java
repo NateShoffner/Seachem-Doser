@@ -464,7 +464,7 @@ public class MainActivity extends BaseActivity
                 }
             }
         } else {
-            setCurrentFragment(getString(R.string.welcome), new DefaultFragment());
+            setCurrentFragment(getString(R.string.app_name), new DefaultFragment());
         }
     }
 
