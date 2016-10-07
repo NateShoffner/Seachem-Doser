@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/etValue"
+            android:id="@+id/dosage_result_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="6"
@@ -37,14 +37,14 @@
             android:background="@drawable/number_picker_button_selector_right"
             android:enabled="true"
             android:minWidth="20dp"
-            android:layout_toRightOf="@id/etValue"
-            android:layout_alignBottom="@id/etValue"
-            android:layout_alignTop="@id/etValue"
+            android:layout_toRightOf="@id/dosage_result_edittext"
+            android:layout_alignBottom="@id/dosage_result_edittext"
+            android:layout_alignTop="@id/dosage_result_edittext"
             android:layout_centerVertical="true"
             />
 
         <TextView
-            android:id="@+id/tvUnit"
+            android:id="@+id/dosage_result_unit_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="@dimen/product_unit_label_min_width"
@@ -58,7 +58,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tvLabel"
+        android:id="@+id/dosage_result_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/product_detail_text_size"

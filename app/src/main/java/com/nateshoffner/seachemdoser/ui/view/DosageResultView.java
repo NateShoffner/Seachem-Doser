@@ -14,14 +14,15 @@ import android.widget.Toast;
 
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.utils.ClipboardUtils;
+import com.nateshoffner.seachemdoser.utils.ViewUtils;
 
 import java.text.DecimalFormat;
 
 public class DosageResultView extends LinearLayout {
 
-    private EditText etValue;
-    private TextView tvUnit;
-    private TextView tvLabel;
+    private EditText mEditText;
+    private TextView mLabel;
+    private TextView mUnitLabel;
 
     private String mUnitQualifier;
 
@@ -32,23 +33,26 @@ public class DosageResultView extends LinearLayout {
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.dosage_result_view, this, true);
 
-        etValue = (EditText) findViewById(R.id.etValue);
-        tvUnit = (TextView) findViewById(R.id.tvUnit);
-        tvLabel = (TextView) findViewById(R.id.tvLabel);
+        mEditText = (EditText) findViewById(R.id.dosage_result_edittext);
+        mLabel = (TextView) findViewById(R.id.dosage_result_unit_label);
+        mUnitLabel = (TextView) findViewById(R.id.dosage_result_label);
+
+        // give EditText unique ID to prevent text duplication with other views
+        mEditText.setId(ViewUtils.generateViewId());
 
         Button btnCopy = (Button) findViewById(R.id.btnCopy);
         btnCopy.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean result = ClipboardUtils.copyToClipboard(getContext(), String.format("%s %s",
-                        etValue.getText().toString(), tvUnit.getText().toString()));
+                        mEditText.getText().toString(), mLabel.getText().toString()));
 
                 if (result)
                     Toast.makeText(getContext(), "Dosage copied to clipboard", Toast.LENGTH_SHORT).show();
             }
         });
 
-        etValue.setKeyListener(new NumberKeyListener() {
+        mEditText.setKeyListener(new NumberKeyListener() {
             public int getInputType() {
                 return InputType.TYPE_NULL;
             }
@@ -82,16 +86,16 @@ public class DosageResultView extends LinearLayout {
     }
 
     public void setLabelText(String text) {
-        tvLabel.setText(text);
+        mUnitLabel.setText(text);
     }
 
     public void setValue(double value) {
         String strValue = value % 1 == 0 ? Double.toString(value) : decimalFormat.format(value);
-        etValue.setText(strValue);
+        mEditText.setText(strValue);
         setUnitText(resolveUnitQualifier(value != 1));
     }
 
     public void setUnitText(String text) {
-        tvUnit.setText(text);
+        mLabel.setText(text);
     }
 }

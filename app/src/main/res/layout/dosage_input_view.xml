@@ -11,14 +11,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvLabel"
+            android:id="@+id/dosage_input_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/product_detail_text_size"
             android:text="Label" />
 
         <TextView
-            android:id="@+id/tvUnit"
+            android:id="@+id/dosage_unit_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="@dimen/product_unit_label_min_width"
@@ -48,7 +48,7 @@
             android:minWidth="20dp" />
 
         <EditText
-            android:id="@+id/etValue"
+            android:id="@+id/dosage_input_edittext"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:ems="4"

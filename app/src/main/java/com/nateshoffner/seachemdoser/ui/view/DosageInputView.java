@@ -3,6 +3,7 @@ package com.nateshoffner.seachemdoser.ui.view;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,14 +13,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nateshoffner.seachemdoser.R;
+import com.nateshoffner.seachemdoser.utils.ViewUtils;
 
 import java.text.DecimalFormat;
 
 public class DosageInputView extends LinearLayout {
 
-    private TextView tvLabel;
-    private EditText etValue;
-    private TextView tvUnit;
+    private TextView mLabel;
+    private EditText mEditText;
+    private TextView mUnitLabel;
 
     private String mUnitQualifier;
 
@@ -38,9 +40,12 @@ public class DosageInputView extends LinearLayout {
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.dosage_input_view, this, true);
 
-        tvLabel = (TextView) findViewById(R.id.tvLabel);
-        etValue = (EditText) findViewById(R.id.etValue);
-        tvUnit = (TextView) findViewById(R.id.tvUnit);
+        mLabel = (TextView) findViewById(R.id.dosage_input_label);
+        mEditText = (EditText) findViewById(R.id.dosage_input_edittext);
+        mUnitLabel = (TextView) findViewById(R.id.dosage_unit_label);
+
+        // give EditText unique ID to prevent text duplication with other views
+        mEditText.setId(ViewUtils.generateViewId());
 
         class RepetitiveUpdater implements Runnable {
 
@@ -54,7 +59,6 @@ public class DosageInputView extends LinearLayout {
                     repeatUpdateHandler.postDelayed(new RepetitiveUpdater(), REPEAT_DELAY);
                 }
             }
-
         }
 
         Button btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -63,8 +67,8 @@ public class DosageInputView extends LinearLayout {
             public void onClick(View view) {
                 incrementValue();
 
-                if (!etValue.isFocused())
-                    etValue.requestFocus();
+                if (!mEditText.isFocused())
+                    mEditText.requestFocus();
             }
         });
         btnAdd.setOnLongClickListener(new OnLongClickListener() {
@@ -73,8 +77,8 @@ public class DosageInputView extends LinearLayout {
                 autoIncrement = true;
                 repeatUpdateHandler.post(new RepetitiveUpdater());
 
-                if (!etValue.isFocused())
-                    etValue.requestFocus();
+                if (!mEditText.isFocused())
+                    mEditText.requestFocus();
 
                 return false;
             }
@@ -85,8 +89,8 @@ public class DosageInputView extends LinearLayout {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoIncrement) {
                     autoIncrement = false;
 
-                    if (!etValue.isFocused())
-                        etValue.requestFocus();
+                    if (!mEditText.isFocused())
+                        mEditText.requestFocus();
                 }
                 return false;
             }
@@ -98,8 +102,8 @@ public class DosageInputView extends LinearLayout {
             public void onClick(View view) {
                 decrementValue();
 
-                if (!etValue.isFocused())
-                    etValue.requestFocus();
+                if (!mEditText.isFocused())
+                    mEditText.requestFocus();
             }
         });
         btnSubtract.setOnLongClickListener(new OnLongClickListener() {
@@ -108,8 +112,8 @@ public class DosageInputView extends LinearLayout {
                 autoDecrement = true;
                 repeatUpdateHandler.post(new RepetitiveUpdater());
 
-                if (!etValue.isFocused())
-                    etValue.requestFocus();
+                if (!mEditText.isFocused())
+                    mEditText.requestFocus();
 
                 return false;
             }
@@ -120,8 +124,8 @@ public class DosageInputView extends LinearLayout {
                 if (event.getAction() == MotionEvent.ACTION_UP && autoDecrement) {
                     autoDecrement = false;
 
-                    if (!etValue.isFocused())
-                        etValue.requestFocus();
+                    if (!mEditText.isFocused())
+                        mEditText.requestFocus();
                 }
                 return false;
             }
@@ -147,24 +151,25 @@ public class DosageInputView extends LinearLayout {
     }
 
     public String getValue() {
-        return ((EditText) findViewById(R.id.etValue)).getText().toString();
+        return mEditText.getText().toString();
     }
 
     public void setValue(double value) {
+        Log.i("ProductFragment", "setvalue is being called with value " + Double.toString(value));
         String strValue = value % 1 == 0 ? Integer.toString((int)value) : decimalFormat.format(value);
-        etValue.setText(strValue);
+        mEditText.setText(strValue);
     }
 
     public EditText getInputView() {
-        return etValue;
+        return mEditText;
     }
 
     public void setLabelText(String value) {
-        tvLabel.setText(value);
+        mLabel.setText(value);
     }
 
     public void setUnitText() {
-        tvUnit.setText(String.format("(%s)", resolveUnitQualifier()));
+        mUnitLabel.setText(String.format("(%s)", resolveUnitQualifier()));
     }
 
     private void incrementValue() {
@@ -175,5 +180,9 @@ public class DosageInputView extends LinearLayout {
     private void decrementValue() {
         double value = getValue().length() > 0 ? Double.parseDouble(getValue()) : 0;
         setValue(value - 1);
+    }
+
+    public String getLabelText() {
+        return mLabel.getText().toString();
     }
 }
