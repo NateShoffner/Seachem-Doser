@@ -3,14 +3,14 @@
     <release
         version="1.2"
         versioncode="3">
-        <change>Added: One-click dosage copying</change>
+        <change>Added: Dosage copying</change>
         <change>Added: Seachem warnings</change>
         <change>Added: Seachem-recommended parameter values</change>
         <change>Added: Pinnable products</change>
         <change>Added: Light/Dark theme selection</change>
         <change>Added: Flourite Sand</change>
         <change>Added: Flourish Trace</change>
-        <change>Added: Reef Fusion 1 &amp; 2</change>
+        <change>Added: Reef Fusion 1 & 2</change>
         <change>Added: Small (3.5 kg) gravel/sand bag dosage</change>
         <change>Added: Metric/imperial settings</change>
         <change>Added: Default product settings</change>
@@ -19,7 +19,7 @@
         <change>Fixed: Meridian name typo</change>
         <change>Fixed: Full-screen keyboard on landscape orientation</change>
         <change>Changed: All gravel values now round up to next bag(s)</change>
-        <change>Changed: Improved material design</change>
+        <change>Changed: UI redesign (w/ improved material design)</change>
     </release>
     <release
         version="1.1"

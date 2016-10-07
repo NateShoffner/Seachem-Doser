@@ -47,9 +47,9 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 ## Changelog
 
 ### Version 1.2 (TBD)
-* Added: One-click dosage copying
+* Added: Dosage copying
 * Added: Seachem warnings
-* Added Seachem-recommended parameter values
+* Added: Seachem-recommended parameter values
 * Added: Pinnable products
 * Added: Light/Dark theme selection
 * Added: Flourite Sand
@@ -63,7 +63,7 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 * Fixed: Meridian name typo
 * Fixed: Full-screen keyboard on landscape orientation
 * Changed: All gravel values now round up to next bag(s)
-* Changed: Improved material design
+* Changed: UI redesign (w/ improved material design)
 
 ### Version 1.1 (December 23rd, 2015)
 * Added: Initial tablet support
