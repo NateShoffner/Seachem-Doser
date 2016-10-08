@@ -6,9 +6,11 @@ import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,18 +36,23 @@ public class DosageResultView extends LinearLayout {
         inflater.inflate(R.layout.dosage_result_view, this, true);
 
         mEditText = (EditText) findViewById(R.id.dosage_result_edittext);
-        mLabel = (TextView) findViewById(R.id.dosage_result_unit_label);
-        mUnitLabel = (TextView) findViewById(R.id.dosage_result_label);
+        mLabel = (TextView) findViewById(R.id.dosage_result_label);
+        mUnitLabel = (TextView) findViewById(R.id.dosage_result_unit_label);
 
         // give EditText unique ID to prevent text duplication with other views
         mEditText.setId(ViewUtils.generateViewId());
 
         Button btnCopy = (Button) findViewById(R.id.btnCopy);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,          RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.RIGHT_OF, mEditText.getId());
+        params.addRule(RelativeLayout.ALIGN_BOTTOM, mEditText.getId());
+        params.addRule(RelativeLayout.ALIGN_TOP, mEditText.getId());
+        btnCopy.setLayoutParams(params);
         btnCopy.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean result = ClipboardUtils.copyToClipboard(getContext(), String.format("%s %s",
-                        mEditText.getText().toString(), mLabel.getText().toString()));
+                        mEditText.getText().toString(), mUnitLabel.getText().toString()));
 
                 if (result)
                     Toast.makeText(getContext(), "Dosage copied to clipboard", Toast.LENGTH_SHORT).show();
@@ -86,7 +93,7 @@ public class DosageResultView extends LinearLayout {
     }
 
     public void setLabelText(String text) {
-        mUnitLabel.setText(text);
+        mLabel.setText(text);
     }
 
     public void setValue(double value) {
@@ -96,6 +103,6 @@ public class DosageResultView extends LinearLayout {
     }
 
     public void setUnitText(String text) {
-        mLabel.setText(text);
+        mUnitLabel.setText(text);
     }
 }
