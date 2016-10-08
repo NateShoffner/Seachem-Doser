@@ -1,6 +1,5 @@
 package com.nateshoffner.seachemdoser.ui.fragment;
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +29,6 @@ import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DosageDialog;
 import com.nateshoffner.seachemdoser.ui.view.DosageInputView;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,23 +37,69 @@ public class ProductFragment extends Fragment
 
     public static final String EXTRA_PRODUCT = "PRODUCT";
 
-    private static final String EXTRA_DOSAGES_CALCULATED = "DOSAGES_CALCULATED";
+    private static final String EXTRA_PARAM_VALUES = "PARAMETER_VALUES";
 
     private static final String TAG = "ProductFragment";
 
-    private final List<DosageInputView> dosageInputViews = new ArrayList<>();
+    private List<DosageInputView> dosageInputViews = new ArrayList<>();
 
     private LinearLayout mParamsContainer;
-
-    private ScrollView mRootScroll;
-    private MenuItem btnPin;
     private Button btnCalc;
+
+    private MenuItem btnPin;
 
     private SeachemProduct mProduct;
 
-    private boolean mDosagesCalculated;
+    private UnitMeasurement mUnitMeasurement;
 
     public ProductFragment() {
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // back up parameter values
+        String[] paramValues = new String[dosageInputViews.size()];
+        for (int i = 0; i < dosageInputViews.size(); i++) {
+            DosageInputView v = dosageInputViews.get(i);
+            paramValues[i] = v.getValue();
+        }
+        outState.putStringArray(EXTRA_PARAM_VALUES, paramValues);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        updateInputViewDetails();
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(EXTRA_PARAM_VALUES)) {
+                String[] values = savedInstanceState.getStringArray(EXTRA_PARAM_VALUES);
+                for (int i = 0; i < values.length; i++) {
+                    String value = values[i];
+                    if (value.length() > 0)
+                        dosageInputViews.get(i).setValue(Double.parseDouble(value));
+                }
+            }
+        }
+
+        DosageInputView requiredInput = getRequiredInput();
+
+        if (requiredInput != null)
+            requiredInput.getInputView().requestFocus();
+        else
+            btnCalc.requestFocus();
+    }
+
+    private DosageInputView getRequiredInput() {
+        for (DosageInputView v : dosageInputViews) {
+            if (v.getValue().length() == 0)
+                return v;
+        }
+
+        return null;
     }
 
     @Override
@@ -65,63 +107,33 @@ public class ProductFragment extends Fragment
         super.onCreate(savedInstanceState);
 
         mProduct = (SeachemProduct) getArguments().getSerializable(EXTRA_PRODUCT);
+        mUnitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
 
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(EXTRA_DOSAGES_CALCULATED, mDosagesCalculated);
-    }
+    private void updateInputViewDetails() {
+        boolean needsInitialized = dosageInputViews.size() == 0;
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        SeachemParameter[] get = mProduct.getParameters().get(mUnitMeasurement);
+        for (int i = 0; i < get.length; i++) {
+            SeachemParameter param = get[i];
 
-        if (savedInstanceState != null) {
-            mDosagesCalculated = savedInstanceState.getBoolean(EXTRA_DOSAGES_CALCULATED);
-            if (mDosagesCalculated)
-                calculateDosage(true);
-        }
-    }
+            DosageInputView view = needsInitialized ? new
+                    DosageInputView(getActivity(), null) : dosageInputViews.get(i);
 
-    private void initializeParameterViews(UnitMeasurement unitMeasurement) {
-        if (dosageInputViews.size() > 0) {
-            dosageInputViews.clear();
-
-            mParamsContainer.removeAllViews();
-        }
-
-        for (SeachemParameter param : mProduct.getParameters().get(unitMeasurement)) {
-            DosageInputView view = new DosageInputView(getActivity(), null);
             view.setLabelText(param.getName() + ":");
             view.setUnitQualifier(param.getUnit());
             view.setUnitText();
-            dosageInputViews.add(view);
 
+            if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues()
+                    && param.getValue() == 0 && param.getRecommendedValue() > 0) {
+                view.setValue(param.getRecommendedValue());
+            }
 
-            if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues() &&
-                    param.getValue() > 0)
-                view.setValue(param.getValue());
-            mParamsContainer.addView(view);
-        }
-
-        if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues()) {
-            populateRecommendedDoses(unitMeasurement);
-        }
-    }
-
-    private void populateRecommendedDoses(UnitMeasurement unitMeasurement) {
-        SeachemParameter[] params = mProduct.getParameters().get(unitMeasurement);
-        for (int i = 0; i < params.length; i++) {
-            SeachemParameter param = params[i];
-
-            if (param.getRecommendedValue() > 0) {
-                DosageInputView view = dosageInputViews.get(i);
-
-                if (view.getInputView().getText().toString().length() == 0)
-                    view.setValue(param.getRecommendedValue());
+            if (needsInitialized) {
+                dosageInputViews.add(view);
+                mParamsContainer.addView(view);
             }
         }
     }
@@ -130,7 +142,6 @@ public class ProductFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View mRootView = inflater.inflate(R.layout.fragment_product, container, false);
-        mRootScroll = (ScrollView) mRootView.findViewById(R.id.root_scroll);
         mParamsContainer = (LinearLayout) mRootView.findViewById(R.id.params_container);
         btnCalc = (Button) mRootView.findViewById(R.id.btnCalculate);
         ((TextView) mRootView.findViewById(R.id.tvName)).setText(mProduct.getName());
@@ -141,22 +152,14 @@ public class ProductFragment extends Fragment
         btnCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculateDosage(false);
+                calculateDosage();
             }
         });
-
-        UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().getUnitMeasurement();
-        initializeParameterViews(unitMeasurement);
-
-        if (!mDosagesCalculated) {
-            // manually focus on first param
-            dosageInputViews.get(0).getInputView().requestFocus();
-        }
 
         return mRootView;
     }
 
-    private void calculateDosage(boolean suppressErrors) {
+    private void calculateDosage() {
         boolean invalidInput = false;
 
         int inputCount = 0;
@@ -169,14 +172,13 @@ public class ProductFragment extends Fragment
                 break;
             }
 
-            mProduct.getParameters().get(DoserApplication.getDoserPreferences().getUnitMeasurement())[inputCount].
+            // store input value into working parameter
+            mProduct.getParameters().get(mUnitMeasurement)[inputCount].
                     setValue(Double.parseDouble(String.valueOf(view.getInputView().getText().toString())));
             inputCount++;
         }
-
         if (invalidInput) {
-            Toast.makeText(getActivity(),
-                    getString(R.string.invalid_parameters),
+            Toast.makeText(getActivity(), getString(R.string.invalid_parameters),
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -184,7 +186,7 @@ public class ProductFragment extends Fragment
         SeachemDosage[] dosages;
 
         try {
-            dosages = mProduct.calculateDosage(DoserApplication.getDoserPreferences().getUnitMeasurement());
+            dosages = mProduct.calculateDosage(mUnitMeasurement);
 
             // prevent negative dosages
             for (SeachemDosage dosage : dosages) {
@@ -194,43 +196,20 @@ public class ProductFragment extends Fragment
             }
         } catch (ArithmeticException ex) {
             Log.e(TAG, ex.toString());
-            if (!suppressErrors) {
-                Toast.makeText(getActivity(), getString(R.string.calculation_error), Toast.LENGTH_LONG).show();
-            }
-
+            Toast.makeText(getActivity(), getString(R.string.calculation_error), Toast.LENGTH_LONG).show();
             return;
-        }
-
-        if (!mDosagesCalculated) {
-            mDosagesCalculated = true;
         }
 
         // hide keyboard after calculation
         KeyboardUtil.hideKeyboard(getActivity());
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
-        builder.cancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                mDosagesCalculated = false;
-            }
-        });
-        builder.dismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                mDosagesCalculated = false;
-            }
-        });
-
         MaterialDialog dosageDialog = new DosageDialog(builder, dosages,
                 mProduct.getWarnings(),
                 mProduct.getNotes())
                 .getDialog(getContext());
 
         dosageDialog.show();
-
-        // scroll to top of layout
-        mRootScroll.fullScroll(ScrollView.FOCUS_UP);
 
         DoserApplication.getDoserPreferences().incrementTotalCalculations();
     }
@@ -282,18 +261,13 @@ public class ProductFragment extends Fragment
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (isAdded()) {
             if (key.equals(getString(R.string.pref_unit_measurement))) {
-                UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().
+                mUnitMeasurement =  DoserApplication.getDoserPreferences().
                         getUnitMeasurement();
-                initializeParameterViews(unitMeasurement);
+                updateInputViewDetails();
             }
 
-            if (key.equals(getString(R.string.pref_unit_measurement))) {
-                UnitMeasurement unitMeasurement = DoserApplication.getDoserPreferences().
-                        getUnitMeasurement();
-
-                if (DoserApplication.getDoserPreferences().getUseRecommendedParamValues()) {
-                    populateRecommendedDoses(unitMeasurement);
-                }
+            if (key.equals(getString(R.string.pref_use_recommended_param_values))) {
+                updateInputViewDetails();
             }
         }
     }
