@@ -87,10 +87,13 @@ public class ProductFragment extends Fragment
 
         DosageInputView requiredInput = getRequiredInput();
 
-        if (requiredInput != null)
+        if (requiredInput != null) {
+            Log.i(TAG, "required input is not null");
             requiredInput.getInputView().requestFocus();
-        else
+        } else {
+            Log.i(TAG, "required input is null");
             btnCalc.requestFocus();
+        }
     }
 
     private DosageInputView getRequiredInput() {

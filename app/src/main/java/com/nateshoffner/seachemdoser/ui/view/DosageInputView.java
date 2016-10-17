@@ -3,7 +3,6 @@ package com.nateshoffner.seachemdoser.ui.view;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -155,7 +154,6 @@ public class DosageInputView extends LinearLayout {
     }
 
     public void setValue(double value) {
-        Log.i("ProductFragment", "setvalue is being called with value " + Double.toString(value));
         String strValue = value % 1 == 0 ? Integer.toString((int)value) : decimalFormat.format(value);
         mEditText.setText(strValue);
     }
