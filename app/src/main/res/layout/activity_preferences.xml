@@ -19,7 +19,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/action_bar_gradient"
+                android:background="@color/accent"
                 android:theme="@style/DoserToolbar" />
 
         </android.support.design.widget.AppBarLayout>

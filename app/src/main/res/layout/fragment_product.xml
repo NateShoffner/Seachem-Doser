@@ -26,14 +26,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/accent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:id="@+id/params_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
         </LinearLayout>
@@ -44,19 +43,9 @@
             android:layout_height="wrap_content"
             android:text="@string/calculate_btn_text"
             android:textSize="@dimen/product_detail_text_size"
-            android:layout_marginBottom="15dp"
             android:background="@drawable/button_background_selector"
             android:enabled="true"
             android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:id="@+id/dosages_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
-
-        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

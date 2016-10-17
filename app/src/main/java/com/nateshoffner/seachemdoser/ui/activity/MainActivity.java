@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withCompactStyle(true)
-                .withHeaderBackground(R.drawable.action_bar_gradient)
+                .withHeaderBackground(R.drawable.drawer_header)
                 .addProfiles(new ProfileDrawerItem()
                         .withName(getString(R.string.app_name))
                         .withIcon(R.drawable.ic_launcher)
@@ -253,7 +253,7 @@ public class MainActivity extends BaseActivity
                         .withName(product.getName())
                         .withIdentifier(mIdentifierIncrementor++)
                         .withLevel(2)
-                        .withIcon(GoogleMaterial.Icon.gmd_play_circle_outline)
+                        .withIcon(GoogleMaterial.Icon.gmd_radio_button_unchecked)
                         .withTextColorRes(R.color.product_list_text_color));
             }
 
@@ -328,7 +328,7 @@ public class MainActivity extends BaseActivity
                     .withName(product.getName())
                     .withIdentifier(mIdentifierIncrementor++)
                     .withLevel(2)
-                    .withIcon(GoogleMaterial.Icon.gmd_play_circle_outline)
+                    .withIcon(GoogleMaterial.Icon.gmd_radio_button_unchecked)
                     .withTextColorRes(R.color.product_list_text_color));
         }
 
