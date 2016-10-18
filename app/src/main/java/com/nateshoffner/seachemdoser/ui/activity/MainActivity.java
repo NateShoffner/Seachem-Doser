@@ -254,7 +254,9 @@ public class MainActivity extends BaseActivity
                         .withIdentifier(mIdentifierIncrementor++)
                         .withLevel(2)
                         .withIcon(GoogleMaterial.Icon.gmd_radio_button_unchecked)
-                        .withTextColorRes(R.color.product_list_text_color));
+                        .withTextColorRes(R.color.text_color)
+                        .withSelectedTextColorRes(R.color.product_list_text_color)
+                        .withSelectedIconColorRes(R.color.product_list_text_color));
             }
 
             mProductTypeItems.add(ex);
@@ -329,7 +331,8 @@ public class MainActivity extends BaseActivity
                     .withIdentifier(mIdentifierIncrementor++)
                     .withLevel(2)
                     .withIcon(GoogleMaterial.Icon.gmd_radio_button_unchecked)
-                    .withTextColorRes(R.color.product_list_text_color));
+                    .withTextColorRes(R.color.text_color)
+                    .withSelectedTextColorRes(R.color.product_list_text_color));
         }
 
         // restore expansion if children exist
