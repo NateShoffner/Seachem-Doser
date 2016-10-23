@@ -201,12 +201,38 @@ public class MainActivity extends BaseActivity
                     }
                 });
 
+        Drawer.OnDrawerItemClickListener expandableListener = new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                if (mSelectedProductItem != null) {
+                    // re-select product item
+                    mDrawer.setSelection(mSelectedProductItem, false);
+                }
+
+                // only allow one item to be expanded at a time
+                if (drawerItem instanceof ExpandableDrawerItem) {
+                    boolean expanded = ((ExpandableDrawerItem) drawerItem).isExpanded();
+                    if (expanded) {
+                        for (int expandedPosition : mDrawer.getAdapter().getExpandedItems()) {
+                            if (expandedPosition != position) {
+                                mDrawer.getAdapter().collapse(expandedPosition);
+                                mDrawer.getAdapter().notifyItemChanged(expandedPosition);
+                            }
+                        }
+                    }
+                }
+
+                return false;
+            }
+        };
+
         mPinnedItem = new ExpandableDrawerItem()
                 .withName(R.string.pinned)
                 .withSelectable(false)
                 .withIcon(FontAwesome.Icon.faw_thumb_tack)
                 .withIdentifier(PINNED_ITEM_IDENTIFIER)
-                .withIconColorRes(R.color.product_list_text_color);
+                .withIconColorRes(R.color.product_list_text_color)
+                .withOnDrawerItemClickListener(expandableListener);
 
         // populate product items
         List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
@@ -218,33 +244,8 @@ public class MainActivity extends BaseActivity
                     .withIdentifier(mIdentifierIncrementor++)
                     .withSelectable(false)
                     .withIconColorRes(getProductTypeColorRes(type))
-                    .withArrowColorRes(R.color.product_list_text_color);
-
-            ex.withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                @Override
-                public boolean onItemClick(View view, int i, IDrawerItem drawerItem) {
-                    if (mSelectedProductItem != null) {
-                        // re-select product item
-                        mDrawer.setSelection(mSelectedProductItem, false);
-                    }
-
-                    // only allow one item to be expanded at a time
-                    if (drawerItem instanceof ExpandableDrawerItem) {
-                        boolean expanded = ((ExpandableDrawerItem) drawerItem).isExpanded();
-
-                        if (expanded) {
-                            for (int expandedPosition : mDrawer.getAdapter().getExpandedItems()) {
-                                if (expandedPosition != mDrawer.getPosition(drawerItem)) {
-                                    mDrawer.getAdapter().collapse(expandedPosition);
-                                    mDrawer.getAdapter().notifyItemChanged(expandedPosition);
-                                }
-                            }
-                        }
-                    }
-
-                    return false;
-                }
-            });
+                    .withArrowColorRes(R.color.product_list_text_color)
+                    .withOnDrawerItemClickListener(expandableListener);
 
             List<SeachemProduct> products = SeachemManager.GetProducts(type);
 
