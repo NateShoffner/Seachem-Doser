@@ -204,9 +204,14 @@ public class MainActivity extends BaseActivity
         Drawer.OnDrawerItemClickListener expandableListener = new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                if (mSelectedProductItem != null) {
-                    // re-select product item
-                    mDrawer.setSelection(mSelectedProductItem, false);
+                if (mProduct != null) {
+                    for(IDrawerItem item : mDrawer.getDrawerItems()) {
+                        if (item instanceof SecondaryDrawerItem) {
+                            if (((SecondaryDrawerItem) item).getName().toString() == mProduct.getName()) {
+                                item.withSetSelected(true);
+                            }
+                        }
+                    }
                 }
 
                 // only allow one item to be expanded at a time
