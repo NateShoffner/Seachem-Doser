@@ -197,7 +197,7 @@ public class MainActivity extends BaseActivity
 
                     @Override
                     public void onDrawerSlide(View drawerView, float slideOffset) {
-
+                        KeyboardUtil.hideKeyboard(MainActivity.this);
                     }
                 });
 
