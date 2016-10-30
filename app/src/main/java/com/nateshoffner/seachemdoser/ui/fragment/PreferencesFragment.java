@@ -47,6 +47,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         });
 
         for (SeachemProduct product : products) {
+            if (!DoserApplication.getDoserPreferences().getShowDiscontinuedProducts()
+                    && product.isDiscontinued())
+                continue;
+
             entries.add(product.getName());
             entryValues.add(product.getName());
         }
@@ -92,6 +96,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         findPreference(key).setSummary(summary);
     }
 
+    private void showNextRestartSnackbar() {
+        Snackbar.make(getView(), R.string.change_effect_restart,
+                Snackbar.LENGTH_LONG).show();
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (isMenuVisible())
@@ -108,8 +117,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
                 // recreate() not implemented
-                Snackbar.make(getView(), R.string.change_effect_restart,
-                        Snackbar.LENGTH_LONG).show();
+                showNextRestartSnackbar();
             }
         }
     }

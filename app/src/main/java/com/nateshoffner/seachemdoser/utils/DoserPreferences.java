@@ -176,4 +176,9 @@ public class DoserPreferences {
         return mSharedPreferences.getBoolean(getPreferenceKey(
                 R.string.pref_use_recommended_param_values), true);
     }
+
+    public boolean getShowDiscontinuedProducts() {
+        return mSharedPreferences.getBoolean(getPreferenceKey(
+                R.string.pref_show_discontinued_products), true);
+    }
 }

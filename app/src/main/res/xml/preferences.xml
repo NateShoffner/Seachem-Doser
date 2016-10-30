@@ -32,6 +32,12 @@
             android:summary="Use Seachem-recommended parameter values"
             android:key="@string/pref_use_recommended_param_values" />
 
+        <SwitchPreferenceCompat
+            android:title="Show Discontinued Products"
+            android:defaultValue="true"
+            android:summary="Show discontinued products in product listing"
+            android:key="@string/pref_show_discontinued_products" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

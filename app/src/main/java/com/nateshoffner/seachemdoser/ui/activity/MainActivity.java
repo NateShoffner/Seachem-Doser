@@ -39,7 +39,9 @@ import com.nateshoffner.seachemdoser.utils.PlayStoreUtils;
 import com.nateshoffner.seachemdoser.utils.UnitLocale;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends BaseActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener, DrawerActivity {
@@ -48,7 +50,6 @@ public class MainActivity extends BaseActivity
 
     private Toolbar mToolbar = null;
     private Drawer mDrawer = null;
-    private List<ExpandableDrawerItem> mProductTypeItems = new ArrayList<>();
 
     private final static long PINNED_ITEM_IDENTIFIER = 997;
     private final static long SUPPORT_ITEM_IDENTIFIER = 998;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity
     private ExpandableDrawerItem mPinnedItem;
 
     private long mIdentifierIncrementor;
+    private HashMap<ExpandableDrawerItem, List<SecondaryDrawerItem>> mProductItemGroups = new HashMap<>();
 
     // manually track selected item between item expand/collapse
     private IDrawerItem mSelectedProductItem;
@@ -252,20 +254,25 @@ public class MainActivity extends BaseActivity
                     .withArrowColorRes(R.color.product_list_text_color)
                     .withOnDrawerItemClickListener(expandableListener);
 
+            mProductItemGroups.put(ex, new ArrayList<SecondaryDrawerItem>());
+
             List<SeachemProduct> products = SeachemManager.GetProducts(type);
 
             for (SeachemProduct product : products) {
-                ex.withSubItems(new SecondaryDrawerItem()
+                SecondaryDrawerItem item = new SecondaryDrawerItem()
                         .withName(product.getName())
                         .withIdentifier(mIdentifierIncrementor++)
                         .withLevel(2)
                         .withIcon(GoogleMaterial.Icon.gmd_radio_button_unchecked)
                         .withTextColorRes(R.color.text_color)
                         .withSelectedTextColorRes(R.color.product_list_text_color)
-                        .withSelectedIconColorRes(R.color.product_list_text_color));
+                        .withSelectedIconColorRes(R.color.product_list_text_color)
+                        .withTag(product);
+                ex.withSubItems(item);
+
+                mProductItemGroups.get(ex).add(item);
             }
 
-            mProductTypeItems.add(ex);
             builder.addDrawerItems(ex);
         }
 
@@ -289,6 +296,8 @@ public class MainActivity extends BaseActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         mDrawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+
+        updateDiscontinuedProducts();
     }
 
     private int getProductTypeColorRes(SeachemProductType productType) {
@@ -302,6 +311,39 @@ public class MainActivity extends BaseActivity
         }
 
         return 0;
+    }
+
+    private ExpandableDrawerItem getProductTypeParentItem(SeachemProductType type) {
+        for (ExpandableDrawerItem item : mProductItemGroups.keySet()) {
+            String title = item.getName().getText();
+            if (title != null && title.equals(getProductTypeString(type))) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    private void updateDiscontinuedProducts() {
+        boolean showDiscontinued = DoserApplication.getDoserPreferences().getShowDiscontinuedProducts();
+
+        for (Map.Entry<ExpandableDrawerItem, List<SecondaryDrawerItem>> entry : mProductItemGroups.entrySet()) {
+            ExpandableDrawerItem parent = entry.getKey();
+            List<SecondaryDrawerItem> children = entry.getValue();
+
+            for (IDrawerItem child : children) {
+                SeachemProduct product = (SeachemProduct) child.getTag();
+
+                if (product.isDiscontinued()) {
+                    if (showDiscontinued)
+                        parent.getSubItems().add(child);
+                    else
+                        parent.getSubItems().remove(child);
+                }
+            }
+
+            mDrawer.getAdapter().notifyAdapterSubItemsChanged(mDrawer.getPosition(parent));
+        }
     }
 
     private void populatePinnedProducts() {
@@ -449,20 +491,12 @@ public class MainActivity extends BaseActivity
         SeachemProduct defaultProduct = DoserApplication.getDoserPreferences().getDefaultProduct();
         if (defaultProduct != null) {
             SeachemProductType type = SeachemManager.getProductType(defaultProduct);
-            String parentTitle = getProductTypeString(type);
 
-            ExpandableDrawerItem parent = null;
+            ExpandableDrawerItem parent = getProductTypeParentItem(type);
 
             // first open parent item
-            for (ExpandableDrawerItem item : mProductTypeItems) {
-                String title = item.getName().getText();
-                if (title != null && title.equals(parentTitle)) {
-                    parent = item;
-                    item.withIsExpanded(true);
-                    mDrawer.updateItem(item);
-                    break;
-                }
-            }
+            parent.withIsExpanded(true);
+            mDrawer.updateItem(parent);
 
             // now select + click child item
             for (IDrawerItem item : parent.getSubItems()) {
@@ -497,9 +531,13 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if (s.equals(getString(R.string.pref_pinned_products))) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_pinned_products))) {
             populatePinnedProducts();
+        }
+
+        if (key.equals(getString(R.string.pref_show_discontinued_products))) {
+            updateDiscontinuedProducts();
         }
     }
 
