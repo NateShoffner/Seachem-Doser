@@ -14,6 +14,7 @@ android {
         targetSdkVersion 24
         versionCode 3
         versionName buildVersionName()
+        resConfig "en"
         resValue "string", "build_revision", revision()
         resValue "string", "version_name", versionName
         resValue "string", "version_name_human", buildHumanVersionName()
