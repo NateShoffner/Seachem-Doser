@@ -48,10 +48,10 @@
 
        <!-- MaterialDialogs specific values -->
         <item name="md_dark_theme">false</item>
-        <item name="md_background_color">@color/background</item>
+        <item name="md_background_color">@color/dialog_background</item>
         <item name="md_title_color">@color/text_color</item>
         <item name="md_divider_color">@color/accent</item>
-        <item name="md_btn_ripple_color">@color/accent</item>
+        <item name="md_btn_ripple_color">@color/dialog_background</item>
     </style>
 
     <!-- Dark Theme -->
@@ -102,7 +102,7 @@
 
        <!-- MaterialDialogs specific values -->
         <item name="md_dark_theme">true</item>
-        <item name="md_background_color">@color/background_inverse</item>
+        <item name="md_background_color">@color/dialog_background_inverse</item>
         <item name="md_title_color">@color/text_color</item>
         <item name="md_divider_color">@color/accent</item>
         <item name="md_btn_ripple_color">@color/background_inverse</item>
