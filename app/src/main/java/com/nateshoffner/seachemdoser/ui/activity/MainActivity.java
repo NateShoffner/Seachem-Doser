@@ -61,10 +61,8 @@ public class MainActivity extends BaseActivity
     private ExpandableDrawerItem mPinnedItem;
 
     private long mIdentifierIncrementor;
+    private HashMap<SeachemProductType, ExpandableDrawerItem> mProductCategoryItems = new HashMap<>();
     private HashMap<ExpandableDrawerItem, List<SecondaryDrawerItem>> mProductItemGroups = new HashMap<>();
-
-    // manually track selected item between item expand/collapse
-    private IDrawerItem mSelectedProductItem;
 
     private SeachemProduct mProduct;
     private ProductFragment mProductFragment;
@@ -79,6 +77,7 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(mToolbar);
 
         initializeDrawer(savedInstanceState);
+        populateProductItems();
         populatePinnedProducts();
 
         if (savedInstanceState != null) {
@@ -168,18 +167,13 @@ public class MainActivity extends BaseActivity
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == SETTINGS_ITEM_IDENTIFIER) {
                             startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
-                            if (mSelectedProductItem != null)
-                                mDrawer.setSelection(mSelectedProductItem);
                         } else if (drawerItem.getIdentifier() == SUPPORT_ITEM_IDENTIFIER) {
                             startActivity(new Intent(MainActivity.this, AboutActivity.class));
-                            if (mSelectedProductItem != null)
-                                mDrawer.setSelection(mSelectedProductItem);
                         } else {
                             String title = ((Nameable) drawerItem).getName().getText();
                             SeachemProduct product = SeachemManager.getProductByName(title);
 
                             if (product != null) {
-                                mSelectedProductItem = drawerItem;
                                 showProduct(product, null);
                             }
                         }
@@ -245,22 +239,23 @@ public class MainActivity extends BaseActivity
         List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
 
         for (SeachemProductType type : productTypes) {
-            ExpandableDrawerItem ex = new ExpandableDrawerItem()
+            ExpandableDrawerItem categoryItem = new ExpandableDrawerItem()
                     .withName(getProductTypeString(type))
                     .withIcon(GoogleMaterial.Icon.gmd_format_color_fill)
                     .withIdentifier(mIdentifierIncrementor++)
                     .withSelectable(false)
                     .withIconColorRes(getProductTypeColorRes(type))
                     .withArrowColorRes(R.color.product_list_text_color)
-                    .withOnDrawerItemClickListener(expandableListener);
+                    .withOnDrawerItemClickListener(expandableListener)
+                    .withTag(type);
 
-            mProductItemGroups.put(ex, new ArrayList<SecondaryDrawerItem>());
+            mProductItemGroups.put(categoryItem, new ArrayList<SecondaryDrawerItem>());
 
             List<SeachemProduct> products = SeachemManager.GetProducts(type);
 
             for (SeachemProduct product : products) {
-                SecondaryDrawerItem item = new SecondaryDrawerItem()
-                        .withName(product.getName())
+                SecondaryDrawerItem item = new SecondaryDrawerItem();
+                        item.withName(product.getName())
                         .withIdentifier(mIdentifierIncrementor++)
                         .withLevel(2)
                         .withIcon(GoogleMaterial.Icon.gmd_radio_button_unchecked)
@@ -268,12 +263,12 @@ public class MainActivity extends BaseActivity
                         .withSelectedTextColorRes(R.color.product_list_text_color)
                         .withSelectedIconColorRes(R.color.product_list_text_color)
                         .withTag(product);
-                ex.withSubItems(item);
 
-                mProductItemGroups.get(ex).add(item);
+                mProductItemGroups.get(categoryItem).add(item);
             }
 
-            builder.addDrawerItems(ex);
+            mProductCategoryItems.put(type, categoryItem);
+            builder.addDrawerItems(categoryItem);
         }
 
         mDrawer = builder.build();
@@ -296,8 +291,6 @@ public class MainActivity extends BaseActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         mDrawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
-
-        updateDiscontinuedProducts();
     }
 
     private int getProductTypeColorRes(SeachemProductType productType) {
@@ -313,33 +306,23 @@ public class MainActivity extends BaseActivity
         return 0;
     }
 
-    private ExpandableDrawerItem getProductTypeParentItem(SeachemProductType type) {
-        for (ExpandableDrawerItem item : mProductItemGroups.keySet()) {
-            String title = item.getName().getText();
-            if (title != null && title.equals(getProductTypeString(type))) {
-                return item;
-            }
-        }
-
-        return null;
-    }
-
-    private void updateDiscontinuedProducts() {
+    private void populateProductItems() {
         boolean showDiscontinued = DoserApplication.getDoserPreferences().getShowDiscontinuedProducts();
 
         for (Map.Entry<ExpandableDrawerItem, List<SecondaryDrawerItem>> entry : mProductItemGroups.entrySet()) {
             ExpandableDrawerItem parent = entry.getKey();
             List<SecondaryDrawerItem> children = entry.getValue();
 
+            if(parent.getSubItems() != null)
+                parent.getSubItems().clear();
+
             for (IDrawerItem child : children) {
                 SeachemProduct product = (SeachemProduct) child.getTag();
 
-                if (product.isDiscontinued()) {
-                    if (showDiscontinued)
-                        parent.getSubItems().add(child);
-                    else
-                        parent.getSubItems().remove(child);
-                }
+                if (product.isDiscontinued() && !showDiscontinued)
+                    continue;
+
+                parent.withSubItems(child);
             }
 
             mDrawer.getAdapter().notifyAdapterSubItemsChanged(mDrawer.getPosition(parent));
@@ -358,8 +341,8 @@ public class MainActivity extends BaseActivity
                 return;
             }
         } else {
-            mDrawer.addItemAtPosition(mPinnedItem, 0);
-            mDrawer.addItemAtPosition(new DividerDrawerItem(), 1);
+            mDrawer.addItemAtPosition(mPinnedItem, 1);
+            mDrawer.addItemAtPosition(new DividerDrawerItem(), 2);
             mPinnedItem = (ExpandableDrawerItem) mDrawer.getDrawerItem(PINNED_ITEM_IDENTIFIER);
         }
 
@@ -492,7 +475,7 @@ public class MainActivity extends BaseActivity
         if (defaultProduct != null) {
             SeachemProductType type = SeachemManager.getProductType(defaultProduct);
 
-            ExpandableDrawerItem parent = getProductTypeParentItem(type);
+            ExpandableDrawerItem parent = mProductCategoryItems.get(type);
 
             // first open parent item
             parent.withIsExpanded(true);
@@ -537,7 +520,7 @@ public class MainActivity extends BaseActivity
         }
 
         if (key.equals(getString(R.string.pref_show_discontinued_products))) {
-            updateDiscontinuedProducts();
+            populateProductItems();
         }
     }
 
