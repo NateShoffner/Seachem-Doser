@@ -29,7 +29,7 @@ import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
-import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
+import com.nateshoffner.seachemdoser.core.model.SeachemProductCategory;
 import com.nateshoffner.seachemdoser.core.model.UnitMeasurement;
 import com.nateshoffner.seachemdoser.ui.dialog.DoserChangelog;
 import com.nateshoffner.seachemdoser.ui.dialog.MaterialDialogChangeLog;
@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity
     private ExpandableDrawerItem mPinnedItem;
 
     private long mIdentifierIncrementor;
-    private HashMap<SeachemProductType, ExpandableDrawerItem> mProductCategoryItems = new HashMap<>();
+    private HashMap<SeachemProductCategory, ExpandableDrawerItem> mProductCategoryItems = new HashMap<>();
     private HashMap<ExpandableDrawerItem, List<SecondaryDrawerItem>> mProductItemGroups = new HashMap<>();
 
     private SeachemProduct mProduct;
@@ -236,22 +236,22 @@ public class MainActivity extends BaseActivity
                 .withOnDrawerItemClickListener(expandableListener);
 
         // populate product items
-        List<SeachemProductType> productTypes = SeachemManager.GetProductTypes();
+        List<SeachemProductCategory> categories = SeachemManager.GetProductCategories();
 
-        for (SeachemProductType type : productTypes) {
+        for (SeachemProductCategory category : categories) {
             ExpandableDrawerItem categoryItem = new ExpandableDrawerItem()
-                    .withName(getProductTypeString(type))
+                    .withName(getProductCategoryString(category))
                     .withIcon(GoogleMaterial.Icon.gmd_format_color_fill)
                     .withIdentifier(mIdentifierIncrementor++)
                     .withSelectable(false)
-                    .withIconColorRes(getProductTypeColorRes(type))
+                    .withIconColorRes(getProductCategoryColorRes(category))
                     .withArrowColorRes(R.color.product_list_text_color)
                     .withOnDrawerItemClickListener(expandableListener)
-                    .withTag(type);
+                    .withTag(category);
 
             mProductItemGroups.put(categoryItem, new ArrayList<SecondaryDrawerItem>());
 
-            List<SeachemProduct> products = SeachemManager.GetProducts(type);
+            List<SeachemProduct> products = SeachemManager.GetProducts(category);
 
             for (SeachemProduct product : products) {
                 SecondaryDrawerItem item = new SecondaryDrawerItem();
@@ -267,7 +267,7 @@ public class MainActivity extends BaseActivity
                 mProductItemGroups.get(categoryItem).add(item);
             }
 
-            mProductCategoryItems.put(type, categoryItem);
+            mProductCategoryItems.put(category, categoryItem);
             builder.addDrawerItems(categoryItem);
         }
 
@@ -293,8 +293,8 @@ public class MainActivity extends BaseActivity
         mDrawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
     }
 
-    private int getProductTypeColorRes(SeachemProductType productType) {
-        switch(productType) {
+    private int getProductCategoryColorRes(SeachemProductCategory category) {
+        switch(category) {
             case Gravel:
                 return R.color.gravel;
             case Planted:
@@ -439,14 +439,14 @@ public class MainActivity extends BaseActivity
         invalidateOptionsMenu();
     }
 
-    private String getProductTypeString(SeachemProductType type) {
-        switch (type) {
+    private String getProductCategoryString(SeachemProductCategory category) {
+        switch (category) {
             case Gravel:
-                return getString(R.string.product_type_gravel);
+                return getString(R.string.product_category_gravel);
             case Planted:
-                return getString(R.string.product_type_planted);
+                return getString(R.string.product_category_planted);
             case Reef:
-                return getString(R.string.product_type_reef);
+                return getString(R.string.product_category_reef);
         }
 
         return null;
@@ -473,9 +473,9 @@ public class MainActivity extends BaseActivity
     private void showDefaultProduct() {
         SeachemProduct defaultProduct = DoserApplication.getDoserPreferences().getDefaultProduct();
         if (defaultProduct != null) {
-            SeachemProductType type = SeachemManager.getProductType(defaultProduct);
+            SeachemProductCategory category = SeachemManager.getProductCategory(defaultProduct);
 
-            ExpandableDrawerItem parent = mProductCategoryItems.get(type);
+            ExpandableDrawerItem parent = mProductCategoryItems.get(category);
 
             // first open parent item
             parent.withIsExpanded(true);

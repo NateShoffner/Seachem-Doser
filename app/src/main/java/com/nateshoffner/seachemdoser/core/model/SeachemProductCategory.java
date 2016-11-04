@@ -1,7 +1,8 @@
 package com.nateshoffner.seachemdoser.core.model;
 
-public enum SeachemProductType {
+public enum SeachemProductCategory {
     Gravel,
     Planted,
     Reef
 }
+

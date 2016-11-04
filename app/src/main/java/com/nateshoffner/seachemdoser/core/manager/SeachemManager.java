@@ -1,7 +1,7 @@
 package com.nateshoffner.seachemdoser.core.manager;
 
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
-import com.nateshoffner.seachemdoser.core.model.SeachemProductType;
+import com.nateshoffner.seachemdoser.core.model.SeachemProductCategory;
 import com.nateshoffner.seachemdoser.core.model.products.gravel.*;
 import com.nateshoffner.seachemdoser.core.model.products.planted.*;
 import com.nateshoffner.seachemdoser.core.model.products.reef.*;
@@ -15,30 +15,30 @@ import java.util.Map;
 
 public class SeachemManager {
 
-    private static HashMap<SeachemProductType, List<SeachemProduct>> ProductMap;
+    private static HashMap<SeachemProductCategory, List<SeachemProduct>> ProductMap;
 
     public static List<SeachemProduct> GetProducts() {
-        return GetProducts(EnumSet.allOf(SeachemProductType.class));
+        return GetProducts(EnumSet.allOf(SeachemProductCategory.class));
     }
 
-    public static List<SeachemProduct> GetProducts(SeachemProductType type) {
-        return GetProducts(EnumSet.of(type));
+    public static List<SeachemProduct> GetProducts(SeachemProductCategory category) {
+        return GetProducts(EnumSet.of(category));
     }
 
-    public static List<SeachemProduct> GetProducts(EnumSet<SeachemProductType> type) {
+    public static List<SeachemProduct> GetProducts(EnumSet<SeachemProductCategory> categories) {
         InitializeProducts();
 
         ArrayList<SeachemProduct> products = new ArrayList<>();
-        for (SeachemProductType t : type) {
-            products.addAll(ProductMap.get(t));
+        for (SeachemProductCategory category : categories) {
+            products.addAll(ProductMap.get(category));
         }
         return products;
     }
 
-    public static List<SeachemProductType> GetProductTypes() {
-        ArrayList<SeachemProductType> types = new ArrayList<>();
-        Collections.addAll(types, SeachemProductType.values());
-        return types;
+    public static List<SeachemProductCategory> GetProductCategories() {
+        ArrayList<SeachemProductCategory> categories = new ArrayList<>();
+        Collections.addAll(categories, SeachemProductCategory.values());
+        return categories;
     }
 
     public static SeachemProduct getProductByName(String name) {
@@ -54,8 +54,8 @@ public class SeachemManager {
         return null;
     }
 
-    public static SeachemProductType getProductType(SeachemProduct product) {
-        for (Map.Entry<SeachemProductType, List<SeachemProduct>> e : ProductMap.entrySet()) {
+    public static SeachemProductCategory getProductCategory(SeachemProduct product) {
+        for (Map.Entry<SeachemProductCategory, List<SeachemProduct>> e : ProductMap.entrySet()) {
             if (e.getValue().contains(product))
                 return e.getKey();
         }
@@ -81,7 +81,7 @@ public class SeachemManager {
             gravel.add(new OnyxSand());
             gravel.add(new PearlBeach());
             gravel.add(new SilverShores());
-            ProductMap.put(SeachemProductType.Gravel, gravel);
+            ProductMap.put(SeachemProductCategory.Gravel, gravel);
 
             List<SeachemProduct> planted = new ArrayList<>();
             planted.add(new AlkalineBuffer());
@@ -92,7 +92,7 @@ public class SeachemManager {
             planted.add(new FlourishPotassium());
             planted.add(new FlourishTrace());
             planted.add(new LiquidAlkalineBuffer());
-            ProductMap.put(SeachemProductType.Planted, planted);
+            ProductMap.put(SeachemProductCategory.Planted, planted);
 
             List<SeachemProduct> reef = new ArrayList<>();
             reef.add(new ReefAdvantageCalcium());
@@ -107,7 +107,7 @@ public class SeachemManager {
             reef.add(new ReefFusion2());
             reef.add(new ReefIodide());
             reef.add(new ReefStrontium());
-            ProductMap.put(SeachemProductType.Reef, reef);
+            ProductMap.put(SeachemProductCategory.Reef, reef);
         }
     }
 }

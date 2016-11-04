@@ -14,9 +14,9 @@
     <string name="version">Version v</string>
 
     <!-- product types -->
-    <string name="product_type_gravel">Sands and Gravels</string>
-    <string name="product_type_planted">Plant Products</string>
-    <string name="product_type_reef">Saltwater Products</string>
+    <string name="product_category_gravel">Sands and Gravels</string>
+    <string name="product_category_planted">Plant Products</string>
+    <string name="product_category_reef">Saltwater Products</string>
 
     <string name="calculate_btn_text">Calculate</string>
     <string name="btn_about_text">About…</string>
