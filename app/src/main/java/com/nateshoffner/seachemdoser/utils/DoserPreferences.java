@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.nateshoffner.seachemdoser.R;
 import com.nateshoffner.seachemdoser.core.manager.SeachemManager;
 import com.nateshoffner.seachemdoser.core.model.SeachemProduct;
@@ -120,39 +118,33 @@ public class DoserPreferences {
     }
 
     public List<SeachemProduct> getPinnedProducts() {
-        String json = mSharedPreferences.getString(getPreferenceKey(R.string.pref_pinned_products), null);
+        String str = mSharedPreferences.getString(getPreferenceKey(R.string.pref_pinned_products), null);
 
-        if (json != null) {
-            GsonBuilder builder = new GsonBuilder();
-            Gson gson = builder.create();
-            String[] names = gson.fromJson(json, String[].class);
+        List<SeachemProduct> products = new ArrayList<>();
 
-            List<SeachemProduct> products = new ArrayList<>();
+        if (str != null) {
+            String[] names = str.split(",");
 
             for (String name : names) {
                 SeachemProduct productMatch = SeachemManager.getProductByName(name);
                 if (productMatch != null)
                     products.add(productMatch);
             }
-
-            return products;
         }
 
-        return new ArrayList<>();
+        return products;
     }
 
     private void savePinnedProducts(List<SeachemProduct> products) {
         String[] names = new String[products.size()];
+
         for (int i = 0; i < products.size(); i++) {
             SeachemProduct product = products.get(i);
             names[i] = product.getName();
         }
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String value = gson.toJson(names);
         SharedPreferences.Editor editor = getEditor();
-        editor.putString(getPreferenceKey(R.string.pref_pinned_products), value);
+        editor.putString(getPreferenceKey(R.string.pref_pinned_products), StringUtils.join(names, ","));
         editor.commit();
     }
 

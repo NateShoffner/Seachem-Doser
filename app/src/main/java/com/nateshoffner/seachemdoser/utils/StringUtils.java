@@ -2,7 +2,7 @@ package com.nateshoffner.seachemdoser.utils;
 
 public class StringUtils {
 
-    public static String join(String[] items, String delimeter) {
+    public static String join(String[] items, String delimiter) {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0, itemsSize = items.length; i < itemsSize; i++) {
@@ -11,7 +11,7 @@ public class StringUtils {
             builder.append(str);
 
             if (i < itemsSize - 1)
-                builder.append(delimeter);
+                builder.append(delimiter);
         }
 
         return builder.toString();
