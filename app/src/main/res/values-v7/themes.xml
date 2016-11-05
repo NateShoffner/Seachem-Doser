@@ -24,7 +24,7 @@
         <item name="dosage_input_edittext_drawable">@drawable/dosage_input_light</item>
         <item name="dosage_output_edittext_drawable">@drawable/dosage_output_light</item>
 
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
 
         <!-- MaterialDrawer specific values -->
@@ -77,7 +77,7 @@
         <item name="dosage_input_edittext_drawable">@drawable/dosage_input_dark</item>
         <item name="dosage_output_edittext_drawable">@drawable/dosage_output_dark</item>
 
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="android:listSeparatorTextViewStyle">@style/ListSeparatorTextView</item>
 
         <!-- MaterialDrawer specific values -->
@@ -108,11 +108,4 @@
         <item name="md_btn_ripple_color">@color/background_inverse</item>
     </style>
 
-    <style name="ListSeparatorTextView">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/accent</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-    </style>
 </resources>

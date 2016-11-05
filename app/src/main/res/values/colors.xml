@@ -9,6 +9,7 @@
 
     <color name="product_list_text_color">#0088CC</color>
 
+    <color name="preference_fallback_accent_color">@color/accent</color>
 
     <color name="gravel">#bf360c</color>
     <color name="planted">#66bb6a</color>
