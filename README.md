@@ -46,8 +46,8 @@ This app is not licensed nor endorsed by Seachem Laboratories, Inc
 
 ## Changelog
 
-### Version 1.2 (TBD)
-* Added: Added: Discontinued products toggle
+### Version 1.2 (November 7th, 2016)
+* Added: Discontinued products toggle
 * Added: Dosage copying
 * Added: Seachem warnings
 * Added: Seachem-recommended parameter values
