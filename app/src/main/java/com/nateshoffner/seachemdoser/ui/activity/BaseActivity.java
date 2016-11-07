@@ -3,7 +3,6 @@ package com.nateshoffner.seachemdoser.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -28,10 +27,8 @@ public class BaseActivity extends AppCompatActivity {
         mSharedPreferencesListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
                 if (key.equals(getString(R.string.pref_theme))) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        DoserApplication.reloadDoserTheme();
-                        recreate();
-                    }
+                    DoserApplication.reloadDoserTheme();
+                    recreate();
                 }
             }
         };

@@ -1,12 +1,10 @@
 package com.nateshoffner.seachemdoser.ui.fragment;
 
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.nateshoffner.seachemdoser.DoserApplication;
 import com.nateshoffner.seachemdoser.R;
@@ -20,13 +18,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class PreferencesFragment extends PreferenceFragmentCompat
+public class PreferencesFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     SharedPreferences mSharedPreferences;
 
     @Override
-    public void onCreatePreferences(Bundle bundle, String s) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -96,17 +95,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat
         findPreference(key).setSummary(summary);
     }
 
-    private void showNextRestartSnackbar() {
-        Snackbar.make(getView(), R.string.change_effect_restart,
-                Snackbar.LENGTH_LONG).show();
-    }
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (isMenuVisible())
-            if (key.equals(getString(R.string.pref_unit_measurement))) {
-                displayUnitMeasurement();
-            }
+
+        if (key.equals(getString(R.string.pref_unit_measurement))) {
+            displayUnitMeasurement();
+        }
 
         if (key.equals(getString(R.string.pref_default_product))) {
             updatePreferenceSummary(getString(R.string.pref_default_product), null, null);
@@ -114,11 +108,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat
 
         if (key.equals(getString(R.string.pref_theme))) {
             displayTheme();
-
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                // recreate() not implemented
-                showNextRestartSnackbar();
-            }
         }
     }
 }

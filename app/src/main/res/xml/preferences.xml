@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:title="@string/pref_category_general"
         android:key="@string/pref_category_general">
 
-        <ListPreference
+        <com.afollestad.materialdialogs.prefs.MaterialListPreference
+            app:useStockLayout="true"
             android:title="Unit Measurement"
             android:summary="Unit measurement to use for dosages."
             android:key="@string/pref_unit_measurement"
             android:entries="@array/unit_measurements"
             android:entryValues="@array/unit_measurement_values" />
 
-        <ListPreference
+        <com.afollestad.materialdialogs.prefs.MaterialListPreference
+            app:useStockLayout="true"
             android:title="Default Product"
             android:summary="Default product to open on startup."
             android:key="@string/pref_default_product"
             android:defaultValue="@string/none" />
 
-        <ListPreference
+        <com.afollestad.materialdialogs.prefs.MaterialListPreference
+            app:useStockLayout="true"
             android:title="Theme"
             android:summary="Application theme."
             android:key="@string/pref_theme"
@@ -26,13 +30,13 @@
             android:entryValues="@array/theme_values"
             android:defaultValue="0"/>
 
-        <SwitchPreferenceCompat
+        <CheckBoxPreference
             android:title="Seachem Recommendations"
             android:defaultValue="true"
             android:summary="Use Seachem-recommended parameter values"
             android:key="@string/pref_use_recommended_param_values" />
 
-        <SwitchPreferenceCompat
+        <CheckBoxPreference
             android:title="Show Discontinued Products"
             android:defaultValue="true"
             android:summary="Show discontinued products in product listing"

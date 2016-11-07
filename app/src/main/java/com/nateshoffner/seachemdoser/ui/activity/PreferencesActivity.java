@@ -1,6 +1,7 @@
 package com.nateshoffner.seachemdoser.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -23,7 +24,7 @@ public class PreferencesActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null)
-            getSupportFragmentManager().beginTransaction().add(R.id.content, new PreferencesFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.content, new PreferencesFragment()).commit();
     }
 
     @Override

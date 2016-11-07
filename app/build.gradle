@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.nateshoffner.seachemdoser"
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 3
         versionName buildVersionName()
@@ -42,18 +42,17 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:preference-v14:${supportLibVersion}"
-    compile "com.android.support:preference-v7:${supportLibVersion}"
     compile "uk.co.chrisjenx:calligraphy:2.2.0"
-    compile('com.mikepenz:materialdrawer:5.4.0@aar') { // 5.4.0 API 10 support
+    compile('com.mikepenz:materialdrawer:5.7.0@aar') {
         transitive = true
     }
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
-    //todo upgrade this after pre-lollipop NPE is fixed
-    compile('com.afollestad.material-dialogs:core:0.9.0.2@aar') {
+    compile('com.afollestad.material-dialogs:core:0.9.1.0@aar') {
         transitive = true
     }
-    compile('com.mikepenz:aboutlibraries:5.7.3@aar') { // 5.7.3 API 10 support
+    compile 'com.afollestad.material-dialogs:commons:0.9.1.0'
+    compile('com.mikepenz:aboutlibraries:5.8.5@aar') {
         transitive = true
     }
 }
